@@ -22,12 +22,12 @@ namespace GetXml.Models
         {
             get
             {
-                return new NpgsqlConnection(connectionString);
+                return new SqlConnection(connectionString);
             }
         }
         public List<Device> GetDevices()
         {          
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 return dbConnection.Query<Device>("Select terminal.*,address.address From terminal Left Join address On address.name = terminal.name").ToList();
@@ -36,7 +36,7 @@ namespace GetXml.Models
 
         public Device Get(double id)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 return dbConnection.Query<Device>("Select * From terminal Where id = @id", new { Id = id }).FirstOrDefault();
@@ -45,7 +45,7 @@ namespace GetXml.Models
 
         public void Update(Device device)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 dbConnection.Execute("Update terminal Set id = @Id, name = @Name, status = @Status, ip = @Ip, last_online = @Last_Online, campaign_name = @Campaign_Name, hours_offline = @Hours_Offline Where id = @Id", device);
@@ -53,7 +53,7 @@ namespace GetXml.Models
         }
         public void Delete(double id)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 dbConnection.Execute("DELETE FROM terminal WHERE Id = @id", new { Id = id });
@@ -62,7 +62,7 @@ namespace GetXml.Models
 
         public void Add(Device device)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name)", device);
@@ -71,7 +71,7 @@ namespace GetXml.Models
 
         public void AddAddress(Device device)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
