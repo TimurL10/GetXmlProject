@@ -80,7 +80,7 @@ namespace GetXml.Controllers
                 }               
             }
             CreateExcelReport();
-           //PostAddressToDb(); 
+            PostAddressToDb(); 
         }
 
         public void CreateExcelReport()
@@ -120,7 +120,7 @@ namespace GetXml.Controllers
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);               
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"C:\Users\Timur\Documents\test.xlsx");                
+                FileInfo excelFile = new FileInfo(@"httpdocs\test.xlsx");                
                 excel.SaveAs(excelFile);
             }
         }
