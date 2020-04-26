@@ -75,12 +75,12 @@ namespace GetXml.Controllers
                         var h = System.Math.Floor(ts.TotalHours);
                         d.Hours_Offline = h;
                         deviceRepository.Update(d);
-                        Console.WriteLine($"Имя: {d.Name} Status: {d.Status} Id: {d.Id} hours_offline: {d.Hours_Offline} last_online: {d.Last_Online} Compaign {d.Campaign_Name}");
+                        //Console.WriteLine($"Имя: {d.Name} Status: {d.Status} Id: {d.Id} hours_offline: {d.Hours_Offline} last_online: {d.Last_Online} Compaign {d.Campaign_Name}");
                     }
                 }               
             }
+            PostAddressToDb();
             CreateExcelReport();
-            PostAddressToDb(); 
         }
 
         public void CreateExcelReport()
@@ -120,7 +120,7 @@ namespace GetXml.Controllers
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);               
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"httpdocs\test.xlsx");                
+                FileInfo excelFile = new FileInfo(@"httpdocs\Files\report.xlsx");                
                 excel.SaveAs(excelFile);
             }
         }
@@ -131,7 +131,7 @@ namespace GetXml.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\terminals.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"httpdocs\Files\terminal_address.xlsx");
             
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
@@ -173,7 +173,7 @@ namespace GetXml.Controllers
 
         public FileResult Export()
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\test.xlsx");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"httpdocs\Files\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
