@@ -12,21 +12,27 @@ using System.IO;
 using System.Xml;
 using Microsoft.Extensions.Configuration;
 using OfficeOpenXml;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace GetXml.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ILoggerFactory _loggerFactory;
         private readonly DeviceRepository deviceRepository;
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+        public HomeController(IConfiguration configuration, ILoggerFactory loggerFactory)
         {
-            _logger = logger;
+            //_logger = logger;
+            _loggerFactory = loggerFactory;
             deviceRepository = new DeviceRepository(configuration);
-        }
+            loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
 
+            
+        }
+        
         public IActionResult Index()
-        {
+        {                     
             GetXmlData();
             var terminals = deviceRepository.GetDevices();
 
@@ -41,14 +47,20 @@ namespace GetXml.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            var loggerF = _loggerFactory.CreateLogger("FileLogger");
+            var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            var statusCodeResult = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+
+            loggerF.LogError($"The path{exceptionDetails.Path} threw an exception {exceptionDetails.Error}");
+            loggerF.LogWarning($"Error Occured. Path = {statusCodeResult.OriginalPath}" +
+                $"and QueryString = {statusCodeResult.OriginalQueryString}");
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
         public async void GetXmlData()
-        {
+        {           
             var client = new HttpClient();
-            string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLbmR99w";
+            string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLbmR99";
             //var responce = await client.GetAsync(GETXML_PATH);
             //var pageContent =  await responce.Content.ReadAsStringAsync();
             //var streamTaskA = client.GetStreamAsync(GETXML_PATH);
