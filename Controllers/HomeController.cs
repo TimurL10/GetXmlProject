@@ -32,10 +32,9 @@ namespace GetXml.Controllers
         }
         
         public IActionResult Index()
-        {                     
+        {
             GetXmlData();
             var terminals = deviceRepository.GetDevices();
-
             return View(terminals);
         }
 
@@ -46,50 +45,53 @@ namespace GetXml.Controllers
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
-        {
-            var loggerF = _loggerFactory.CreateLogger("FileLogger");
-            var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            var statusCodeResult = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
-
-            loggerF.LogError($"The path{exceptionDetails.Path} threw an exception {exceptionDetails.Error}");
-            loggerF.LogWarning($"Error Occured. Path = {statusCodeResult.OriginalPath}" +
-                $"and QueryString = {statusCodeResult.OriginalQueryString}");
+        {            
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         public async void GetXmlData()
-        {           
-            var client = new HttpClient();
-            string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLbmR99";
-            //var responce = await client.GetAsync(GETXML_PATH);
-            //var pageContent =  await responce.Content.ReadAsStringAsync();
-            //var streamTaskA = client.GetStreamAsync(GETXML_PATH);
-             var streamTaskA1 = await client.GetStringAsync(GETXML_PATH);
+        {
+            var loggerF = _loggerFactory.CreateLogger("FileLogger");           
 
-            XmlRootAttribute xRoot = new XmlRootAttribute();
-            xRoot.ElementName = "xml";
-            xRoot.DataType = "string";
-
-            using (var reader = new StringReader(streamTaskA1))
+            try
             {
-                Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
+                var client = new HttpClient();
+                string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLb";
+                //var responce = await client.GetAsync(GETXML_PATH);
+                //var pageContent =  await responce.Content.ReadAsStringAsync();
+                //var streamTaskA = client.GetStreamAsync(GETXML_PATH);
+                var streamTaskA1 = await client.GetStringAsync(GETXML_PATH);
 
-                foreach (Device d in devices.Devices)
-                {                    
-                    if (deviceRepository.Get(d.Id) == null)                    
+                XmlRootAttribute xRoot = new XmlRootAttribute();
+                xRoot.ElementName = "xml";
+                xRoot.DataType = "string";
+
+                using (var reader = new StringReader(streamTaskA1))
+                {
+                    Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
+
+                    foreach (Device d in devices.Devices)
                     {
-                        deviceRepository.Add(d);
+                        if (deviceRepository.Get(d.Id) == null)
+                        {
+                            deviceRepository.Add(d);
+                        }
+                        if (d.Status == "offline" || d.Status == "playback")
+                        {
+                            d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
+                            var ts = TimeSpan.FromHours(d.Hours_Offline);
+                            var h = System.Math.Floor(ts.TotalHours);
+                            d.Hours_Offline = h;
+                            deviceRepository.Update(d);
+                            Console.WriteLine($"Имя: {d.Name} Status: {d.Status} Id: {d.Id} hours_offline: {d.Hours_Offline} last_online: {d.Last_Online} Compaign {d.Campaign_Name}");
+                        }
                     }
-                    if (d.Status == "offline" || d.Status == "playback")
-                    {
-                        d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
-                        var ts = TimeSpan.FromHours(d.Hours_Offline);
-                        var h = System.Math.Floor(ts.TotalHours);
-                        d.Hours_Offline = h;
-                        deviceRepository.Update(d);
-                        Console.WriteLine($"Имя: {d.Name} Status: {d.Status} Id: {d.Id} hours_offline: {d.Hours_Offline} last_online: {d.Last_Online} Compaign {d.Campaign_Name}");
-                    }
-                }               
+                }
+            }            
+            catch (Exception e)
+            {
+                loggerF.LogError($"The path threw an exception {e}");
+                loggerF.LogWarning($"The path threw a warning {e}");                
             }
             CreateExcelReport();
            //PostAddressToDb(); 
