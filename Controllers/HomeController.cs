@@ -119,7 +119,7 @@ namespace GetXml.Controllers
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);               
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files\report.xlsx");                
+                FileInfo excelFile = new FileInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");                
                 excel.SaveAs(excelFile);
             }
         }
@@ -172,7 +172,7 @@ namespace GetXml.Controllers
 
         public FileResult Export()
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files\report.xlsx");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
