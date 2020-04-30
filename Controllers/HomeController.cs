@@ -71,15 +71,14 @@ namespace GetXml.Controllers
                     Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
 
                     foreach (Device d in devices.Devices)
-                    {
-                        var temp = deviceRepository.Get(d.Id);
-                        if (temp == null)
+                    {                        
+                        if (deviceRepository.Get(d.Id) == null)
                         {
                             deviceRepository.Add(d);
                         }
                         if (d.Status == "offline" || d.Status == "playback")
                         {
-                            d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
+                            d.Hours_Offline = (DateTime.Now - d.Last_Online).TotalHours;
                             var ts = TimeSpan.FromHours(d.Hours_Offline);
                             var h = System.Math.Floor(ts.TotalHours);
                             d.Hours_Offline = h;
