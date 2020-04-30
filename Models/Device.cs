@@ -11,6 +11,8 @@ namespace GetXml.Models
     [XmlRoot(ElementName = "device")]
     public class Device
     {
+        private DateTime last_online;
+
         [XmlAttribute(AttributeName = "id")]
         public double Id { get; set; }
 
@@ -39,7 +41,17 @@ namespace GetXml.Models
         //public DateTime ConnectedAt { get; set; }
 
         [XmlAttribute(AttributeName = "last_online")]
-        public DateTime Last_Online { get; set; }
+        public DateTime Last_Online {
+            get
+            {
+                return last_online;
+            }
+
+            set
+            {
+                last_online = value.ToLocalTime();
+            }
+        }
 
         [XmlAttribute(AttributeName = "time_offline")]
         public double Hours_Offline { get; set; }
@@ -57,7 +69,7 @@ namespace GetXml.Models
             this.Status = Status;
             this.Campaign_Name = campaign_name;
             this.Ip = Ip;            
-            this.Last_Online = last_online;
+            this.Last_Online = last_online.ToLocalTime();
             this.Hours_Offline= hours_offline;
             this.Address = address;
         }
