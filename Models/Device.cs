@@ -57,7 +57,7 @@ namespace GetXml.Models
             this.Status = Status;
             this.Campaign_Name = campaign_name;
             this.Ip = Ip;            
-            this.Last_Online = last_online;
+            this.Last_Online = last_online.ToLocalTime();
             this.Hours_Offline= hours_offline;
             this.Address = address;
         }

@@ -197,3 +197,96 @@ Request finished in 705.1443ms 200 text/html; charset=utf-8
 Request finished in 705.1443ms 200 text/html; charset=utf-8
 Request finished in 705.1443ms 200 text/html; charset=utf-8
 Request finished in 705.1443ms 200 text/html; charset=utf-8
+The path threw an exception System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw a warning System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 442.2859ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2817.5614ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 3200.5276000000003ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 53.541000000000004ms.
+Executed ViewResult - view Index executed in 53.541000000000004ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 105.3217ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 105.3217ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 294.3241ms 200 text/html; charset=utf-8
+Request finished in 294.3241ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+The path threw an exception System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw an exception System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+The path threw a warning System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw a warning System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+Request finished in 260.8933ms 200 image/x-icon
+Request finished in 260.8933ms 200 image/x-icon
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 58.105700000000006ms.
+Executed ViewResult - view Index executed in 58.105700000000006ms.
+Executed ViewResult - view Index executed in 58.105700000000006ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 125.40650000000001ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 125.40650000000001ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 125.40650000000001ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 355.3122ms 200 text/html; charset=utf-8
+Request finished in 355.3122ms 200 text/html; charset=utf-8
+Request finished in 355.3122ms 200 text/html; charset=utf-8
+The path threw an exception System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw an exception System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw an exception System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw a warning System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw a warning System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+The path threw a warning System.Net.Http.HttpRequestException: Response status code does not indicate success: 404 (Not Found).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
