@@ -76,7 +76,7 @@ namespace GetXml.Controllers
                         }
                         if (d.Status == "offline" || d.Status == "playback")
                         {
-                            d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
+                            d.Hours_Offline = (DateTime.Now - d.Last_Online).TotalHours;
                             var ts = TimeSpan.FromHours(d.Hours_Offline);
                             var h = System.Math.Floor(ts.TotalHours);
                             d.Hours_Offline = h;
