@@ -56,7 +56,7 @@ namespace GetXml.Controllers
             try
             {
                 var client = new HttpClient();
-                string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLb";
+                string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLbmR99w";
                 //var responce = await client.GetAsync(GETXML_PATH);
                 //var pageContent =  await responce.Content.ReadAsStringAsync();
                 //var streamTaskA = client.GetStreamAsync(GETXML_PATH);
@@ -72,7 +72,8 @@ namespace GetXml.Controllers
 
                     foreach (Device d in devices.Devices)
                     {
-                        if (deviceRepository.Get(d.Id) == null)
+                        var temp = deviceRepository.Get(d.Id);
+                        if (temp == null)
                         {
                             deviceRepository.Add(d);
                         }

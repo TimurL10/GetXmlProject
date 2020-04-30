@@ -290,3 +290,30 @@ The path threw a warning System.Net.Http.HttpRequestException: Response status c
    at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
    at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
    at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 63
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 313.572ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2395.9608000000003ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2639.0301ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing ViewResult, running view Index.
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1721.299ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2918.2314ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 3087.6666ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1477.8669ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2852.7459000000003ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2999.7741ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 3180.7596000000003ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 5829.6148ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 6220.7007ms 200 text/html; charset=utf-8
