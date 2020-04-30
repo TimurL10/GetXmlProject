@@ -171,7 +171,7 @@ namespace GetXml.Controllers
             return excelData;
         }
 
-        public void PostAddressToDb()
+        public IActionResult PostAddressToDb()
         {
             var excelData = ReadAddressesFromExcel();
             excelData.RemoveRange(0, 2);
@@ -181,6 +181,7 @@ namespace GetXml.Controllers
                 deviceRepository.AddAddress(device);
                 i++;
             }
+            return View("Privacy");
         }
 
         public FileResult Export()
