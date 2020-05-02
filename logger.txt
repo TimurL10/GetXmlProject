@@ -357,3 +357,76 @@ Executed ViewResult - view Index executed in 1414.0145ms.
 Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2506.5174ms
 Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
 Request finished in 2678.0407ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1628.4188000000001ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 39692.172ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 39952.889500000005ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 247.1904ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 80736.58110000001ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 80934.4594ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1477.8787ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2685.5873ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2863.4297ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 9879.7372ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 432395.1534ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 432599.0392ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 56046.854400000004ms.
+Executed ViewResult - view Index executed in 56046.854400000004ms.
+Executed ViewResult - view Index executed in 56043.6082ms.
+Executed ViewResult - view Index executed in 56043.6082ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 72676.6355ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 72676.6355ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 95680.6303ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 95680.6303ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 74445.5534ms 200 text/html; charset=utf-8
+Request finished in 74445.5534ms 200 text/html; charset=utf-8
+Request finished in 96146.72320000001ms 200 text/html; charset=utf-8
+Request finished in 96146.72320000001ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 22088.386700000003ms.
+Executed ViewResult - view Index executed in 22088.386700000003ms.
+Executed ViewResult - view Index executed in 22085.2151ms.
+Executed ViewResult - view Index executed in 22085.2151ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 119332.90220000001ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 119332.90220000001ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 95620.9396ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 95620.9396ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 119726.0537ms 200 text/html; charset=utf-8
+Request finished in 119726.0537ms 200 text/html; charset=utf-8
+Request finished in 97617.6605ms 200 text/html; charset=utf-8
+Request finished in 97617.6605ms 200 text/html; charset=utf-8
