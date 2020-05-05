@@ -20,6 +20,10 @@ namespace GetXml.Controllers
         private readonly ILogger<HomeController> _logger;
         private ILoggerFactory _loggerFactory;
         private readonly DeviceRepository deviceRepository;
+        public static string displayName = "(GMT+03:00) Russia Time Zone 2";
+        public static string standardName = "Russia Time Zone 2";
+        public static TimeSpan offset = new TimeSpan(03, 00, 00);
+        public TimeZoneInfo moscow = TimeZoneInfo.CreateCustomTimeZone(standardName, offset, displayName, standardName);
         public HomeController(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _loggerFactory = loggerFactory;
@@ -72,12 +76,13 @@ namespace GetXml.Controllers
                     {
                         if (deviceRepository.Get(d.Id) == null && d.Last_Online.Year == DateTime.Now.Year)
                         {
-                            d.Last_Online = d.Last_Online.ToLocalTime();
+                            d.Last_Online = TimeZoneInfo.ConvertTime(d.Last_Online, moscow);
                             deviceRepository.Add(d);
                         }                       
                         else if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
                         {
-                            d.Hours_Offline = (DateTime.Now - d.Last_Online.ToLocalTime()).TotalHours;
+                            d.Last_Online = TimeZoneInfo.ConvertTime(d.Last_Online, moscow);
+                            d.Hours_Offline = (DateTime.Now - d.Last_Online).TotalHours;
                             var ts_new = TimeSpan.FromHours(d.Hours_Offline);
                             var h_new = System.Math.Floor(ts_new.TotalHours);
                             if (h_new < 0)
@@ -85,7 +90,6 @@ namespace GetXml.Controllers
                                 h_new = 0;
                             }                            
                             d.Hours_Offline = h_new;
-                            d.Last_Online = d.Last_Online.ToLocalTime();
                             if (h_new > 0)
                             {
                                 deviceRepository.Update(d);
@@ -93,7 +97,6 @@ namespace GetXml.Controllers
                             else
                             {
                                 d.SumHours += d.Hours_Offline;
-                                d.Last_Online = d.Last_Online.ToLocalTime();
                                 deviceRepository.Update(d);
                             }
                         }
@@ -144,7 +147,7 @@ namespace GetXml.Controllers
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);               
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"C:\Users\Timur\Documents\report.xlsx");                
+                FileInfo excelFile = new FileInfo(@"C:\Users\Timur\Documents\report.xlsx");
                 excel.SaveAs(excelFile);
             }
         }
@@ -155,8 +158,8 @@ namespace GetXml.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\terminals.xlsx");
-            
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\terminal_address.xlsx");
+
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
             using (ExcelPackage excelPackage = new ExcelPackage(stream))
@@ -197,7 +200,7 @@ namespace GetXml.Controllers
         }
 
         public FileResult Export()
-        {
+        {            
             byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);

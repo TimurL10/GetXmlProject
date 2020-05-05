@@ -12420,3 +12420,13 @@ Request finished in 3340.8944ms 200 text/html; charset=utf-8
 Request finished in 3340.8944ms 200 text/html; charset=utf-8
 Request finished in 3340.8944ms 200 text/html; charset=utf-8
 Request finished in 3340.8944ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 3341.2181ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 6496.761100000001ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 7165.4813ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 3127.6728000000003ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 5203.2288ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 5584.5953ms 200 text/html; charset=utf-8
