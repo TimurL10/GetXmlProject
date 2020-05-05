@@ -80,6 +80,10 @@ namespace GetXml.Controllers
                             d.Hours_Offline = (DateTime.Now - d.Last_Online.ToLocalTime()).TotalHours;
                             var ts_new = TimeSpan.FromHours(d.Hours_Offline);
                             var h_new = System.Math.Floor(ts_new.TotalHours);
+                            if (h_new < 0)
+                            {
+                                h_new = 0;
+                            }                            
                             d.Hours_Offline = h_new;
                             d.Last_Online = d.Last_Online.ToLocalTime();
                             if (h_new > 0)
