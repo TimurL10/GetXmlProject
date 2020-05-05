@@ -12430,3 +12430,104 @@ Executed ViewResult - view Index executed in 3127.6728000000003ms.
 Executed action GetXml.Controllers.HomeController.Index (GetXml) in 5203.2288ms
 Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
 Request finished in 5584.5953ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 11577.3305ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 66087.56970000001ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 68523.3576ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing ViewResult, running view Index.
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 437.582ms.
+Request starting HTTP/2 GET https://localhost:5001/  
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 9033.4712ms
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Request finished in 9724.9532ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1469.8429ms.
+Executed ViewResult - view Index executed in 1469.8429ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1778.0712ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1778.0712ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2170.0155ms 200 text/html; charset=utf-8
+Request finished in 2170.0155ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2102.9871000000003ms.
+Executed ViewResult - view Index executed in 2102.9871000000003ms.
+Executed ViewResult - view Index executed in 2102.9871000000003ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2307.6776ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2307.6776ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2307.6776ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2814.0284ms 200 text/html; charset=utf-8
+Request finished in 2814.0284ms 200 text/html; charset=utf-8
+Request finished in 2814.0284ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Request finished in 269.9433ms 200 image/x-icon
+Request finished in 269.9433ms 200 image/x-icon
+Request finished in 269.9433ms 200 image/x-icon
+Request starting HTTP/2 GET https://localhost:5001/Home/Export  
+Request starting HTTP/2 GET https://localhost:5001/Home/Export  
+Request starting HTTP/2 GET https://localhost:5001/Home/Export  
+Executing endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Route matched with {action = "Export", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult Export() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Export", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult Export() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Export", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult Export() on controller GetXml.Controllers.HomeController (GetXml).
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 1005.0645000000001ms
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 1005.0645000000001ms
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 1005.0645000000001ms
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 1005.0645000000001ms
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Request finished in 1409.5214ms 200 application/octet-stream
+Request finished in 1409.5214ms 200 application/octet-stream
+Request finished in 1409.5214ms 200 application/octet-stream
+Request finished in 1409.5214ms 200 application/octet-stream

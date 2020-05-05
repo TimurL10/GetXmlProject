@@ -79,7 +79,7 @@ namespace GetXml.Controllers
                             d.Last_Online = TimeZoneInfo.ConvertTime(d.Last_Online, moscow);
                             deviceRepository.Add(d);
                         }                       
-                        else if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
+                        if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
                         {
                             d.Last_Online = TimeZoneInfo.ConvertTime(d.Last_Online, moscow);
                             d.Hours_Offline = (DateTime.Now - d.Last_Online).TotalHours;
@@ -108,7 +108,6 @@ namespace GetXml.Controllers
                 loggerF.LogError($"The path threw an exception {DateTime.Now} -- {e}");
                 loggerF.LogWarning($"The path threw a warning {DateTime.Now} --{e}");
             }
-            CreateExcelReport();
         }
 
         public void CreateExcelReport()
@@ -200,7 +199,8 @@ namespace GetXml.Controllers
         }
 
         public FileResult Export()
-        {            
+        {
+            CreateExcelReport();
             byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
