@@ -70,18 +70,28 @@ namespace GetXml.Controllers
 
                     foreach (Device d in devices.Devices)
                     {
-                        if (deviceRepository.Get(d.Id) == null)
+                        if (deviceRepository.Get(d.Id) == null && d.Last_Online.Year == DateTime.Now.Year)
                         {
+                            d.Last_Online = d.Last_Online.ToLocalTime();
                             deviceRepository.Add(d);
-                        }
-                        if (d.Status == "offline" || d.Status == "playback")
+                        }                       
+                        else if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
                         {
-                            d.Hours_Offline = (DateTime.Now - d.Last_Online).TotalHours;
-                            var ts = TimeSpan.FromHours(d.Hours_Offline);
-                            var h = System.Math.Floor(ts.TotalHours);
-                            d.Hours_Offline = h;
-                            deviceRepository.Update(d);
-                            //Console.WriteLine($"Имя: {d.Name} Status: {d.Status} Id: {d.Id} hours_offline: {d.Hours_Offline} last_online: {d.Last_Online} Compaign {d.Campaign_Name}");
+                            d.Hours_Offline = (DateTime.Now - d.Last_Online.ToLocalTime()).TotalHours;
+                            var ts_new = TimeSpan.FromHours(d.Hours_Offline);
+                            var h_new = System.Math.Floor(ts_new.TotalHours);
+                            d.Hours_Offline = h_new;
+                            d.Last_Online = d.Last_Online.ToLocalTime();
+                            if (h_new > 0)
+                            {
+                                deviceRepository.Update(d);
+                            }
+                            else
+                            {
+                                d.SumHours += d.Hours_Offline;
+                                d.Last_Online = d.Last_Online.ToLocalTime();
+                                deviceRepository.Update(d);
+                            }
                         }
                     }
                 }
@@ -95,8 +105,7 @@ namespace GetXml.Controllers
         }
 
         public void CreateExcelReport()
-        {
-            
+        {            
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage excel = new ExcelPackage())
             {
@@ -109,11 +118,10 @@ namespace GetXml.Controllers
                 //new string[] { "ID", "First Name", "Last Name", "DOB" }
                 //};
 
-                var TerminalList = deviceRepository.GetDevices();
-                              
+                var TerminalList = deviceRepository.GetDevices();                              
 
                 // Determine the header range (e.g. A1:D1)
-                string headerRange = "A2:" + Char.ConvertFromUtf32(8 + 64) + "1";
+                string headerRange = "A2:" + Char.ConvertFromUtf32(9 + 64) + "1";
 
                 // Target a worksheet
                 var worksheet = excel.Workbook.Worksheets["Worksheet1"];
@@ -124,15 +132,15 @@ namespace GetXml.Controllers
                 worksheet.Cells[1, 4].Value = "Compaign Name"; 
                 worksheet.Cells[1, 5].Value = "IP Address";
                 worksheet.Cells[1, 6].Value = "Last Online"; 
-                worksheet.Cells[1, 7].Value = "Hours Offline";
-                worksheet.Cells[1, 8].Value = "Address";
-
+                worksheet.Cells[1, 7].Value = "Address";
+                worksheet.Cells[1, 8].Value = "Hours Offline";
+                worksheet.Cells[1, 9].Value = "Sum Offline";
 
                 // Popular header row data
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);               
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");                
+                FileInfo excelFile = new FileInfo(@"C:\Users\Timur\Documents\report.xlsx");                
                 excel.SaveAs(excelFile);
             }
         }
@@ -143,7 +151,7 @@ namespace GetXml.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files\terminal_address.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\terminals.xlsx");
             
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
@@ -186,7 +194,7 @@ namespace GetXml.Controllers
 
         public FileResult Export()
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
