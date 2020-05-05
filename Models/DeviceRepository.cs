@@ -48,7 +48,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                dbConnection.Execute("Update terminal Set id = @Id, name = @Name, status = @Status, ip = @Ip, last_online = @Last_Online, campaign_name = @Campaign_Name, hours_offline = @Hours_Offline Where id = @Id", device);
+                dbConnection.Execute("Update terminal Set id = @Id, name = @Name, status = @Status, ip = @Ip, last_online = @Last_Online, campaign_name = @Campaign_Name, hours_offline = @Hours_Offline, SumHours = @SumHours Where id = @Id", device);
             }
         }
         public void Delete(double id)
@@ -65,7 +65,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name)", device);
+                dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name, SumHours) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name, @SumHours)", device);
             }
         }
 
