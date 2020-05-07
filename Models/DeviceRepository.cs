@@ -49,6 +49,7 @@ namespace GetXml.Models
             {
                 dbConnection.Open();
                 dbConnection.Execute("Update terminal Set id = @Id, name = @Name, status = @Status, ip = @Ip, last_online = @Last_Online, campaign_name = @Campaign_Name, hours_offline = @Hours_Offline, SumHours = @SumHours Where id = @Id", device);
+                dbConnection.Close();
             }
         }
         public void Delete(double id)
@@ -57,6 +58,7 @@ namespace GetXml.Models
             {
                 dbConnection.Open();
                 dbConnection.Execute("DELETE FROM terminal WHERE Id = @id", new { Id = id });
+                dbConnection.Close();
             }
         }
 
@@ -66,6 +68,7 @@ namespace GetXml.Models
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name, SumHours) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name, @SumHours)", device);
+                dbConnection.Close();
             }
         }
 
@@ -75,6 +78,7 @@ namespace GetXml.Models
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
+                dbConnection.Close();
             }               
         }
     }

@@ -36,7 +36,6 @@ namespace GetXml.Controllers
         {
             GetXmlData();
             var terminals = deviceRepository.GetDevices();
-
             return View(terminals);
         }
 
@@ -81,8 +80,7 @@ namespace GetXml.Controllers
                         }
                         if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
                         {
-                            var  time_now = TimeZoneInfo.ConvertTime(DateTime.UtcNow, moscow);
-                            d.Last_Online = TimeZoneInfo.ConvertTime(d.Last_Online, moscow);
+                            var  time_now = TimeZoneInfo.ConvertTime(DateTime.Now, moscow);
                             d.Hours_Offline = (time_now - d.Last_Online).TotalHours;
                             var ts_new = TimeSpan.FromHours(d.Hours_Offline);
                             var h_new = System.Math.Floor(ts_new.TotalHours);
@@ -106,8 +104,8 @@ namespace GetXml.Controllers
             }
             catch (Exception e)
             {
-                loggerF.LogError($"The path threw an exception {DateTime.Now} -- {e}");
-                loggerF.LogWarning($"The path threw a warning {DateTime.Now} --{e}");
+                loggerF.LogError($"The path threw an exception {DateTime.UtcNow} -- {e}");
+                loggerF.LogWarning($"The path threw a warning {DateTime.UtcNow} --{e}");
             }
         }
 
