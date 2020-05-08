@@ -36,6 +36,7 @@ namespace GetXml.Controllers
         {
             GetXmlData();
             var terminals = deviceRepository.GetDevices();
+            terminals = ConverDateToMoscowTime(terminals);
             return View(terminals);
         }
 
@@ -75,13 +76,11 @@ namespace GetXml.Controllers
                     {
                         if (deviceRepository.Get(d.Id) == null && d.Last_Online.Year == DateTime.Now.Year)
                         {
-                            d.Last_Online = TimeZoneInfo.ConvertTime(d.Last_Online, moscow);
                             deviceRepository.Add(d);
                         }
                         if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
                         {
-                            var  time_now = TimeZoneInfo.ConvertTime(DateTime.Now, moscow);
-                            d.Hours_Offline = (time_now - d.Last_Online).TotalHours;
+                            d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
                             var ts_new = TimeSpan.FromHours(d.Hours_Offline);
                             var h_new = System.Math.Floor(ts_new.TotalHours);
                             if (h_new < 0)
@@ -203,6 +202,17 @@ namespace GetXml.Controllers
             byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        }
+
+        public List<Device> ConverDateToMoscowTime(List<Device> listDevises)
+        {
+            foreach (var d in listDevises)
+            {
+                TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
+                d.Last_Online = TimeZoneInfo.ConvertTimeFromUtc(d.Last_Online, moscowZone);
+
+            }
+            return listDevises;
         }
     } 
 }
