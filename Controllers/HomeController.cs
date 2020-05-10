@@ -94,8 +94,11 @@ namespace GetXml.Controllers
                             }
                             else
                             {
-                                d.SumHours += d.Hours_Offline;
-                                deviceRepository.Update(d);
+                                var deviceFromDb = deviceRepository.Get(d.Id);
+                                deviceFromDb.SumHours += deviceFromDb.Hours_Offline;
+                                deviceFromDb.Hours_Offline = d.Hours_Offline;
+                                deviceFromDb.Last_Online = d.Last_Online;
+                                deviceRepository.Update(deviceFromDb);
                             }
                         }
                     }
