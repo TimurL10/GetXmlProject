@@ -90,7 +90,10 @@ namespace GetXml.Controllers
                             d.Hours_Offline = h_new;
                             if (h_new > 0)
                             {
-                                deviceRepository.Update(d);
+                                var deviceFromDb = deviceRepository.Get(d.Id);
+                                deviceFromDb.Last_Online = d.Last_Online;
+                                deviceFromDb.Hours_Offline = d.Hours_Offline;
+                                deviceRepository.Update(deviceFromDb);
                             }
                             else
                             {
