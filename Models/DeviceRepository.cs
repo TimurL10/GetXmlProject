@@ -30,7 +30,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                return dbConnection.Query<Device>("Select terminal.*,address.address From terminal Left Join address On address.name = terminal.name").ToList();
+                return dbConnection.Query<Device>("Select terminal.*,address.address From terminal Left Join address On address.name = terminal.name order by SumHours DESC").ToList();
             }
         }
 
