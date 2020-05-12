@@ -34,6 +34,10 @@ namespace GetXml.Controllers
 
         public IActionResult Index()
         {
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Interval = 3900000;
+            timer.Elapsed += timer_Elapsed;
+            timer.Start();
             GetXmlData();
             var terminals = deviceRepository.GetDevices();
             terminals = ConverDateToMoscowTime(terminals);
@@ -219,6 +223,11 @@ namespace GetXml.Controllers
 
             }
             return listDevises;
+        }
+
+        public void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            GetXmlData();
         }
     } 
 }
