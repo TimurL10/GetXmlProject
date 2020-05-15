@@ -24,6 +24,7 @@ namespace GetXml.Controllers
         public static string standardName = "Russia Time Zone 2";
         public static TimeSpan offset = new TimeSpan(03, 00, 00);
         public TimeZoneInfo moscow = TimeZoneInfo.CreateCustomTimeZone(standardName, offset, displayName, standardName);
+
         public HomeController(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _loggerFactory = loggerFactory;
@@ -34,10 +35,10 @@ namespace GetXml.Controllers
 
         public IActionResult Index()
         {
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 3900000;
-            timer.Elapsed += timer_Elapsed;
-            timer.Start();
+            //System.Timers.Timer timer = new System.Timers.Timer();
+            //timer.Interval = 180000;
+            //timer.Elapsed += timer_Elapsed;
+            //timer.Start();
             GetXmlData();
             var terminals = deviceRepository.GetDevices();
             terminals = ConverDateToMoscowTime(terminals);
@@ -59,6 +60,7 @@ namespace GetXml.Controllers
         public async void GetXmlData()
         {
             var loggerF = _loggerFactory.CreateLogger("FileLogger");
+            loggerF.LogInformation($"Entering to GetXmlData {DateTime.UtcNow}");
             try
             {
                 var client = new HttpClient();
@@ -225,10 +227,10 @@ namespace GetXml.Controllers
             return listDevises;
         }
 
-        public void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            GetXmlData();
-        }
+        //public void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        //{
+        //    GetXmlData();
+        //}
     } 
 }
 
