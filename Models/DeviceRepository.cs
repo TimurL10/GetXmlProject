@@ -12,7 +12,7 @@ namespace GetXml.Models
 {
     public class DeviceRepository : IDeviceRepository
     {
-        private readonly string connectionString;
+        private readonly string connectionString;        
         public DeviceRepository(IConfiguration configuration)
         {
             connectionString = configuration.GetValue<string>("DbInfo:ConnectionString");
