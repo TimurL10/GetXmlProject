@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GetXml.Models;
@@ -17,14 +16,12 @@ namespace GetXml.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private ILoggerFactory _loggerFactory;
         private readonly DeviceRepository deviceRepository;
         public static string displayName = "(GMT+03:00) Russia Time Zone 2";
         public static string standardName = "Russia Time Zone 2";
         public static TimeSpan offset = new TimeSpan(03, 00, 00);
         public TimeZoneInfo moscow = TimeZoneInfo.CreateCustomTimeZone(standardName, offset, displayName, standardName);
-
         public HomeController(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _loggerFactory = loggerFactory;
@@ -35,11 +32,7 @@ namespace GetXml.Controllers
 
         public IActionResult Index()
         {
-            //System.Timers.Timer timer = new System.Timers.Timer();
-            //timer.Interval = 180000;
-            //timer.Elapsed += timer_Elapsed;
-            //timer.Start();
-            GetXmlData();
+            GetXmlData();            
             var terminals = deviceRepository.GetDevices();
             terminals = ConverDateToMoscowTime(terminals);
             return View(terminals);
@@ -60,7 +53,6 @@ namespace GetXml.Controllers
         public async void GetXmlData()
         {
             var loggerF = _loggerFactory.CreateLogger("FileLogger");
-            loggerF.LogInformation($"Entering to GetXmlData {DateTime.UtcNow}");
             try
             {
                 var client = new HttpClient();
@@ -69,13 +61,12 @@ namespace GetXml.Controllers
                 //var pageContent =  await responce.Content.ReadAsStringAsync();
                 //var streamTaskA = client.GetStreamAsync(GETXML_PATH);
                 var streamTaskA1 = await client.GetStringAsync(GETXML_PATH);
-
                 XmlRootAttribute xRoot = new XmlRootAttribute();
                 xRoot.ElementName = "xml";
                 xRoot.DataType = "string";
 
                 using (var reader = new StringReader(streamTaskA1))
-                {   
+                {
                     Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
 
                     foreach (Device d in devices.Devices)
@@ -115,26 +106,26 @@ namespace GetXml.Controllers
             }
             catch (Exception e)
             {
-                loggerF.LogError($"The path threw an exception {DateTime.UtcNow} -- {e}");
-                loggerF.LogWarning($"The path threw a warning {DateTime.UtcNow} --{e}");
+                loggerF.LogError($"The path threw an exception {DateTime.Now} -- {e}");
+                loggerF.LogWarning($"The path threw a warning {DateTime.Now} --{e}");
             }
         }
 
         public void CreateExcelReport()
-        {            
+        {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage excel = new ExcelPackage())
             {
                 excel.Workbook.Worksheets.Add("Worksheet1");
                 excel.Workbook.Worksheets.Add("Worksheet2");
                 excel.Workbook.Worksheets.Add("Worksheet3");
-              
+
                 //var headerRow = new List<string[]>()
                 //{
                 //new string[] { "ID", "First Name", "Last Name", "DOB" }
                 //};
 
-                var TerminalList = deviceRepository.GetDevices();                              
+                var TerminalList = deviceRepository.GetDevices();
 
                 // Determine the header range (e.g. A1:D1)
                 string headerRange = "A2:" + Char.ConvertFromUtf32(9 + 64) + "1";
@@ -145,18 +136,18 @@ namespace GetXml.Controllers
                 worksheet.Cells[1, 1].Value = "Id";
                 worksheet.Cells[1, 2].Value = "Name";
                 worksheet.Cells[1, 3].Value = "Status";
-                worksheet.Cells[1, 4].Value = "Compaign Name"; 
+                worksheet.Cells[1, 4].Value = "Compaign Name";
                 worksheet.Cells[1, 5].Value = "IP Address";
-                worksheet.Cells[1, 6].Value = "Last Online"; 
+                worksheet.Cells[1, 6].Value = "Last Online";
                 worksheet.Cells[1, 7].Value = "Address";
                 worksheet.Cells[1, 8].Value = "Hours Offline";
                 worksheet.Cells[1, 9].Value = "Sum Offline";
 
                 // Popular header row data
-                worksheet.Cells["A2"].LoadFromCollection(TerminalList);               
+                worksheet.Cells["A2"].LoadFromCollection(TerminalList);
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
+                FileInfo excelFile = new FileInfo(@"C:\Users\Timur\Documents\report.xlsx");
                 excel.SaveAs(excelFile);
             }
         }
@@ -167,7 +158,7 @@ namespace GetXml.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files\terminal_address.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\terminal_address.xlsx");
 
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
@@ -183,7 +174,7 @@ namespace GetXml.Controllers
                         for (int j = worksheet.Dimension.Start.Column; j <= worksheet.Dimension.End.Column; j++)
                         {
                             //add the cell data to the List
-                            if ((worksheet.Cells[i, j].Value != null && j == 1 && worksheet.Cells[i, j+7].Value != null) || (worksheet.Cells[i, j].Value != null && j == 8))
+                            if ((worksheet.Cells[i, j].Value != null && j == 1 && worksheet.Cells[i, j + 7].Value != null) || (worksheet.Cells[i, j].Value != null && j == 8))
                             {
                                 //if (worksheet.Cells["A"])
                                 excelData.Add(worksheet.Cells[i, j].Value.ToString());
@@ -199,9 +190,9 @@ namespace GetXml.Controllers
         {
             var excelData = ReadAddressesFromExcel();
             excelData.RemoveRange(0, 2);
-            for (int i = 0; i < excelData.Count-1; i ++)
+            for (int i = 0; i < excelData.Count - 1; i++)
             {
-                var device = new Device(excelData[i], excelData[i + 1]);                
+                var device = new Device(excelData[i], excelData[i + 1]);
                 deviceRepository.AddAddress(device);
                 i++;
             }
@@ -211,7 +202,7 @@ namespace GetXml.Controllers
         public FileResult Export()
         {
             CreateExcelReport();
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
@@ -222,16 +213,11 @@ namespace GetXml.Controllers
             {
                 TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
                 d.Last_Online = TimeZoneInfo.ConvertTimeFromUtc(d.Last_Online, moscowZone);
-
+                //string date_from = d.Last_Online.ToString("yyyy/MM/dd HH:mm");
             }
             return listDevises;
         }
-
-        //public void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        //{
-        //    GetXmlData();
-        //}
-    } 
+    }
 }
 
 
