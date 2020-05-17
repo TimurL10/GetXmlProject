@@ -111,7 +111,7 @@ namespace GetXml.Jobs
             RecurringJob.RemoveIfExists(nameof(MyJob));
             RecurringJob.AddOrUpdate<MyJob>(nameof(MyJob),
                 job => job.Run(JobCancellationToken.Null),
-                Cron.MinuteInterval(5), TimeZoneInfo.Utc);
+                Cron.HourInterval(1),TimeZoneInfo.Utc);
         }
     }
 
