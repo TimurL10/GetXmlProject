@@ -12435,3 +12435,23 @@ Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3754.0729ms
 Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
 An unhandled exception has occurred while executing the request.
 Request finished in 4548.6034ms 500 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1880.6714000000002ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2724.0814ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2945.5186000000003ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:26540:cdada8dd heartbeat successfully sent
+Server laptop-94eikf8p:26540:cdada8dd heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/Home/Export  
+Executing endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Route matched with {action = "Export", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult Export() on controller GetXml.Controllers.HomeController (GetXml).
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 610.5776000000001ms
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 610.5776000000001ms
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Request finished in 781.1285ms 200 application/octet-stream
+Request finished in 781.1285ms 200 application/octet-stream
+Server laptop-94eikf8p:26540:cdada8dd heartbeat successfully sent
+Server laptop-94eikf8p:26540:cdada8dd heartbeat successfully sent
