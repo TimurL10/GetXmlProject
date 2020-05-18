@@ -90,6 +90,8 @@ namespace GetXml.Controllers
                                 var deviceFromDb = deviceRepository.Get(d.Id);
                                 deviceFromDb.Last_Online = d.Last_Online;
                                 deviceFromDb.Hours_Offline = d.Hours_Offline;
+                                deviceFromDb.Status = d.Status;
+                                deviceFromDb.Campaign_Name = d.Campaign_Name;
                                 deviceRepository.Update(deviceFromDb);
                             }
                             else
@@ -98,6 +100,8 @@ namespace GetXml.Controllers
                                 deviceFromDb.SumHours += deviceFromDb.Hours_Offline;
                                 deviceFromDb.Hours_Offline = d.Hours_Offline;
                                 deviceFromDb.Last_Online = d.Last_Online;
+                                deviceFromDb.Status = d.Status;
+                                deviceFromDb.Campaign_Name = d.Campaign_Name;
                                 deviceRepository.Update(deviceFromDb);
                             }
                         }
@@ -151,9 +155,10 @@ namespace GetXml.Controllers
                 excel.SaveAs(excelFile);
             }
         }
+            
 
-        public List<string> ReadAddressesFromExcel() // make when a new device added for updating addresses//
-        {
+            public List<string> ReadAddressesFromExcel() // make when a new device added for updating addresses//
+            {
             //create a list to hold all the values
             List<string> excelData = new List<string>();
 
