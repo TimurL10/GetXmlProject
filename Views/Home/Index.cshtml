@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Report</h2>
+<h2>Terminals</h2>
 
 <p>
     <a asp-action="Export" asp-controller="Home"  asp-antiforgery="true">Export to Excel</a>
@@ -32,10 +32,13 @@
                 @Html.DisplayNameFor(model => model.Last_Online)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Hours_Offline)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.SumHours)
             </th>
             <th></th>
         </tr>
@@ -62,26 +65,20 @@
                 @Html.DisplayFor(modelItem => item.Last_Online)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hours_Offline)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Hours_Offline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SumHours)
+            </td>
+            <td>
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }
     </tbody>
 </table>
-<script>
-
-        setInterval(function () {
-                var url = "@Url.Action("Index", "Home")";
-                //window.location = url;
-                $(this).load("@Url.Action("Index", "Home")");
-                  //window.location.reload();
-                }, 1800000); 
-</script>

@@ -12,7 +12,7 @@ namespace GetXml.Models
 {
     public class DeviceRepository : IDeviceRepository
     {
-        private readonly string connectionString;
+        private readonly string connectionString;        
         public DeviceRepository(IConfiguration configuration)
         {
             connectionString = configuration.GetValue<string>("DbInfo:ConnectionString");
@@ -22,21 +22,21 @@ namespace GetXml.Models
         {
             get
             {
-                return new NpgsqlConnection(connectionString);
+                return new SqlConnection(connectionString);
             }
         }
         public List<Device> GetDevices()
         {          
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                return dbConnection.Query<Device>("Select terminal.*,address.address From terminal Left Join address On address.name = terminal.name").ToList();
+                return dbConnection.Query<Device>("Select terminal.*,address.address From terminal Left Join address On address.name = terminal.name order by SumHours DESC").ToList();
             }
         }
 
         public Device Get(double id)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 return dbConnection.Query<Device>("Select * From terminal Where id = @id", new { Id = id }).FirstOrDefault();
@@ -45,36 +45,40 @@ namespace GetXml.Models
 
         public void Update(Device device)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                dbConnection.Execute("Update terminal Set id = @Id, name = @Name, status = @Status, ip = @Ip, last_online = @Last_Online, campaign_name = @Campaign_Name, hours_offline = @Hours_Offline Where id = @Id", device);
+                dbConnection.Execute("Update terminal Set id = @Id, name = @Name, status = @Status, ip = @Ip, last_online = @Last_Online, campaign_name = @Campaign_Name, hours_offline = @Hours_Offline, SumHours = @SumHours Where id = @Id", device);
+                dbConnection.Close();
             }
         }
         public void Delete(double id)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 dbConnection.Execute("DELETE FROM terminal WHERE Id = @id", new { Id = id });
+                dbConnection.Close();
             }
         }
 
         public void Add(Device device)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name)", device);
+                dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name, SumHours) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name, @SumHours)", device);
+                dbConnection.Close();
             }
         }
 
         public void AddAddress(Device device)
         {
-            using (var dbConnection = new NpgsqlConnection(connectionString))
+            using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
+                dbConnection.Close();
             }               
         }
     }
