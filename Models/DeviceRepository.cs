@@ -80,16 +80,6 @@ namespace GetXml.Models
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
                 dbConnection.Close();
             }               
-        }
-
-        public List<Device> GetDataForReport()
-        {
-            using (var dbConnection = new SqlConnection(connectionString))
-            {
-                dbConnection.Open();
-                //return dbConnection.Query<Device>("Select t.id,t.name,t.status, t.campaign_name, t.ip, t.last_online,a.address, t.hours_offline,t.SumHours From terminal t Join address a On a.name = t.name order by SumHours DESC").Select(f => new Device(f.Id,f.Name,f.Status,f.Campaign_Name,f.Ip,f.Last_Online,f.Address,f.Hours_Offline,f.SumHours)).ToList();
-                return dbConnection.Query("Select t.id,t.name,t.status, t.campaign_name, t.ip, t.last_online,a.address, t.hours_offline,t.SumHours From terminal t Join address a On a.name = t.name order by SumHours DESC").Select(f => new Device(f.Id, f.Name, f.Status, f.Campaign_Name, f.Ip, f.Last_Online, f.Address, f.Hours_Offline, f.SumHours)).ToList();
-            }
-        }
+        }        
     }
 }

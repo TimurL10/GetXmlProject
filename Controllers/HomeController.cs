@@ -155,7 +155,7 @@ namespace GetXml.Controllers
                 excel.Workbook.Worksheets.Add("Worksheet3");
 
                
-                var TerminalList = deviceRepository.GetDataForReport();
+                var TerminalList = deviceRepository.GetDevices();
 
                 // Determine the header range (e.g. A1:D1)
                 string headerRange = "A2:" + Char.ConvertFromUtf32(8 + 64) + "1";
@@ -164,7 +164,7 @@ namespace GetXml.Controllers
                 var worksheet = excel.Workbook.Worksheets["Worksheet1"];
 
                 worksheet.Cells[1, 1].Value = "Id";
-                worksheet.Cells[1, 2].Value = "Name";
+                worksheet.Cells[1, 2].Value = "";
                 worksheet.Cells[1, 3].Value = "Status";
                 worksheet.Cells[1, 4].Value = "Compaign Name";
                 worksheet.Cells[1, 5].Value = "IP Address";
@@ -244,7 +244,7 @@ namespace GetXml.Controllers
             {
                 TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
                 d.Last_Online = TimeZoneInfo.ConvertTimeFromUtc(d.Last_Online, moscowZone);
-                d.SumHours /= 48;
+                d.SumHours /= 24;
                 //string date_from = d.Last_Online.ToString("yyyy/MM/dd HH:mm");
             }
             return listDevises;

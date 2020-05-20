@@ -12606,3 +12606,101 @@ Request finished in 3337.3352ms 200 text/html; charset=utf-8
 Request starting HTTP/2 GET https://localhost:5001/Home/Export  
 Executing endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
 Route matched with {action = "Export", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult Export() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 362.5051ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1646.9022ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 1824.7575000000002ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1370.669ms.
+Executed ViewResult - view Index executed in 1370.669ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1450.2064ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1450.2064ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 1632.4862ms 200 text/html; charset=utf-8
+Request finished in 1632.4862ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Request finished in 121.9439ms 200 image/x-icon
+Request finished in 121.9439ms 200 image/x-icon
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Server laptop-94eikf8p:5764:c2e010d4 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1892.4277000000002ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3691.4685000000004ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 3921.5060000000003ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:30728:a9584539 heartbeat successfully sent
+Server laptop-94eikf8p:30728:a9584539 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2097.8668000000002ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3174.7287ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 3372.2166ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1917.2065ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3060.3531000000003ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 3263.9124ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:5944:50d0afe4 heartbeat successfully sent
+Server laptop-94eikf8p:5944:50d0afe4 heartbeat successfully sent
+Server laptop-94eikf8p:5944:50d0afe4 heartbeat successfully sent
+Server laptop-94eikf8p:5944:50d0afe4 heartbeat successfully sent
+Server laptop-94eikf8p:5944:50d0afe4 heartbeat successfully sent
+Server laptop-94eikf8p:5944:50d0afe4 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1280.5602000000001ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2082.5117ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2225.0062000000003ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Home/Export  
+Executing endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Route matched with {action = "Export", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult Export() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1575.2271ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2345.2579ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2471.5863ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Home/Export  
+Executing endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Route matched with {action = "Export", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult Export() on controller GetXml.Controllers.HomeController (GetXml).
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'terminals_report.xlsx' ...
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 603.5135ms
+Executed action GetXml.Controllers.HomeController.Export (GetXml) in 603.5135ms
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Export (GetXml)'
+Request finished in 775.7507ms 200 application/octet-stream
+Request finished in 775.7507ms 200 application/octet-stream
+Server laptop-94eikf8p:28864:c6ab7582 heartbeat successfully sent
+Server laptop-94eikf8p:28864:c6ab7582 heartbeat successfully sent
+Server laptop-94eikf8p:28864:c6ab7582 heartbeat successfully sent
+Server laptop-94eikf8p:28864:c6ab7582 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1379.3746ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2213.042ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2365.2039ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1356.4659000000001ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1893.1568000000002ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2039.557ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1381.5293000000001ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1964.596ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 2084.0649000000003ms 200 text/html; charset=utf-8
