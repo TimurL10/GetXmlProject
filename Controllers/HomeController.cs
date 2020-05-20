@@ -88,21 +88,51 @@ namespace GetXml.Controllers
                             if (h_new > 0)
                             {
                                 var deviceFromDb = deviceRepository.Get(d.Id);
-                                deviceFromDb.Last_Online = d.Last_Online;
-                                deviceFromDb.Hours_Offline = d.Hours_Offline;
-                                deviceFromDb.Status = d.Status;
-                                deviceFromDb.Campaign_Name = d.Campaign_Name;
-                                deviceRepository.Update(deviceFromDb);
+
+                                if (d.Hours_Offline == 48 && deviceFromDb.SumHours == 0)
+                                {
+                                    deviceFromDb.SumHours += 48;
+                                    deviceFromDb.Last_Online = d.Last_Online;
+                                    deviceFromDb.Status = d.Status;
+                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
+                                    deviceRepository.Update(deviceFromDb);
+                                }
+                                else if (d.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && deviceFromDb.Hours_Offline < 24)
+                                {
+                                    deviceFromDb.Hours_Offline = d.Hours_Offline - deviceFromDb.SumHours;
+                                    deviceFromDb.Last_Online = d.Last_Online;
+                                    deviceFromDb.Status = d.Status;
+                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
+                                    deviceRepository.Update(deviceFromDb);
+
+                                }
+                                else if (d.Hours_Offline > 48 && deviceFromDb.Hours_Offline >= 48 && deviceFromDb.Hours_Offline == 24)
+                                {
+                                    deviceFromDb.SumHours += 24;
+                                    deviceFromDb.Hours_Offline = 0;
+                                    deviceFromDb.Last_Online = d.Last_Online;
+                                    deviceFromDb.Status = d.Status;
+                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
+                                    deviceRepository.Update(deviceFromDb);
+                                }
+                                else
+                                {
+                                    deviceFromDb.Last_Online = d.Last_Online;
+                                    deviceFromDb.Hours_Offline = d.Hours_Offline;
+                                    deviceFromDb.Status = d.Status;
+                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
+                                    deviceRepository.Update(deviceFromDb);
+                                }
                             }
                             else
                             {
                                 var deviceFromDb = deviceRepository.Get(d.Id);
-                                deviceFromDb.SumHours += deviceFromDb.Hours_Offline;
                                 deviceFromDb.Hours_Offline = d.Hours_Offline;
                                 deviceFromDb.Last_Online = d.Last_Online;
                                 deviceFromDb.Status = d.Status;
                                 deviceFromDb.Campaign_Name = d.Campaign_Name;
                                 deviceRepository.Update(deviceFromDb);
+                                var a = TimeSpan.FromDays(4);
                             }
                         }
                     }
@@ -124,15 +154,11 @@ namespace GetXml.Controllers
                 excel.Workbook.Worksheets.Add("Worksheet2");
                 excel.Workbook.Worksheets.Add("Worksheet3");
 
-                //var headerRow = new List<string[]>()
-                //{
-                //new string[] { "ID", "First Name", "Last Name", "DOB" }
-                //};
-
-                var TerminalList = deviceRepository.GetDevices();
+               
+                var TerminalList = deviceRepository.GetDataForReport();
 
                 // Determine the header range (e.g. A1:D1)
-                string headerRange = "A2:" + Char.ConvertFromUtf32(9 + 64) + "1";
+                string headerRange = "A2:" + Char.ConvertFromUtf32(8 + 64) + "1";
 
                 // Target a worksheet
                 var worksheet = excel.Workbook.Worksheets["Worksheet1"];
@@ -218,6 +244,7 @@ namespace GetXml.Controllers
             {
                 TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
                 d.Last_Online = TimeZoneInfo.ConvertTimeFromUtc(d.Last_Online, moscowZone);
+                d.SumHours /= 48;
                 //string date_from = d.Last_Online.ToString("yyyy/MM/dd HH:mm");
             }
             return listDevises;

@@ -36,6 +36,9 @@ namespace GetXml.Models
 
         public double SumHours { get; set; }
 
+        
+        public double TwoDays { get; set; }
+
         public Device()
         {
 
