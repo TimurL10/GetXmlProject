@@ -75,8 +75,10 @@ namespace GetXml.Controllers
                         {
                             deviceRepository.Add(d);
                         }
+
                         if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
                         {
+                            var deviceFromDb = deviceRepository.Get(d.Id);
                             d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
                             var ts_new = TimeSpan.FromHours(d.Hours_Offline);
                             var h_new = System.Math.Floor(ts_new.TotalHours);
@@ -87,14 +89,14 @@ namespace GetXml.Controllers
                             d.Hours_Offline = h_new;
                             if (h_new > 0)
                             {
-                                var deviceFromDb = deviceRepository.Get(d.Id);
-
                                 if (d.Hours_Offline == 48 && deviceFromDb.SumHours == 0)
                                 {
                                     deviceFromDb.SumHours += 48;
                                     deviceFromDb.Last_Online = d.Last_Online;
                                     deviceFromDb.Status = d.Status;
+                                    deviceFromDb.Ip = d.Ip;
                                     deviceFromDb.Campaign_Name = d.Campaign_Name;
+                                    deviceFromDb.Hours_Offline = 0;
                                     deviceRepository.Update(deviceFromDb);
                                 }
                                 else if (d.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && deviceFromDb.Hours_Offline < 24)
@@ -106,7 +108,7 @@ namespace GetXml.Controllers
                                     deviceRepository.Update(deviceFromDb);
 
                                 }
-                                else if (d.Hours_Offline > 48 && deviceFromDb.Hours_Offline >= 48 && deviceFromDb.Hours_Offline == 24)
+                                else if (d.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && deviceFromDb.Hours_Offline == 24)
                                 {
                                     deviceFromDb.SumHours += 24;
                                     deviceFromDb.Hours_Offline = 0;
@@ -126,13 +128,11 @@ namespace GetXml.Controllers
                             }
                             else
                             {
-                                var deviceFromDb = deviceRepository.Get(d.Id);
                                 deviceFromDb.Hours_Offline = d.Hours_Offline;
                                 deviceFromDb.Last_Online = d.Last_Online;
                                 deviceFromDb.Status = d.Status;
                                 deviceFromDb.Campaign_Name = d.Campaign_Name;
                                 deviceRepository.Update(deviceFromDb);
-                                var a = TimeSpan.FromDays(4);
                             }
                         }
                     }

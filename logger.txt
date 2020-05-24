@@ -12704,3 +12704,90 @@ Executed ViewResult - view Index executed in 1381.5293000000001ms.
 Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1964.596ms
 Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
 Request finished in 2084.0649000000003ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+1 recurring job(s) processed by scheduler.
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+Request finished in 14977.900300000001ms 304 text/css
+Request finished in 12298.071600000001ms 304 application/javascript
+Request finished in 14977.900300000001ms 304 text/css
+Request finished in 12298.071600000001ms 304 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+The file /js/site.js was not modified
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+The file /js/site.js was not modified
+The file /css/site.css was not modified
+Request finished in 20289.145ms 304 application/javascript
+Request finished in 20289.145ms 304 application/javascript
+Executed ViewResult - view Index executed in 429250.57800000004ms.
+The file /css/site.css was not modified
+Executed ViewResult - view Index executed in 429250.57800000004ms.
+Request finished in 25959.830400000003ms 304 text/css
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 456381.2758ms
+Request finished in 25959.830400000003ms 304 text/css
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 456381.2758ms
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Request finished in 466222.14050000004ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Request finished in 466222.14050000004ms 200 text/html; charset=utf-8
+The file /lib/jquery/dist/jquery.min.js was not modified
+The file /lib/jquery/dist/jquery.min.js was not modified
+Request finished in 40456.0221ms 304 application/javascript
+Request finished in 40456.0221ms 304 application/javascript
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
+Server laptop-94eikf8p:20300:f9a6b7d7 heartbeat successfully sent
