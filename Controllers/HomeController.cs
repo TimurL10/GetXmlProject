@@ -68,7 +68,11 @@ namespace GetXml.Controllers
                 using (var reader = new StringReader(streamTaskA1))
                 {
                     Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
+                    //DateTime a = new DateTime (2020, 05, 24, 01,01,01);
+                    DateTime a = new DateTime(2020, 05, 24, 13, 37, 01);
 
+                    var testDevice = new Device(100, "A - 100", "playback", "TEST CaMP", "127.0.0.1", a, "Шепиловская 36",0,0);
+                    devices.Devices.Add(testDevice);
                     foreach (Device d in devices.Devices)
                     {
                         if (deviceRepository.Get(d.Id) == null && d.Last_Online.Year == DateTime.Now.Year)
@@ -244,7 +248,10 @@ namespace GetXml.Controllers
             {
                 TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
                 d.Last_Online = TimeZoneInfo.ConvertTimeFromUtc(d.Last_Online, moscowZone);
-                d.SumHours /= 24;
+                if (d.SumHours >= 24)
+                {
+                    d.SumHours /= 24;
+                }
                 //string date_from = d.Last_Online.ToString("yyyy/MM/dd HH:mm");
             }
             return listDevises;
