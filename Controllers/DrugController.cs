@@ -9,6 +9,8 @@ using OfficeOpenXml;
 using System.Diagnostics;
 using JnvlsList.Models;
 using Microsoft.AspNetCore.Http;
+using ICSharpCode.SharpZipLib.Zip;
+
 
 namespace JnvlsList.Controllers
 {
@@ -46,19 +48,85 @@ namespace JnvlsList.Controllers
             return View();
         }
 
-        [HttpPost("Drug")]
+
+        public FileResult DownloadZipFile()
+        {
+
+            var fileName = string.Format("{0}_ImageFiles.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
+            var tempOutPutPath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\") + fileName;
+
+            using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
+            {
+                s.SetLevel(9); // 0-9, 9 being the highest compression  
+
+                byte[] buffer = new byte[4096];
+
+                var ImageList = new List<string>();
+
+                ImageList.Add(Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\Allowance.xlsx"));
+                ImageList.Add(Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\ItemsJnvls.xlsx"));
+
+
+                for (int i = 0; i < ImageList.Count; i++)
+                {
+                    ZipEntry entry = new ZipEntry(Path.GetFileName(ImageList[i]));
+                    entry.DateTime = DateTime.Now;
+                    entry.IsUnicodeText = true;
+                    s.PutNextEntry(entry);
+
+                    using (FileStream fs = System.IO.File.OpenRead(ImageList[i]))
+                    {
+                        int sourceBytes;
+                        do
+                        {
+                            sourceBytes = fs.Read(buffer, 0, buffer.Length);
+                            s.Write(buffer, 0, sourceBytes);
+                        } while (sourceBytes > 0);
+                    }
+                }
+                s.Finish();
+                s.Flush();
+                s.Close();
+
+            }
+
+            byte[] finalResult = System.IO.File.ReadAllBytes(tempOutPutPath);
+            if (System.IO.File.Exists(tempOutPutPath))
+                System.IO.File.Delete(tempOutPutPath);
+
+            if (finalResult == null || !finalResult.Any())
+                throw new Exception(String.Format("No Files found with Image"));
+
+            return File(finalResult, "application/zip", fileName);
+
+        }
+
+
+
+
+
+        [HttpPost]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> Index(List<IFormFile> files)
         {
-            long size = files.Sum(f => f.Length);
+            //long size = files.Sum(f => f.Length);
 
             var filePaths = new List<string>();
             foreach (var formFile in files)
-            {
-                if (formFile.Length > 0)
+            {                
+                if (formFile.Length > 0 && formFile.Length > 200000)
+                {                    
+                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files","ItemsJnvls.xlsx");
+                    filePaths.Add(filePath);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+                else
                 {
-                    // full path to file in temp location
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Files");
-                    //GetFullPath(@"C:\Users\Timur\source\repos\JnvlsList\Files"); //we are using Temp file name just for the example. Add your own file path.
+                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files","Allowance.xlsx");
                     filePaths.Add(filePath);
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
@@ -68,32 +136,8 @@ namespace JnvlsList.Controllers
                 }
             }
 
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
-
-            return Ok(new { count = files.Count, size, filePaths });
+            return View();
         }
-
-
-
-
-        //[HttpPost]
-        //    public async Task<IActionResult> UploadFile(IFormFile file)
-        //    {
-        //        if (file != null)
-        //            return Content("file not selected");
-
-        //        string path = @"C:\Users\Timur\source\repos\JnvlsList\Files\" + file.FileName;
-
-        //        using (var stream = new FileStream(path, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(stream);
-        //        }
-
-        //        return RedirectToAction("Index");
-        //    }
-
-
 
         public void ReadDrugsFromExcel()
         {
