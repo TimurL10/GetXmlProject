@@ -10,49 +10,58 @@ using System.Diagnostics;
 using JnvlsList.Models;
 using Microsoft.AspNetCore.Http;
 using ICSharpCode.SharpZipLib.Zip;
-
+using System.Drawing;
 
 namespace JnvlsList.Controllers
 {
     public class DrugController : Controller
     {
-        List<String> Regions = new List<string>(new string[] { "Владимирская область","Республика Башкортостан","Ивановская область","Иркутская область","Калининградская область","Краснодарский край","Красноярский край",
+        public List<String> Regions = new List<string>(new string[] { "Владимирская область","Республика Башкортостан","Ивановская область","Иркутская область","Калининградская область","Краснодарский край","Красноярский край",
         "г.Москва","Московская область","Нижегородская область","Новгородская область","Омская область","Орловская область","Приморский край","Ростовская область","Республика Саха (Якутия)","Свердловская область","Тверская область","Республика Хакасия"});
-        List<Allowance> ListAllowance = new List<Allowance>();
+        public List<Allowance> ListAllowance = new List<Allowance>();
         public static string header;
         public List<Drug> VladimirskayaObl = new List<Drug>();
-        List<Drug> Bashkiriya = new List<Drug>();
-        List<Drug> IvanovskayaObl = new List<Drug>();
-        List<Drug> IrkutskayaObl = new List<Drug>();
-        List<Drug> KaliningradskayaObl = new List<Drug>();
-        List<Drug> Krasnodarskii = new List<Drug>();
-        List<Drug> Krasnoyarskii = new List<Drug>();
-        List<Drug> Moskva = new List<Drug>();
-        List<Drug> MO = new List<Drug>();
-        List<Drug> NijnegorodskayaObl = new List<Drug>();
-        List<Drug> NovgorodskayaObl = new List<Drug>();
-        List<Drug> OmskayaObl = new List<Drug>();
-        List<Drug> OrlovskayaObl = new List<Drug>();
-        List<Drug> Primorskii = new List<Drug>();
-        List<Drug> RostovskayaObl = new List<Drug>();
-        List<Drug> Saha = new List<Drug>();
-        List<Drug> Sverdlovskaya = new List<Drug>();
-        List<Drug> tverskaya = new List<Drug>();
-        List<Drug> Hakasiya = new List<Drug>();
+        public List<Drug> Bashkiriya = new List<Drug>();
+        public List<Drug> IvanovskayaObl = new List<Drug>();
+        public List<Drug> IrkutskayaObl = new List<Drug>();
+        public List<Drug> KaliningradskayaObl = new List<Drug>();
+        public List<Drug> Krasnodarskii = new List<Drug>();
+        public List<Drug> Krasnoyarskii = new List<Drug>();
+        public List<Drug> Moskva = new List<Drug>();
+        public List<Drug> MO = new List<Drug>();
+        public List<Drug> NijnegorodskayaObl = new List<Drug>();
+        public List<Drug> NovgorodskayaObl = new List<Drug>();
+        public List<Drug> OmskayaObl = new List<Drug>();
+        public List<Drug> OrlovskayaObl = new List<Drug>();
+        public List<Drug> Primorskii = new List<Drug>();
+        public List<Drug> RostovskayaObl = new List<Drug>();
+        public List<Drug> Saha = new List<Drug>();
+        public List<Drug> Sverdlovskaya = new List<Drug>();
+        public List<Drug> tverskaya = new List<Drug>();
+        public List<Drug> Hakasiya = new List<Drug>();
 
         public IActionResult Index()
         {
             //ReadDrugsFromExcel();            
             //ReadDotationsFromExcel();
             //CalculateDotation();
+            DownloadZipFile();
             return View();
         }
 
 
+        public void StartProc()
+        {
+            ReadDrugsFromExcel();            
+            ReadDotationsFromExcel();
+            CalculateDotation();
+            DownloadZipFile();
+        }
+
         public FileResult DownloadZipFile()
         {
 
-            var fileName = string.Format("{0}_ImageFiles.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
+            var fileName = string.Format("{0}_Reports.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
             var tempOutPutPath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\") + fileName;
 
             using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
@@ -62,10 +71,17 @@ namespace JnvlsList.Controllers
                 byte[] buffer = new byte[4096];
 
                 var ImageList = new List<string>();
-
-                ImageList.Add(Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\Allowance.xlsx"));
-                ImageList.Add(Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\ItemsJnvls.xlsx"));
-
+                try
+                {
+                    foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports", "*.xlsx", SearchOption.AllDirectories))
+                    {
+                        ImageList.Add(Path.Combine(file));                        
+                    }
+                }
+                catch (System.Exception excpt)
+                {
+                    Console.WriteLine(excpt.Message);
+                }               
 
                 for (int i = 0; i < ImageList.Count; i++)
                 {
@@ -98,14 +114,9 @@ namespace JnvlsList.Controllers
                 throw new Exception(String.Format("No Files found with Image"));
 
             return File(finalResult, "application/zip", fileName);
-
         }
-
-
-
-
-
-        [HttpPost]
+        
+        [HttpPost("Drug")]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> Index(List<IFormFile> files)
         {
@@ -147,7 +158,7 @@ namespace JnvlsList.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\lp2020-05-22-1.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\ItemsJnvls.xlsx");
 
             //or if you use asp.net, get the relative path
             //byte[] bin = File.ReadAllBytes(Server.MapPath("ExcelDemo.xlsx"));
@@ -157,9 +168,7 @@ namespace JnvlsList.Controllers
 
             using (ExcelPackage excelPackage = new ExcelPackage(stream))
             {
-                //loop all worksheets
-                foreach (ExcelWorksheet worksheet  in excelPackage.Workbook.Worksheets)
-                {
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.First();               
                     //loop all rows
                     for (int i = worksheet.Dimension.Start.Row; i <= worksheet.Dimension.End.Row; i++)
                     {
@@ -177,7 +186,7 @@ namespace JnvlsList.Controllers
                             }
                         }
                     }
-                }
+                
             }            
             DeserializeExcel(excelData);
         }
@@ -189,6 +198,7 @@ namespace JnvlsList.Controllers
 
             if (list != null)
             {
+               // list.RemoveRange(0,33);
                 for (int i = 33; i < list.Count-10; i += 11)
                 {
                     var drug = new Drug(list[i + 1], list[i], list[i + 2], list[i + 3], list[i + 4], list[i + 5], list[i + 7], list[i + 8], list[i + 9], list[i + 10],list[i + 6]);
@@ -226,7 +236,7 @@ namespace JnvlsList.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\Allowances.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\Allowance.xlsx");
 
             //or if you use asp.net, get the relative path
             //byte[] bin = File.ReadAllBytes(Server.MapPath("ExcelDemo.xlsx"));
@@ -297,43 +307,94 @@ namespace JnvlsList.Controllers
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             List<Drug> listByFirstW = new List<Drug>();
             using (ExcelPackage excel = new ExcelPackage())
-            {               
-                    for (int i = 0; i < listDrugs.Count-1; i++)
-                    {                   
-                            listByFirstW.Add(listDrugs[i]);
+            {
+                for (int i = 0; i < listDrugs.Count - 1; i++)
+                {
+                    listByFirstW.Add(listDrugs[i]);
 
-                        if (listDrugs[i].Name.First() != listDrugs[i + 1].Name.First())
+                    if (listDrugs[i].Name.First() != listDrugs[i + 1].Name.First())
+                    {
+                        ExcelWorksheet worksheet = excel.Workbook.Worksheets.Add(listDrugs[i].Name.First().ToString());
+
+                        worksheet.Cells[1, 1].Value = header;
+
+                        worksheet.Cells["A2"].Value = "Торговое наименование лекарственного препарата";
+                        worksheet.Cells["B2"].Value = "МНН";
+                        worksheet.Cells[2, 3].Value = "Лекарственная форма, дозировка, упаковка (полная)";
+                        worksheet.Cells[2, 4].Value = "Владелец РУ/производитель/упаковщик/Выпускающий контроль";
+                        worksheet.Cells[2, 5].Value = "Код АТХ";
+                        worksheet.Cells[2, 6].Value = "Количество в потреб.упаковке";
+                        worksheet.Cells[2, 7].Value = "Цена указана для первич. упаковки";
+                        worksheet.Cells[2, 8].Value = "№ РУ";
+                        worksheet.Cells[2, 9].Value = "Дата регистрации цены(№ решения)";
+                        worksheet.Cells[2, 10].Value = "Штрих-код (EAN13)";
+                        worksheet.Cells[2, 11].Value = "Предельная цена руб. без НДС";
+                        worksheet.Cells[2, 12].Value = "Предельная цена руб. с НДС";
+                        worksheet.Cells[2, 13].Value = "Предельная оптовая надбавка, руб.*";
+                        worksheet.Cells[2, 14].Value = "Предельная оптовая цена, руб., (без НДС)*";
+                        worksheet.Cells[2, 15].Value = "Предельная оптовая цена руб., (с НДС)*";
+                        worksheet.Cells[2, 16].Value = "Предельная розничная надбавка, руб.*";
+                        worksheet.Cells[2, 17].Value = "Предельная розничная цена,  руб. (без НДС)*";
+                        worksheet.Cells[2, 18].Value = "Предельная розничная цена,  руб. (с НДС)*";
+                        worksheet.Cells.Style.WrapText = true;
+                        worksheet.Cells["A3"].LoadFromCollection<Drug>(listByFirstW);
+
+                        worksheet.Cells["A1:R1"].Merge = true;
+                        for (int k = worksheet.Dimension.Start.Row; k <= worksheet.Dimension.End.Row; k++)
                         {
-                            ExcelWorksheet worksheet = excel.Workbook.Worksheets.Add(listDrugs[i].Name.First().ToString());
-                            worksheet.Cells[1, 1].Value = header;
-                            worksheet.Cells["A2"].Value = "Торговое наименование лекарственного препарата";
-                            worksheet.Cells["B2"].Value = "МНН";
-                            worksheet.Cells[2, 3].Value = "Лекарственная форма, дозировка, упаковка (полная)";
-                            worksheet.Cells[2, 4].Value = "Владелец РУ/производитель/упаковщик/Выпускающий контроль";
-                            worksheet.Cells[2, 5].Value = "Код АТХ";
-                            worksheet.Cells[2, 6].Value = "Количество в потреб.упаковке";
-                            worksheet.Cells[2, 7].Value = "Цена указана для первич. упаковки";
-                            worksheet.Cells[2, 8].Value = "№ РУ";
-                            worksheet.Cells[2, 9].Value = "Дата регистрации цены(№ решения)";
-                            worksheet.Cells[2, 10].Value = "Штрих-код (EAN13)";
-                            worksheet.Cells[2, 11].Value = "Предельная цена руб. без НДС";
-                            worksheet.Cells[2, 12].Value = "Предельная цена руб. с НДС";
-                            worksheet.Cells[2, 13].Value = "Предельная оптовая надбавка, руб.*";
-                            worksheet.Cells[2, 14].Value = "Предельная оптовая цена, руб., (без НДС)*";
-                            worksheet.Cells[2, 15].Value = "Предельная оптовая цена руб., (с НДС)*";
-                            worksheet.Cells[2, 16].Value = "Предельная розничная надбавка, руб.*";
-                            worksheet.Cells[2, 17].Value = "Предельная розничная цена,  руб. (без НДС)*";
-                            worksheet.Cells[2, 18].Value = "Предельная розничная цена,  руб. (с НДС)*";
-                            worksheet.Cells.Style.WrapText = true;
-                            worksheet.Cells["A3"].LoadFromCollection<Drug>(listByFirstW);
-                            listByFirstW.Clear();
+                            worksheet.Row(k).Style.Font.Size = 8;
+                            worksheet.Row(k).Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Top;
+                            worksheet.Row(k).Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                            worksheet.Row(k).Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                            worksheet.Row(k).Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;                            
                         }
-                    }                             
-                FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\JnvlsList\Files\{fileName}.xlsx");                
-                excel.SaveAs(excelFile);
-            }           
-        }
+                        worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+                        //Row1
+                        worksheet.Row(1).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        worksheet.Row(1).Height = 62.25;
+                        worksheet.Row(1).Style.Font.Bold = true;
+                        worksheet.Row(1).Style.Font.Size = 14;
+                        worksheet.Row(1).Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.None;
+                        worksheet.Row(1).Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.None;
+                        worksheet.Row(1).Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.None;
+                        //Row2
+                        worksheet.Cells["B2:R2"].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                        worksheet.Cells["B2:R2"].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                        worksheet.Cells["B2:R2"].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                        worksheet.Cells["B2:R2"].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                        worksheet.Row(2).Style.Font.Size = 8;
+                        worksheet.Row(2).Style.Font.Bold = true;
+                        worksheet.Row(2).Height = 63;
+                        worksheet.Row(2).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                        worksheet.Row(2).Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                        worksheet.Row(2).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        worksheet.Row(2).Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                        worksheet.Column(1).Width = 22.14;
+                        worksheet.Column(2).Width = 18;
+                        worksheet.Column(3).Width = 23.43;
+                        worksheet.Column(4).Width = 25.71;
+                        worksheet.Column(6).Width = 8.43;
+                        worksheet.Column(7).Width = 8.43;
+                        worksheet.Column(9).Width = 10.71;
+                        worksheet.Column(10).Width = 11;
+                        worksheet.Column(11).Width = 8.43;
+                        worksheet.Column(12).Width = 8.43;
+                        worksheet.Column(13).Width = 8.43;
+                        worksheet.Column(14).Width = 8.43;
+                        worksheet.Column(15).Width = 8.43;
+                        worksheet.Column(16).Width = 8.43;
+                        worksheet.Column(17).Width = 8.43;
+                        worksheet.Column(18).Width = 8.43;
+                        worksheet.Column(6).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
+                        listByFirstW.Clear();
+                    }
+                }
+                FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\GetXml\Reports\{fileName}.xlsx");
+                excel.SaveAs(excelFile);
+
+            }
+        }
 
         public void CalculateDotation()
         {
