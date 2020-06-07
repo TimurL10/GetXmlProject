@@ -41,28 +41,80 @@ namespace JnvlsList.Controllers
         public List<Drug> Hakasiya = new List<Drug>();
 
         public IActionResult Index()
-        {
-            //ReadDrugsFromExcel();            
-            //ReadDotationsFromExcel();
-            //CalculateDotation();
-            DownloadZipFile();
+        {            
             return View();
         }
 
 
         public void StartProc()
         {
-            ReadDrugsFromExcel();            
-            ReadDotationsFromExcel();
-            CalculateDotation();
+           
             DownloadZipFile();
         }
+
+        //public FileResult DownloadZipFile()
+        //{
+        //    var fileName = string.Format("{0}_Reports.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
+        //    var tempOutPutPath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Reports\") + fileName;
+
+        //    using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
+        //    {
+        //        s.SetLevel(9); // 0-9, 9 being the highest compression  
+
+        //        byte[] buffer = new byte[4096];
+
+        //        var ImageList = new List<string>();
+        //        try
+        //        {
+        //            foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports", "*.xlsx", SearchOption.AllDirectories))
+        //            {
+        //                ImageList.Add(Path.Combine(file));                        
+        //            }
+        //        }
+        //        catch (System.Exception excpt)
+        //        {
+        //            Console.WriteLine(excpt.Message);
+        //        }               
+
+        //        for (int i = 0; i < ImageList.Count; i++)
+        //        {
+        //            ZipEntry entry = new ZipEntry(Path.GetFileName(ImageList[i]));
+        //            entry.DateTime = DateTime.Now;
+        //            entry.IsUnicodeText = true;
+        //            s.PutNextEntry(entry);
+
+
+        //            using (FileStream fs = System.IO.File.OpenRead(ImageList[i]))
+        //            {
+        //                int sourceBytes;
+        //                for (int j = 0; j < ImageList.Count; j++)
+        //                {
+        //                    sourceBytes = fs.Read(buffer, 0, buffer.Length);
+        //                    s.Write(buffer, 0, sourceBytes);
+        //                }
+
+        //            }
+        //        }
+        //        s.Finish();
+        //        s.Flush();
+        //        s.Close();
+        //    }
+
+        //    byte[] finalResult = System.IO.File.ReadAllBytes(tempOutPutPath);
+        //    if (System.IO.File.Exists(tempOutPutPath))
+        //        System.IO.File.Delete(tempOutPutPath);
+
+        //    if (finalResult == null || !finalResult.Any())
+        //        throw new Exception(String.Format("No Files found with Image"));
+
+        //    return File(finalResult, "application/zip", fileName);
+        //}
 
         public FileResult DownloadZipFile()
         {
 
-            var fileName = string.Format("{0}_Reports.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
-            var tempOutPutPath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\") + fileName;
+            var fileName = string.Format("{0}_ImageFiles.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
+            var tempOutPutPath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Reports\") + fileName;
 
             using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
             {
@@ -71,17 +123,12 @@ namespace JnvlsList.Controllers
                 byte[] buffer = new byte[4096];
 
                 var ImageList = new List<string>();
-                try
+                foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports", "*.xlsx", SearchOption.AllDirectories))
                 {
-                    foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports", "*.xlsx", SearchOption.AllDirectories))
-                    {
-                        ImageList.Add(Path.Combine(file));                        
-                    }
+                    ImageList.Add(Path.Combine(file));
                 }
-                catch (System.Exception excpt)
-                {
-                    Console.WriteLine(excpt.Message);
-                }               
+                
+
 
                 for (int i = 0; i < ImageList.Count; i++)
                 {
@@ -114,8 +161,10 @@ namespace JnvlsList.Controllers
                 throw new Exception(String.Format("No Files found with Image"));
 
             return File(finalResult, "application/zip", fileName);
+
         }
-        
+
+
         [HttpPost("Drug")]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> Index(List<IFormFile> files)
@@ -302,7 +351,7 @@ namespace JnvlsList.Controllers
                 }
         }
 
-        public void CreateExcelReport(List<Drug> listDrugs, string fileName)
+        public IActionResult CreateExcelReport(List<Drug> listDrugs, string fileName)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             List<Drug> listByFirstW = new List<Drug>();
@@ -394,6 +443,7 @@ namespace JnvlsList.Controllers
                 excel.SaveAs(excelFile);
 
             }
+            return View("Index");
         }
 
         public void CalculateDotation()
