@@ -15148,3 +15148,252 @@ Executed action JnvlsList.Controllers.DrugController.StartProc (GetXml) in 6999.
 Executed endpoint 'JnvlsList.Controllers.DrugController.StartProc (GetXml)'
 Request finished in 7134.463400000001ms 200 
 Server laptop-94eikf8p:20064:4bb96a2e heartbeat successfully sent
+Executing ViewResult, running view Index.
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 257.5118ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 311.2357ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 565.9711ms 200 text/html; charset=utf-8
+Executed ViewResult - view Index executed in 2982.4894ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 5015.0867ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 5248.4057ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 27.477400000000003ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 48.438700000000004ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 188.6782ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug/StartProc  
+Executing endpoint 'JnvlsList.Controllers.DrugController.StartProc (GetXml)'
+Route matched with {action = "StartProc", controller = "Drug"}. Executing controller action with signature Void StartProc() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2740.4901ms.
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 5171.0023ms
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+Request finished in 172.4505ms 304 text/css
+Request finished in 5652.1007ms 200 text/html; charset=utf-8
+Request finished in 209.32520000000002ms 304 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+The file /css/site.css was not modified
+The file /js/site.js was not modified
+The file /lib/jquery/dist/jquery.min.js was not modified
+Request finished in 491.6503ms 304 text/css
+Request finished in 477.3557ms 304 application/javascript
+Request finished in 506.69910000000004ms 304 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+The file /favicon.ico was not modified
+Request finished in 96.4058ms 304 image/x-icon
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 680.014ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+An unhandled exception has occurred while executing the request.
+Request finished in 1308.4022ms 500 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2921.5848ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 4464.1723ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 4701.1368ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Home/Privacy  
+Executing endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Route matched with {action = "Privacy", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Privacy() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Privacy.
+Executing ViewResult, running view Privacy.
+Executed ViewResult - view Privacy executed in 72.6697ms.
+Executed ViewResult - view Privacy executed in 72.6697ms.
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 154.2939ms
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 154.2939ms
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Request finished in 439.0756ms 200 text/html; charset=utf-8
+Request finished in 439.0756ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2710.1449000000002ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 5171.1407ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 5604.4611ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 66.33630000000001ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 211.4583ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 543.5919ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug/Start  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Route matched with {action = "Start", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Start() on controller JnvlsList.Controllers.DrugController (GetXml).
+Server laptop-94eikf8p:14452:d787a401 heartbeat successfully sent
+Executing ViewResult, running view Finish.
+Executed ViewResult - view Finish executed in 166.4549ms.
+Executed action JnvlsList.Controllers.DrugController.Start (GetXml) in 30381.849400000003ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Request finished in 30689.644900000003ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:14452:d787a401 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2317.4010000000003ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3796.3069ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 4014.0409ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 65.33970000000001ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 95.8224ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 234.82920000000001ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug/Start  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Route matched with {action = "Start", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Start() on controller JnvlsList.Controllers.DrugController (GetXml).
+Server laptop-94eikf8p:20088:791824b4 heartbeat successfully sent
+Executing ViewResult, running view Finish.
+Executed ViewResult - view Finish executed in 42.8053ms.
+Executed action JnvlsList.Controllers.DrugController.Start (GetXml) in 27373.043800000003ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Request finished in 27582.9739ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug/DownloadZipArchive  
+Executing endpoint 'JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml)'
+Route matched with {action = "DownloadZipArchive", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult DownloadZipArchive() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name '20-06-2020_1_ImageFiles.zip' ...
+Executed action JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml) in 4987.0036ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml)'
+Request finished in 5271.8105000000005ms 200 application/zip
+Server laptop-94eikf8p:20088:791824b4 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2052.7354ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 4774.6954000000005ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 4994.474200000001ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 78.0176ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 123.5009ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 272.3877ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:928:4f3b757f heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1113.7138ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 1340.1598000000001ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 1673.1136000000001ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 3571.6038000000003ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 5804.3820000000005ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 6056.3388ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 31.479100000000003ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 56.6495ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 252.501ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 924.726ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 1109.4914ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 1445.219ms 200 text/html; charset=utf-8
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2649.5994ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 4571.904ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 4931.9310000000005ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 36.5977ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 69.84660000000001ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 215.4137ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1143.6728ms.
+Executed ViewResult - view Index executed in 1143.6728ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1228.8341ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 1228.8341ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 1505.6299000000001ms 200 text/html; charset=utf-8
+Request finished in 1505.6299000000001ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Request starting HTTP/2 GET https://localhost:5001/Drug  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Executing endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Route matched with {action = "Index", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 48.2986ms.
+Executed ViewResult - view Index executed in 48.2986ms.
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 101.36720000000001ms
+Executed action JnvlsList.Controllers.DrugController.Index (GetXml) in 101.36720000000001ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Executed endpoint 'JnvlsList.Controllers.DrugController.Index (GetXml)'
+Request finished in 318.1503ms 200 text/html; charset=utf-8
+Request finished in 318.1503ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:16444:1a855a9f heartbeat successfully sent
+Server laptop-94eikf8p:16444:1a855a9f heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/Drug/Start  
+Request starting HTTP/2 GET https://localhost:5001/Drug/Start  
+Executing endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Executing endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Route matched with {action = "Start", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Start() on controller JnvlsList.Controllers.DrugController (GetXml).
+Route matched with {action = "Start", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Start() on controller JnvlsList.Controllers.DrugController (GetXml).
+Server laptop-94eikf8p:16444:1a855a9f heartbeat successfully sent
+Server laptop-94eikf8p:16444:1a855a9f heartbeat successfully sent
+Executing ViewResult, running view Finish.
+Executing ViewResult, running view Finish.
+Executed ViewResult - view Finish executed in 60.9136ms.
+Executed ViewResult - view Finish executed in 60.9136ms.
+Executed action JnvlsList.Controllers.DrugController.Start (GetXml) in 17905.756400000002ms
+Executed action JnvlsList.Controllers.DrugController.Start (GetXml) in 17905.756400000002ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Executed endpoint 'JnvlsList.Controllers.DrugController.Start (GetXml)'
+Request finished in 18172.5122ms 200 text/html; charset=utf-8
+Request finished in 18172.5122ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/Drug/DownloadZipArchive  
+Request starting HTTP/2 GET https://localhost:5001/Drug/DownloadZipArchive  
+Executing endpoint 'JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml)'
+Executing endpoint 'JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml)'
+Route matched with {action = "DownloadZipArchive", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult DownloadZipArchive() on controller JnvlsList.Controllers.DrugController (GetXml).
+Route matched with {action = "DownloadZipArchive", controller = "Drug"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.FileResult DownloadZipArchive() on controller JnvlsList.Controllers.DrugController (GetXml).
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name '20-06-2020_1_ImageFiles.zip' ...
+Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name '20-06-2020_1_ImageFiles.zip' ...
+Executed action JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml) in 2194.081ms
+Executed action JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml) in 2194.081ms
+Executed endpoint 'JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml)'
+Executed endpoint 'JnvlsList.Controllers.DrugController.DownloadZipArchive (GetXml)'
+Request finished in 3133.9355ms 200 application/zip
+Request finished in 3133.9355ms 200 application/zip
+Server laptop-94eikf8p:16444:1a855a9f heartbeat successfully sent
+Server laptop-94eikf8p:16444:1a855a9f heartbeat successfully sent

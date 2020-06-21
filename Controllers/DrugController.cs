@@ -16,105 +16,78 @@ namespace JnvlsList.Controllers
 {
     public class DrugController : Controller
     {
-        public List<String> Regions = new List<string>(new string[] { "Владимирская область","Республика Башкортостан","Ивановская область","Иркутская область","Калининградская область","Краснодарский край","Красноярский край",
-        "г.Москва","Московская область","Нижегородская область","Новгородская область","Омская область","Орловская область","Приморский край","Ростовская область","Республика Саха (Якутия)","Свердловская область","Тверская область","Республика Хакасия"});
-        public List<Allowance> ListAllowance = new List<Allowance>();
+        //List<String> Regions = new List<string>(new string[] { "Владимирская область","Республика Башкортостан","Ивановская область","Иркутская область","Калининградская область","Краснодарский край","Красноярский край",
+        //"г.Москва","Московская область","Нижегородская область","Новгородская область","Омская область","Орловская область","Приморский край","Ростовская область","Республика Саха (Якутия)","Свердловская область","Тверская область","Республика Хакасия"});
+        List<String> Regions = new List<string>(new string[] {"Владимирская область"});
+
+        List<Allowance> ListAllowance = new List<Allowance>();
+
+        List<string> excelData = new List<string>();
+        List<string> excelDataExept = new List<string>();
+        List<Drug> exceptionsDrugList = new List<Drug>();
+
         public static string header;
         public List<Drug> VladimirskayaObl = new List<Drug>();
-        public List<Drug> Bashkiriya = new List<Drug>();
-        public List<Drug> IvanovskayaObl = new List<Drug>();
-        public List<Drug> IrkutskayaObl = new List<Drug>();
-        public List<Drug> KaliningradskayaObl = new List<Drug>();
-        public List<Drug> Krasnodarskii = new List<Drug>();
-        public List<Drug> Krasnoyarskii = new List<Drug>();
-        public List<Drug> Moskva = new List<Drug>();
-        public List<Drug> MO = new List<Drug>();
-        public List<Drug> NijnegorodskayaObl = new List<Drug>();
-        public List<Drug> NovgorodskayaObl = new List<Drug>();
-        public List<Drug> OmskayaObl = new List<Drug>();
-        public List<Drug> OrlovskayaObl = new List<Drug>();
-        public List<Drug> Primorskii = new List<Drug>();
-        public List<Drug> RostovskayaObl = new List<Drug>();
-        public List<Drug> Saha = new List<Drug>();
-        public List<Drug> Sverdlovskaya = new List<Drug>();
-        public List<Drug> tverskaya = new List<Drug>();
-        public List<Drug> Hakasiya = new List<Drug>();
+        List<Drug> Bashkiriya = new List<Drug>();
+        List<Drug> IvanovskayaObl = new List<Drug>();
+        List<Drug> IrkutskayaObl = new List<Drug>();
+        List<Drug> KaliningradskayaObl = new List<Drug>();
+        List<Drug> Krasnodarskii = new List<Drug>();
+        List<Drug> Krasnoyarskii = new List<Drug>();
+        List<Drug> Moskva = new List<Drug>();
+        List<Drug> MO = new List<Drug>();
+        List<Drug> NijnegorodskayaObl = new List<Drug>();
+        List<Drug> NovgorodskayaObl = new List<Drug>();
+        List<Drug> OmskayaObl = new List<Drug>();
+        List<Drug> OrlovskayaObl = new List<Drug>();
+        List<Drug> Primorskii = new List<Drug>();
+        List<Drug> RostovskayaObl = new List<Drug>();
+        List<Drug> Saha = new List<Drug>();
+        List<Drug> Sverdlovskaya = new List<Drug>();
+        List<Drug> tverskaya = new List<Drug>();
+        List<Drug> Hakasiya = new List<Drug>();
 
         public IActionResult Index()
-        {            
+        {  
             return View();
         }
 
-
-        public void StartProc()
+        public IActionResult Start()
         {
-           
-            DownloadZipFile();
+            //read from drug excel
+            Task task1 = new Task(() => ReadDrugsFromExcel());
+            task1.Start();
+            task1.Wait();
+            //send drug list
+            Task<List<Drug>> task2 = new Task<List<Drug>>(() => DeserializeExcel(excelData));
+            task2.Start();
+            task2.Wait();
+            //Send exceptions list
+            Task<List<Drug>> task3 = new Task<List<Drug>>(() => DeserializeExcel(excelDataExept));
+            task3.Start();
+            task3.Wait();
+            exceptionsDrugList = new List<Drug>(task3.Result);
+            //Create Lists of all regions
+            Task task4 = new Task(() => CreateSortedRegionLists(task2.Result));
+            task4.Start();
+            task4.Wait();
+            //Run read allowances
+            Task task5 = new Task(() => ReadDotationsFromExcel());
+            task5.Start();
+            task5.Wait();
+            //Run Calculate dotations
+            Task task6 = new Task(() => CalculateDotation());
+            task6.Start();
+            task6.Wait();
+
+            return View("Finish");
         }
 
-        //public FileResult DownloadZipFile()
-        //{
-        //    var fileName = string.Format("{0}_Reports.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
-        //    var tempOutPutPath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Reports\") + fileName;
-
-        //    using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
-        //    {
-        //        s.SetLevel(9); // 0-9, 9 being the highest compression  
-
-        //        byte[] buffer = new byte[4096];
-
-        //        var ImageList = new List<string>();
-        //        try
-        //        {
-        //            foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports", "*.xlsx", SearchOption.AllDirectories))
-        //            {
-        //                ImageList.Add(Path.Combine(file));                        
-        //            }
-        //        }
-        //        catch (System.Exception excpt)
-        //        {
-        //            Console.WriteLine(excpt.Message);
-        //        }               
-
-        //        for (int i = 0; i < ImageList.Count; i++)
-        //        {
-        //            ZipEntry entry = new ZipEntry(Path.GetFileName(ImageList[i]));
-        //            entry.DateTime = DateTime.Now;
-        //            entry.IsUnicodeText = true;
-        //            s.PutNextEntry(entry);
-
-
-        //            using (FileStream fs = System.IO.File.OpenRead(ImageList[i]))
-        //            {
-        //                int sourceBytes;
-        //                for (int j = 0; j < ImageList.Count; j++)
-        //                {
-        //                    sourceBytes = fs.Read(buffer, 0, buffer.Length);
-        //                    s.Write(buffer, 0, sourceBytes);
-        //                }
-
-        //            }
-        //        }
-        //        s.Finish();
-        //        s.Flush();
-        //        s.Close();
-        //    }
-
-        //    byte[] finalResult = System.IO.File.ReadAllBytes(tempOutPutPath);
-        //    if (System.IO.File.Exists(tempOutPutPath))
-        //        System.IO.File.Delete(tempOutPutPath);
-
-        //    if (finalResult == null || !finalResult.Any())
-        //        throw new Exception(String.Format("No Files found with Image"));
-
-        //    return File(finalResult, "application/zip", fileName);
-        //}
-
-        public FileResult DownloadZipFile()
+        public FileResult DownloadZipArchive()
         {
 
             var fileName = string.Format("{0}_ImageFiles.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
-            var tempOutPutPath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Reports\") + fileName;
+            var tempOutPutPath = Path.GetFileName(Url.Content("/Files/")) + fileName;
 
             using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
             {
@@ -123,11 +96,9 @@ namespace JnvlsList.Controllers
                 byte[] buffer = new byte[4096];
 
                 var ImageList = new List<string>();
-                foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports", "*.xlsx", SearchOption.AllDirectories))
-                {
-                    ImageList.Add(Path.Combine(file));
-                }
-                
+
+                ImageList.Add(Path.GetFullPath(@"C:\Users\Timur\source\repos\JnvlsList\Files\Владимирская область.xlsx"));
+                ImageList.Add(Path.GetFullPath(@"C:\Users\Timur\source\repos\JnvlsList\Files\Республика Башкортостан.xlsx"));
 
 
                 for (int i = 0; i < ImageList.Count; i++)
@@ -150,7 +121,6 @@ namespace JnvlsList.Controllers
                 s.Finish();
                 s.Flush();
                 s.Close();
-
             }
 
             byte[] finalResult = System.IO.File.ReadAllBytes(tempOutPutPath);
@@ -164,29 +134,18 @@ namespace JnvlsList.Controllers
 
         }
 
-
         [HttpPost("Drug")]
-        [DisableRequestSizeLimit]
         public async Task<IActionResult> Index(List<IFormFile> files)
         {
-            //long size = files.Sum(f => f.Length);
+            long size = files.Sum(f => f.Length);
 
             var filePaths = new List<string>();
             foreach (var formFile in files)
-            {                
-                if (formFile.Length > 0 && formFile.Length > 200000)
-                {                    
-                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files","ItemsJnvls.xlsx");
-                    filePaths.Add(filePath);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-                }
-                else
+            {
+                if (formFile.Length > 0)
                 {
-                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files","Allowance.xlsx");
+                    // full path to file in temp location
+                    var filePath = Path.GetFullPath(@"C:\Users\Timur\source\repos\JnvlsList\Files"); //we are using Temp file name just for the example. Add your own file path.
                     filePaths.Add(filePath);
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
@@ -196,18 +155,17 @@ namespace JnvlsList.Controllers
                 }
             }
 
-            return View();
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return Ok(new { count = files.Count, size, filePaths });
         }
 
         public void ReadDrugsFromExcel()
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-            //create a list to hold all the values
-            List<string> excelData = new List<string>();
-
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\ItemsJnvls.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\lp2020-06-09-1.xlsx");
 
             //or if you use asp.net, get the relative path
             //byte[] bin = File.ReadAllBytes(Server.MapPath("ExcelDemo.xlsx"));
@@ -217,64 +175,97 @@ namespace JnvlsList.Controllers
 
             using (ExcelPackage excelPackage = new ExcelPackage(stream))
             {
-                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.First();               
-                    //loop all rows
-                    for (int i = worksheet.Dimension.Start.Row; i <= worksheet.Dimension.End.Row; i++)
+                //ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.First();
+                //var item = excelPackage.Workbook.Worksheets.ToList().SingleOrDefault(x => x.Name == "ОПР");
+                //excelPackage.Workbook.Worksheets.ToList().Remove(item);                   
+
+                //loop all worksheets
+                foreach (ExcelWorksheet worksheet in excelPackage.Workbook.Worksheets)
+                {
+                    if (worksheet.Name == "Лист 1")
                     {
-                        //loop all columns in a row
-                        for (int j = worksheet.Dimension.Start.Column; j <= 11; j++)
+                        //loop all rows
+                        for (int i = worksheet.Dimension.Start.Row; i <= worksheet.Dimension.End.Row; i++)
                         {
-                            //add the cell data to the List
-                            if (worksheet.Cells[i, j].Value == null )
+                            //loop all columns in a row
+                            for (int j = worksheet.Dimension.Start.Column; j <= 11; j++)
                             {
-                                excelData.Add(null);                                
-                            }
-                            else
-                            {                             
-                                excelData.Add(char.ToUpper(worksheet.Cells[i, j].Value.ToString()[0]) + worksheet.Cells[i, j].Value.ToString().Substring(1));                              
+                                //add the cell data to the List
+                                if (worksheet.Cells[i, j].Value == null)
+                                {
+                                    excelData.Add(null);
+                                }
+                                else
+                                {
+                                    excelData.Add(char.ToUpper(worksheet.Cells[i, j].Value.ToString()[0]) + worksheet.Cells[i, j].Value.ToString().Substring(1));
+                                }
                             }
                         }
                     }
-                
-            }            
-            DeserializeExcel(excelData);
+                    else if (worksheet.Name == "Искл")
+                    {
+                        for (int i = worksheet.Dimension.Start.Row; i <= worksheet.Dimension.End.Row; i++)
+                        {
+                            //loop all columns in a row
+                            for (int j = worksheet.Dimension.Start.Column; j <= 11; j++)
+                            {
+                                //add the cell data to the List
+                                if (worksheet.Cells[i, j].Value == null)
+                                {
+                                    excelDataExept.Add(null);
+                                }
+                                else
+                                {
+                                    excelDataExept.Add(char.ToUpper(worksheet.Cells[i, j].Value.ToString()[0]) + worksheet.Cells[i, j].Value.ToString().Substring(1));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        public void DeserializeExcel(List<string> list)
+        public List<Drug> DeserializeExcel(List<string> list)
         {
-            List<Drug> DrugList = new List<Drug>();
+            List<Drug> DeserializedDrugList = new List<Drug>();
             header = list.First().ToString();
 
             if (list != null)
             {
-               // list.RemoveRange(0,33);
-                for (int i = 33; i < list.Count-10; i += 11)
+                for (int i = 33; i < list.Count - 10; i += 11)
                 {
-                    var drug = new Drug(list[i + 1], list[i], list[i + 2], list[i + 3], list[i + 4], list[i + 5], list[i + 7], list[i + 8], list[i + 9], list[i + 10],list[i + 6]);
-                    DrugList.Add(drug);
+                    var drug = new Drug(list[i + 1], list[i], list[i + 2], list[i + 3], list[i + 4], list[i + 5], list[i + 7], list[i + 8], list[i + 9], list[i + 10], list[i + 6]);
+                    DeserializedDrugList.Add(drug);
                 }
             }
-            List<Drug> SortedList = DrugList.OrderBy(o => o.Name).ToList();
-            VladimirskayaObl = new List<Drug>(SortedList);
-             Bashkiriya = new List<Drug>(SortedList);
-            IvanovskayaObl = new List<Drug>(SortedList);
-             IrkutskayaObl = new List<Drug>(SortedList);
-            KaliningradskayaObl = new List<Drug>(SortedList);
-            Krasnodarskii = new List<Drug>(SortedList);
-            Krasnoyarskii = new List<Drug>(SortedList);
-            Moskva = new List<Drug>(SortedList);
-            MO = new List<Drug>(SortedList);
-            NijnegorodskayaObl = new List<Drug>(SortedList);
-            NovgorodskayaObl = new List<Drug>(SortedList);
-            OmskayaObl = new List<Drug>(SortedList);
-            OrlovskayaObl = new List<Drug>(SortedList);
-            Primorskii = new List<Drug>(SortedList);
-            RostovskayaObl = new List<Drug>(SortedList);
-            Saha = new List<Drug>(SortedList);
-            Sverdlovskaya = new List<Drug>(SortedList);
-            tverskaya = new List<Drug>(SortedList);
-            Hakasiya = new List<Drug>(SortedList);
+            DeserializedDrugList = DeserializedDrugList.OrderBy(o => o.Name).ToList();
+
+            return DeserializedDrugList;
         }
+
+        public void CreateSortedRegionLists(List<Drug> list)
+        {
+            VladimirskayaObl = new List<Drug>(list);
+            Bashkiriya = new List<Drug>(list);
+            IvanovskayaObl = new List<Drug>(list);
+            IrkutskayaObl = new List<Drug>(list);
+            KaliningradskayaObl = new List<Drug>(list);
+            Krasnodarskii = new List<Drug>(list);
+            Krasnoyarskii = new List<Drug>(list);
+            Moskva = new List<Drug>(list);
+            MO = new List<Drug>(list);
+            NijnegorodskayaObl = new List<Drug>(list);
+            NovgorodskayaObl = new List<Drug>(list);
+            OmskayaObl = new List<Drug>(list);
+            OrlovskayaObl = new List<Drug>(list);
+            Primorskii = new List<Drug>(list);
+            RostovskayaObl = new List<Drug>(list);
+            Saha = new List<Drug>(list);
+            Sverdlovskaya = new List<Drug>(list);
+            tverskaya = new List<Drug>(list);
+            Hakasiya = new List<Drug>(list);
+        }
+
 
         public void ReadDotationsFromExcel()
         {
@@ -285,7 +276,7 @@ namespace JnvlsList.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\Allowance.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\Allowances.xlsx");
 
             //or if you use asp.net, get the relative path
             //byte[] bin = File.ReadAllBytes(Server.MapPath("ExcelDemo.xlsx"));
@@ -316,7 +307,7 @@ namespace JnvlsList.Controllers
                                         {
                                             if (worksheet.Cells[i + 2, j + 1].Value.ToString().Contains("*"))
                                             {
-                                                worksheet.Cells[i + 2, j + 1].Value = worksheet.Cells[i + 2, j + 1].Value.ToString().Remove(0,3);
+                                                worksheet.Cells[i + 2, j + 1].Value = worksheet.Cells[i + 2, j + 1].Value.ToString().Remove(0, 3);
                                                 worksheet.Cells[i + 2, j + 1].Value = worksheet.Cells[i + 2, j + 1].Value.ToString().Remove(worksheet.Cells[i + 2, j + 1].Value.ToString().Length - 1, 1);
                                                 worksheet.Cells[i + 3, j + 1].Value = worksheet.Cells[i + 3, j + 1].Value.ToString().Remove(0, 3);
                                                 worksheet.Cells[i + 3, j + 1].Value = worksheet.Cells[i + 3, j + 1].Value.ToString().Remove(worksheet.Cells[i + 3, j + 1].Value.ToString().Length - 1, 1);
@@ -338,30 +329,31 @@ namespace JnvlsList.Controllers
                                             allowance.Till50Retail = (worksheet.Cells[i + 1, j + 3].Value != null) ? Double.Parse(worksheet.Cells[i + 1, j + 3].Value.ToString()) : 0;
                                             allowance.Till500Whole = (worksheet.Cells[i + 2, j + 1].Value != null) ? Double.Parse(worksheet.Cells[i + 2, j + 1].Value.ToString()) : 0;
                                             allowance.Till500Retail = (worksheet.Cells[i + 2, j + 3].Value != null) ? Double.Parse(worksheet.Cells[i + 2, j + 3].Value.ToString()) : 0;
-                                            allowance.After500Whole = (worksheet.Cells[i + 3, j + 1].Value != null) ? Double.Parse(worksheet.Cells[i + 3, j + 1].Value.ToString()) :0;
-                                            allowance.After500Retail = (worksheet.Cells[i + 3, j + 3].Value != null) ? Double.Parse(worksheet.Cells[i + 3, j + 3].Value.ToString()) :0;
+                                            allowance.After500Whole = (worksheet.Cells[i + 3, j + 1].Value != null) ? Double.Parse(worksheet.Cells[i + 3, j + 1].Value.ToString()) : 0;
+                                            allowance.After500Retail = (worksheet.Cells[i + 3, j + 3].Value != null) ? Double.Parse(worksheet.Cells[i + 3, j + 3].Value.ToString()) : 0;
                                         }
                                         ListAllowance.Add(allowance);
                                     }
                                 }
-                              }
-                           }                           
+                            }
                         }
                     }
                 }
+            }
         }
 
-        public IActionResult CreateExcelReport(List<Drug> listDrugs, string fileName)
+        public void CreateExcelReport(List<Drug> listDrugs, string fileName)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             List<Drug> listByFirstW = new List<Drug>();
+            //listDrugs.AddRange(exceptionsDrugList);
             using (ExcelPackage excel = new ExcelPackage())
             {
                 for (int i = 0; i < listDrugs.Count - 1; i++)
                 {
                     listByFirstW.Add(listDrugs[i]);
 
-                    if (listDrugs[i].Name.First() != listDrugs[i + 1].Name.First())
+                    if (listDrugs[i].Name.First() != listDrugs[i + 1].Name.First() || listDrugs[i + 1] == listDrugs.Last())
                     {
                         ExcelWorksheet worksheet = excel.Workbook.Worksheets.Add(listDrugs[i].Name.First().ToString());
 
@@ -395,7 +387,16 @@ namespace JnvlsList.Controllers
                             worksheet.Row(k).Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Top;
                             worksheet.Row(k).Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                             worksheet.Row(k).Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-                            worksheet.Row(k).Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;                            
+                            worksheet.Row(k).Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                            ////loop all columns in a row
+                            //for (int j = 1; j <= 18; j++)
+                            //{
+                            //    worksheet.Column(j).Style.Font.Size = 8;
+                            //    worksheet.Column(j).Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Top;
+                            //    worksheet.Cells[k, j].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                            //    worksheet.Cells[k, j].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                            //    worksheet.Cells[k, j].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                            //}
                         }
                         worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
                         //Row1
@@ -438,22 +439,96 @@ namespace JnvlsList.Controllers
 
                         listByFirstW.Clear();
                     }
+
                 }
-                FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\GetXml\Reports\{fileName}.xlsx");
+                ExcelWorksheet worksheet1 = excel.Workbook.Worksheets.Add("ИСКЛ");
+
+                worksheet1.Cells[1, 1].Value = header;
+
+                worksheet1.Cells["A2"].Value = "Торговое наименование лекарственного препарата";
+                worksheet1.Cells["B2"].Value = "МНН";
+                worksheet1.Cells[2, 3].Value = "Лекарственная форма, дозировка, упаковка (полная)";
+                worksheet1.Cells[2, 4].Value = "Владелец РУ/производитель/упаковщик/Выпускающий контроль";
+                worksheet1.Cells[2, 5].Value = "Код АТХ";
+                worksheet1.Cells[2, 6].Value = "Количество в потреб.упаковке";
+                worksheet1.Cells[2, 7].Value = "Цена указана для первич. упаковки";
+                worksheet1.Cells[2, 8].Value = "№ РУ";
+                worksheet1.Cells[2, 9].Value = "Дата регистрации цены(№ решения)";
+                worksheet1.Cells[2, 10].Value = "Штрих-код (EAN13)";
+                worksheet1.Cells[2, 11].Value = "Предельная цена руб. без НДС";
+                worksheet1.Cells[2, 12].Value = "Предельная цена руб. с НДС";
+                worksheet1.Cells[2, 13].Value = "Предельная оптовая надбавка, руб.*";
+                worksheet1.Cells[2, 14].Value = "Предельная оптовая цена, руб., (без НДС)*";
+                worksheet1.Cells[2, 15].Value = "Предельная оптовая цена руб., (с НДС)*";
+                worksheet1.Cells[2, 16].Value = "Предельная розничная надбавка, руб.*";
+                worksheet1.Cells[2, 17].Value = "Предельная розничная цена,  руб. (без НДС)*";
+                worksheet1.Cells[2, 18].Value = "Предельная розничная цена,  руб. (с НДС)*";
+                worksheet1.Cells.Style.WrapText = true;
+                worksheet1.Cells["A3"].LoadFromCollection<Drug>(exceptionsDrugList);
+
+                worksheet1.Cells["A1:R1"].Merge = true;
+                for (int k = worksheet1.Dimension.Start.Row; k <= worksheet1.Dimension.End.Row; k++)
+                {
+                    worksheet1.Row(k).Style.Font.Size = 8;
+                    worksheet1.Row(k).Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Top;
+                    worksheet1.Row(k).Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                    worksheet1.Row(k).Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                    worksheet1.Row(k).Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                }
+                worksheet1.Cells[worksheet1.Dimension.Address].AutoFitColumns();
+                //Row1
+                worksheet1.Row(1).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet1.Row(1).Height = 62.25;
+                worksheet1.Row(1).Style.Font.Bold = true;
+                worksheet1.Row(1).Style.Font.Size = 14;
+                worksheet1.Row(1).Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.None;
+                worksheet1.Row(1).Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.None;
+                worksheet1.Row(1).Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.None;
+                //Row2
+                worksheet1.Cells["B2:R2"].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                worksheet1.Cells["B2:R2"].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                worksheet1.Cells["B2:R2"].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                worksheet1.Cells["B2:R2"].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                worksheet1.Row(2).Style.Font.Size = 8;
+                worksheet1.Row(2).Style.Font.Bold = true;
+                worksheet1.Row(2).Height = 63;
+                worksheet1.Row(2).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet1.Row(2).Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                worksheet1.Row(2).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                worksheet1.Row(2).Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                worksheet1.Column(1).Width = 22.14;
+                worksheet1.Column(2).Width = 18;
+                worksheet1.Column(3).Width = 23.43;
+                worksheet1.Column(4).Width = 25.71;
+                worksheet1.Column(6).Width = 8.43;
+                worksheet1.Column(7).Width = 8.43;
+                worksheet1.Column(9).Width = 10.71;
+                worksheet1.Column(10).Width = 11;
+                worksheet1.Column(11).Width = 8.43;
+                worksheet1.Column(12).Width = 8.43;
+                worksheet1.Column(13).Width = 8.43;
+                worksheet1.Column(14).Width = 8.43;
+                worksheet1.Column(15).Width = 8.43;
+                worksheet1.Column(16).Width = 8.43;
+                worksheet1.Column(17).Width = 8.43;
+                worksheet1.Column(18).Width = 8.43;
+                worksheet1.Column(6).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+
+                FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\JnvlsList\Files\{fileName}.xlsx");
                 excel.SaveAs(excelFile);
 
             }
-            return View("Index");
         }
+
 
         public void CalculateDotation()
         {
-            foreach( var a in ListAllowance)
+            foreach (var a in ListAllowance)
             {
                 if (a.Oblast == "Владимирская область")
                 {
                     foreach (var d in VladimirskayaObl)
-                    {                        
+                    {
                         d.PriceWithNds = Math.Round(((d.PriceNoNds / 100) * 10) + d.PriceNoNds, 2);
                         if (d.PriceNoNds < 51) //ЕСЛИ(K2<51;K2*17%;ЕСЛИ(K2<=500;K2*14%;K2*8,5%))
                             d.WholesaleAllowance = (d.PriceNoNds / 100) * a.Till50Whole;
@@ -463,8 +538,8 @@ namespace JnvlsList.Controllers
                             d.WholesaleAllowance = (d.PriceNoNds / 100) * a.After500Whole;
                         d.WholesaleAllowance = Math.Round(d.WholesaleAllowance, 2);
 
-                        d.WholesalePriceNoNds = Math.Round(d.PriceNoNds + d.WholesaleAllowance,2); //оптовая без ндс
-                        d.WholesalePriceWithNds = Math.Round((((d.PriceNoNds + d.WholesaleAllowance) / 100) * 10) + (d.PriceNoNds + d.WholesaleAllowance),2); // (K2+M2)+((K2+M2)*10%)
+                        d.WholesalePriceNoNds = Math.Round(d.PriceNoNds + d.WholesaleAllowance, 2); //оптовая без ндс
+                        d.WholesalePriceWithNds = Math.Round((((d.PriceNoNds + d.WholesaleAllowance) / 100) * 10) + (d.PriceNoNds + d.WholesaleAllowance), 2); // (K2+M2)+((K2+M2)*10%)
 
                         if (d.PriceNoNds < 51) //ЕСЛИ(K2<51;K2*31%;ЕСЛИ(K2<=500;K2*25%;K2*19%))
                             d.RetailAllowance = (d.PriceNoNds / 100) * a.Till50Retail;
@@ -473,10 +548,11 @@ namespace JnvlsList.Controllers
                         else
                             d.RetailAllowance = (d.PriceNoNds / 100) * a.After500Retail;
                         d.RetailAllowance = Math.Round(d.RetailAllowance, 2);
-                        d.RetailPriceNoNds = Math.Round(d.WholesalePriceNoNds + d.RetailAllowance,2);
-                        d.RetailPriceWithNds = Math.Round((d.WholesalePriceNoNds + d.RetailAllowance) + (((d.WholesalePriceNoNds + d.RetailAllowance) / 100) * 10),2);
+                        d.RetailPriceNoNds = Math.Round(d.WholesalePriceNoNds + d.RetailAllowance, 2);
+                        d.RetailPriceWithNds = Math.Round((d.WholesalePriceNoNds + d.RetailAllowance) + (((d.WholesalePriceNoNds + d.RetailAllowance) / 100) * 10), 2);
                     }
-                        CreateExcelReport(VladimirskayaObl, a.Oblast);
+
+                    CreateExcelReport(VladimirskayaObl, a.Oblast);
                 }
                 else if (a.Oblast == "Республика Башкортостан")
                 {
@@ -988,7 +1064,7 @@ namespace JnvlsList.Controllers
                 }
             }
         }
-  }
+    }
 
 
 
@@ -998,16 +1074,16 @@ namespace JnvlsList.Controllers
 
 
 
-        //public void Convert(String filesFolder)
-        //{
-        //    var file = Directory.GetFiles(filesFolder);
+    //public void Convert(String filesFolder)
+    //{
+    //    var file = Directory.GetFiles(filesFolder);
 
-        //    var app = new Microsoft.Office.Interop.Excel.Application();
-        //    var wb = app.Workbooks.Open(file);
-        //    wb.SaveAs(Filename: file + "x", FileFormat: Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook);
-        //    wb.Close();
-        //    app.Quit();
-        //}
+    //    var app = new Microsoft.Office.Interop.Excel.Application();
+    //    var wb = app.Workbooks.Open(file);
+    //    wb.SaveAs(Filename: file + "x", FileFormat: Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook);
+    //    wb.Close();
+    //    app.Quit();
+    //}
 
 
- }
+}
