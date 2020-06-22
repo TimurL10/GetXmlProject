@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,27 +15,35 @@ namespace GetXml.Models
         [XmlAttribute(AttributeName = "id")]
         public double Id { get; set; }
 
+        [Display(Name = "Имя")]
         [XmlAttribute(AttributeName = "name")]
-        public string Name { get; set; }        
+        public string Name { get; set; }
 
+        [Display(Name = "Статус")]
         [XmlAttribute(AttributeName = "status")]
-        public string Status { get; set; }        
+        public string Status { get; set; }
 
+        [Display(Name = "Кампейн")]
         [XmlAttribute(AttributeName = "campaign_name")]
         public string Campaign_Name { get; set; }
 
-        [XmlAttribute(AttributeName = "ip")]
-        public string Ip { get; set; }        
+        [Display(Name = "Кампейн")]
+        [XmlAttribute(AttributeName = "IP")]
+        public string Ip { get; set; }
 
+        [Display(Name = "Был Online")]
         [XmlAttribute(AttributeName = "last_online")]
         public DateTime Last_Online { get; set; }
-        
+
+        [Display(Name = "Адрес")]
         public string Address { get; set; }
 
+        [Display(Name = "Часы Offline")]
         [XmlAttribute(AttributeName = "time_offline")]
         public double Hours_Offline { get; set; }
-
-        public double SumHours { get; set; }
+        
+        [Display(Name = "Дни Offline")]
+        public double SumHours { get; set; }       
 
         public Device()
         {
