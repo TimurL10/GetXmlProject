@@ -16,9 +16,9 @@ namespace JnvlsList.Controllers
 {
     public class DrugController : Controller
     {
-        //List<String> Regions = new List<string>(new string[] { "Владимирская область","Республика Башкортостан","Ивановская область","Иркутская область","Калининградская область","Краснодарский край","Красноярский край",
-        //"г.Москва","Московская область","Нижегородская область","Новгородская область","Омская область","Орловская область","Приморский край","Ростовская область","Республика Саха (Якутия)","Свердловская область","Тверская область","Республика Хакасия"});
-        List<String> Regions = new List<string>(new string[] {"Владимирская область"});
+        List<String> Regions = new List<string>(new string[] { "Владимирская область","Республика Башкортостан","Ивановская область","Иркутская область","Калининградская область","Краснодарский край","Красноярский край",
+        "г.Москва","Московская область","Нижегородская область","Новгородская область","Омская область","Орловская область","Приморский край","Ростовская область","Республика Саха (Якутия)","Свердловская область","Тверская область","Республика Хакасия"});
+        //List<String> Regions = new List<string>(new string[] {"Владимирская область"});
 
         List<Allowance> ListAllowance = new List<Allowance>();
 
@@ -87,7 +87,7 @@ namespace JnvlsList.Controllers
         {
 
             var fileName = string.Format("{0}_ImageFiles.zip", DateTime.Today.Date.ToString("dd-MM-yyyy") + "_1");
-            var tempOutPutPath = Path.GetFileName(Url.Content("/Files/")) + fileName;
+            var tempOutPutPath = Path.GetFileName(Url.Content("/Files2/")) + fileName;
 
             using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
             {
@@ -96,7 +96,7 @@ namespace JnvlsList.Controllers
                 byte[] buffer = new byte[4096];
 
                 var ImageList = new List<string>();
-                foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports","*.xlsx"))
+                foreach (string file in Directory.EnumerateFiles(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Reports","*.xlsx"))
                   ImageList.Add(Path.GetFullPath(file));
 
                 for (int i = 0; i < ImageList.Count; i++)
@@ -144,7 +144,7 @@ namespace JnvlsList.Controllers
                 if (formFile.Length > 0)
                 {
                     // full path to file in temp location
-                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files",formFile.FileName); //we are using Temp file name just for the example. Add your own file path.
+                    var filePath = Path.Combine(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files2\",formFile.FileName); //we are using Temp file name just for the example. Add your own file path.
                     filePaths.Add(filePath);
 
                     
@@ -165,7 +165,7 @@ namespace JnvlsList.Controllers
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 
-            DirectoryInfo di = new DirectoryInfo(@"C:\Users\Timur\source\repos\GetXml\Files");
+            DirectoryInfo di = new DirectoryInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files2");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i ++)
             {
@@ -285,7 +285,7 @@ namespace JnvlsList.Controllers
             //create a list to hold all the values
             List<string> excelData = new List<string>();
 
-            DirectoryInfo di = new DirectoryInfo(@"C:\Users\Timur\source\repos\GetXml\Files");
+            DirectoryInfo di = new DirectoryInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files2");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i++)
             {
@@ -537,7 +537,7 @@ namespace JnvlsList.Controllers
                 worksheet1.Column(18).Width = 8.43;
                 worksheet1.Column(6).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\GetXml\Reports\{fileName}.xlsx");
+                FileInfo excelFile = new FileInfo($@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Reports\{fileName}.xlsx");
                 excel.SaveAs(excelFile);
 
             }
