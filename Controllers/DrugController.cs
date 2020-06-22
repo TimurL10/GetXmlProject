@@ -96,10 +96,8 @@ namespace JnvlsList.Controllers
                 byte[] buffer = new byte[4096];
 
                 var ImageList = new List<string>();
-
-                ImageList.Add(Path.GetFullPath(@"C:\Users\Timur\source\repos\JnvlsList\Files\Владимирская область.xlsx"));
-                ImageList.Add(Path.GetFullPath(@"C:\Users\Timur\source\repos\JnvlsList\Files\Республика Башкортостан.xlsx"));
-
+                foreach (string file in Directory.EnumerateFiles(@"C:\Users\Timur\source\repos\GetXml\Reports","*.xlsx"))
+                  ImageList.Add(Path.GetFullPath(file));
 
                 for (int i = 0; i < ImageList.Count; i++)
                 {
@@ -134,20 +132,22 @@ namespace JnvlsList.Controllers
 
         }
 
+        [DisableRequestSizeLimit]
         [HttpPost("Drug")]
-        public async Task<IActionResult> Index(List<IFormFile> files)
+        public async Task<ViewResult> Index(List<IFormFile> fileList)
         {
-            long size = files.Sum(f => f.Length);
+            long size = fileList.Sum(f => f.Length);
 
             var filePaths = new List<string>();
-            foreach (var formFile in files)
+            foreach (var formFile in fileList)
             {
                 if (formFile.Length > 0)
                 {
                     // full path to file in temp location
-                    var filePath = Path.GetFullPath(@"C:\Users\Timur\source\repos\JnvlsList\Files"); //we are using Temp file name just for the example. Add your own file path.
+                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files",formFile.FileName); //we are using Temp file name just for the example. Add your own file path.
                     filePaths.Add(filePath);
 
+                    
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
@@ -157,16 +157,26 @@ namespace JnvlsList.Controllers
 
             // process uploaded files
             // Don't rely on or trust the FileName property without validation.
-
-            return Ok(new { count = files.Count, size, filePaths });
+            return View("Index");
         }
 
         public void ReadDrugsFromExcel()
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\lp2020-06-09-1.xlsx");
 
+
+            DirectoryInfo di = new DirectoryInfo(@"C:\Users\Timur\source\repos\GetXml\Files");
+            FileInfo[] files = di.GetFiles("*.xlsx");
+            for (int i = 0; i < files.Length; i ++)
+            {
+                long length = new System.IO.FileInfo(files[i].FullName).Length;
+                if (length > 4000000)
+                    files.SetValue(files[i], 0);                
+            }           
+
+            //read the Excel file as byte array
+            //byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\lp2020-06-09-1.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(files.First().FullName);
             //or if you use asp.net, get the relative path
             //byte[] bin = File.ReadAllBytes(Server.MapPath("ExcelDemo.xlsx"));
 
@@ -275,8 +285,17 @@ namespace JnvlsList.Controllers
             //create a list to hold all the values
             List<string> excelData = new List<string>();
 
+            DirectoryInfo di = new DirectoryInfo(@"C:\Users\Timur\source\repos\GetXml\Files");
+            FileInfo[] files = di.GetFiles("*.xlsx");
+            for (int i = 0; i < files.Length; i++)
+            {
+                long length = new System.IO.FileInfo(files[i].FullName).Length;
+                if (length < 4000000)
+                    files.SetValue(files[i], 0);
+            }           
+
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\Allowances.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(files.First().FullName);
 
             //or if you use asp.net, get the relative path
             //byte[] bin = File.ReadAllBytes(Server.MapPath("ExcelDemo.xlsx"));
@@ -339,6 +358,10 @@ namespace JnvlsList.Controllers
                         }
                     }
                 }
+            }
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
             }
         }
 
@@ -514,7 +537,7 @@ namespace JnvlsList.Controllers
                 worksheet1.Column(18).Width = 8.43;
                 worksheet1.Column(6).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\JnvlsList\Files\{fileName}.xlsx");
+                FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\GetXml\Reports\{fileName}.xlsx");
                 excel.SaveAs(excelFile);
 
             }
