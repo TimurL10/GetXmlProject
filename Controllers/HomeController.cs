@@ -11,11 +11,13 @@ using System.IO;
 using System.Xml;
 using Microsoft.Extensions.Configuration;
 using OfficeOpenXml;
+using System.Threading.Tasks;
 
 namespace GetXml.Controllers
 {
     public class HomeController : Controller
     {
+        public Xml Devices;
         private ILoggerFactory _loggerFactory;
         private readonly DeviceRepository deviceRepository;
         public static string displayName = "(GMT+03:00) Russia Time Zone 2";
@@ -32,7 +34,15 @@ namespace GetXml.Controllers
 
         public IActionResult Index()
         {
-            GetXmlData();            
+            Task task1 = new Task(() => GetXmlData());
+            task1.Start();
+            task1.Wait();
+            Task task2 = new Task(() => FilterDevices());
+            task2.Start();
+            task2.Wait();
+            Task task3 = new Task(() => OfflineHoursCount());
+            task3.Start();
+            task3.Wait();
             var terminals = deviceRepository.GetDevices();
             terminals = ConverDateToMoscowTime(terminals);
             return View(terminals);
@@ -49,6 +59,20 @@ namespace GetXml.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public double getHoursOffline(double deviceId)
+        {
+            double h_new = 0;
+            foreach (var d in Devices.Devices)
+            {
+                if (d.Id == deviceId)
+                {
+                    var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
+                    var ts_new = TimeSpan.FromHours(Hours_Offline);
+                    h_new = System.Math.Floor(ts_new.TotalHours);
+                }
+            }
+            return h_new;
+        }
 
         public async void GetXmlData()
         {
@@ -57,10 +81,7 @@ namespace GetXml.Controllers
             {
                 var client = new HttpClient();
                 string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLbmR99w";
-                //var responce = await client.GetAsync(GETXML_PATH);
-                //var pageContent =  await responce.Content.ReadAsStringAsync();
-                //var streamTaskA = client.GetStreamAsync(GETXML_PATH);
-                var streamTaskA1 = await client.GetStringAsync(GETXML_PATH);
+                var streamTaskA1 = client.GetStringAsync(GETXML_PATH).Result;
                 XmlRootAttribute xRoot = new XmlRootAttribute();
                 xRoot.ElementName = "xml";
                 xRoot.DataType = "string";
@@ -68,69 +89,7 @@ namespace GetXml.Controllers
                 using (var reader = new StringReader(streamTaskA1))
                 {
                     Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
-                    
-                    foreach (Device d in devices.Devices)
-                    {
-                        if (deviceRepository.Get(d.Id) == null && d.Last_Online.Year == DateTime.Now.Year)
-                        {
-                            deviceRepository.Add(d);
-                        }
-                        if (d.Status == "offline" && d.Last_Online > DateTime.MinValue && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && d.Last_Online > DateTime.MinValue && d.Last_Online.Year == DateTime.Now.Year)
-                        {
-                            var deviceFromDb = deviceRepository.Get(d.Id);
-                            d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
-                            var ts_new = TimeSpan.FromHours(d.Hours_Offline);
-                            var h_new = System.Math.Floor(ts_new.TotalHours);
-                            d.Hours_Offline = h_new;
-                            if (h_new <= 0)
-                            {
-                                deviceFromDb.Hours_Offline = 0;
-                                deviceFromDb.Last_Online = d.Last_Online;
-                                deviceFromDb.Status = d.Status;
-                                deviceFromDb.Campaign_Name = d.Campaign_Name;
-                                deviceRepository.Update(deviceFromDb);
-                            }                            
-                            else 
-                            {
-                                if (d.Hours_Offline == 48 && deviceFromDb.SumHours == 0)
-                                {
-                                    deviceFromDb.SumHours += 48;
-                                    deviceFromDb.Last_Online = d.Last_Online;
-                                    deviceFromDb.Status = d.Status;
-                                    deviceFromDb.Ip = d.Ip;
-                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
-                                    deviceFromDb.Hours_Offline = 0;
-                                    deviceRepository.Update(deviceFromDb);
-                                }
-                                else if (d.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && deviceFromDb.Hours_Offline < 24)
-                                {
-                                    deviceFromDb.Hours_Offline = d.Hours_Offline - deviceFromDb.SumHours;
-                                    deviceFromDb.Last_Online = d.Last_Online;
-                                    deviceFromDb.Status = d.Status;
-                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
-                                    deviceRepository.Update(deviceFromDb);
-
-                                }
-                                else if (d.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && deviceFromDb.Hours_Offline == 24)
-                                {
-                                    deviceFromDb.SumHours += 24;
-                                    deviceFromDb.Hours_Offline = 0;
-                                    deviceFromDb.Last_Online = d.Last_Online;
-                                    deviceFromDb.Status = d.Status;
-                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
-                                    deviceRepository.Update(deviceFromDb);
-                                }
-                                else
-                                {
-                                    deviceFromDb.Last_Online = d.Last_Online;
-                                    deviceFromDb.Hours_Offline = d.Hours_Offline;
-                                    deviceFromDb.Status = d.Status;
-                                    deviceFromDb.Campaign_Name = d.Campaign_Name;
-                                    deviceRepository.Update(deviceFromDb);
-                                }
-                            }                            
-                        }
-                    }
+                    Devices = devices;
                 }
             }
             catch (Exception e)
@@ -138,6 +97,108 @@ namespace GetXml.Controllers
                 loggerF.LogError($"The path threw an exception {DateTime.Now} -- {e}");
                 loggerF.LogWarning($"The path threw a warning {DateTime.Now} --{e}");
             }
+        }
+
+        public void FilterDevices()
+        {
+            try
+            {
+                foreach (var d in Devices.Devices.ToList())
+                {                   
+                    if ( (getHoursOffline(d.Id) > 730) || (d.Status == "not attached"))
+                    {
+                        Devices.Devices.Remove(d);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            
+        }
+
+        public void OfflineHoursCount()
+        {
+            try
+            {
+                foreach (var d in Devices.Devices.ToList())
+                {
+                    AddNewDevice(d);
+                    var deviceFromDb = deviceRepository.Get(d.Id);
+                    deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
+                    if (deviceFromDb.Hours_Offline == 48)
+                    {
+                        deviceFromDb.SumHours += Math.Round(deviceFromDb.Hours_Offline / 24, 0);
+                        deviceRepository.Update(deviceFromDb);
+                        ChangeTerminalData(deviceFromDb.Id);
+                    }
+
+                    if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 2)
+                    {
+                        if ((deviceFromDb.Hours_Offline - deviceFromDb.SumHours * 24) == 24)
+                        {
+                            deviceFromDb.SumHours += 1;
+                            deviceRepository.Update(deviceFromDb);
+                            ChangeTerminalData(deviceFromDb.Id);
+                        }
+                    }
+                    else
+                        ChangeTerminalData(deviceFromDb.Id); // we can change to send device instead id
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            
+        }
+
+        public void ChangeTerminalData(double deviceId)
+        {
+            try
+            {
+                var deviceFromDb = deviceRepository.Get(deviceId);
+                foreach (var d in Devices.Devices.ToList())
+                {
+                    if (d.Id == deviceId)
+                    {
+                        deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
+                        deviceFromDb.Last_Online = d.Last_Online;
+                        deviceFromDb.Status = d.Status;
+                        deviceFromDb.Campaign_Name = d.Campaign_Name;
+                        deviceFromDb.Address = d.Address;
+                        deviceRepository.Update(deviceFromDb); 
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }          
+        }
+
+        public bool AddNewDevice(Device device)
+        {
+            bool flag = false;
+            try
+            {
+                if (deviceRepository.Get(device.Id) == null)
+                {
+                    deviceRepository.Add(device);
+                    return flag = true;
+                }
+                else
+                    return flag = false;
+
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return flag;            
         }
 
         public void CreateExcelReport()
@@ -239,10 +300,7 @@ namespace GetXml.Controllers
             {
                 TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
                 d.Last_Online = TimeZoneInfo.ConvertTimeFromUtc(d.Last_Online, moscowZone);
-                if (d.SumHours >= 24)
-                {
-                    d.SumHours /= 24;
-                }
+                
                 //string date_from = d.Last_Online.ToString("yyyy/MM/dd HH:mm");
             }
             return listDevises;
