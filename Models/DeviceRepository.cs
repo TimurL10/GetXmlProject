@@ -80,6 +80,6 @@ namespace GetXml.Models
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
                 dbConnection.Close();
             }               
-        }
+        }        
     }
 }
