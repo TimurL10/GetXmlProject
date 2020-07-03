@@ -3,7 +3,22 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<p>Use this page to configure your report.</p>
+<p></p>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Выберите файл c адресами:</p>
+            <input type="file" name="file" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Upload" />
+        </div>
+    </div>
+</form>
+
 <p>
     <a asp-action="PostAddressToDb" asp-controller="Home" asp-antiforgery="true">Add new address</a>
 </p>

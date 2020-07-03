@@ -12,6 +12,7 @@ using System.Xml;
 using Microsoft.Extensions.Configuration;
 using OfficeOpenXml;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace GetXml.Controllers
 {
@@ -48,6 +49,28 @@ namespace GetXml.Controllers
             return View(terminals);
         }
 
+        [DisableRequestSizeLimit]
+        [HttpPost("Home")]
+        public async Task<ViewResult> Index(IFormFile file)
+        {
+            long size = file.Length;
+            
+                if (size > 0)
+                {
+                    // full path to file in temp location
+                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Reports", file.FileName); //we are using Temp file name just for the example. Add your own file path.
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                }
+            
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+            return View("Privacy");
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -71,6 +94,9 @@ namespace GetXml.Controllers
                     h_new = System.Math.Floor(ts_new.TotalHours);
                 }
             }
+            if (h_new < 0)            
+                h_new = 0;
+            
             return h_new;
         }
 
@@ -105,7 +131,7 @@ namespace GetXml.Controllers
             {
                 foreach (var d in Devices.Devices.ToList())
                 {                   
-                    if ( (getHoursOffline(d.Id) > 730) || (d.Status == "not attached"))
+                    if ( (getHoursOffline(d.Id) > 730) || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue))
                     {
                         Devices.Devices.Remove(d);
                     }
@@ -233,19 +259,20 @@ namespace GetXml.Controllers
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
+                FileInfo excelFile = new FileInfo(@"C:\Users\Timur\Documents\report.xlsx");
                 excel.SaveAs(excelFile);
             }
         }
-            
 
-            public List<string> ReadAddressesFromExcel() // make when a new device added for updating addresses//
-            {
+
+        public List<string> ReadAddressesFromExcel() // make when a new device added for updating addresses//
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             //create a list to hold all the values
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files\terminal_address.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Reports\Отчет по устройствам.xlsx");
 
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
@@ -261,7 +288,7 @@ namespace GetXml.Controllers
                         for (int j = worksheet.Dimension.Start.Column; j <= worksheet.Dimension.End.Column; j++)
                         {
                             //add the cell data to the List
-                            if ((worksheet.Cells[i, j].Value != null && j == 1 && worksheet.Cells[i, j + 7].Value != null) || (worksheet.Cells[i, j].Value != null && j == 8))
+                            if ((worksheet.Cells[i, j].Value != null && j == 2 && worksheet.Cells[i, j + 7].Value != null) || (worksheet.Cells[i, j].Value != null && j == 9))
                             {
                                 //if (worksheet.Cells["A"])
                                 excelData.Add(worksheet.Cells[i, j].Value.ToString());
@@ -280,7 +307,14 @@ namespace GetXml.Controllers
             for (int i = 0; i < excelData.Count - 1; i++)
             {
                 var device = new Device(excelData[i], excelData[i + 1]);
-                deviceRepository.AddAddress(device);
+                if (deviceRepository.GetAddress(device.Name).Address != device.Address)
+                {
+                    deviceRepository.UpdateAddress(device);
+                }
+                else if (deviceRepository.GetAddress(device.Name) == null)
+                {
+                    deviceRepository.AddAddress(device);
+                }
                 i++;
             }
             return View("Privacy");
@@ -289,7 +323,7 @@ namespace GetXml.Controllers
         public FileResult Export()
         {
             CreateExcelReport();
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Users\Timur\Documents\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }

@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
@@ -72,14 +73,32 @@ namespace GetXml.Models
             }
         }
 
+        public void UpdateAddress(Device device)
+        {
+            using (var dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                dbConnection.Execute("Update address Set name = @Name, address = @Address Where name = @Name", device);
+                dbConnection.Close();
+            }               
+        }
+
         public void AddAddress(Device device)
         {
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
-                dbConnection.Close();
-            }               
-        }        
+            }
+        }
+
+        public Device GetAddress(string name)
+        {
+            using (var dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                return dbConnection.Query<Device>("Select * from address where name = @Name", new {Name = name }).FirstOrDefault();
+            }
+        }
     }
 }
