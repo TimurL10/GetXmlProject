@@ -27,8 +27,8 @@ namespace GetXml.Models
         [XmlAttribute(AttributeName = "campaign_name")]
         public string Campaign_Name { get; set; }
 
-        [Display(Name = "Кампейн")]
-        [XmlAttribute(AttributeName = "IP")]
+        [Display(Name = "IP")]
+        [XmlAttribute(AttributeName = "ip")]
         public string Ip { get; set; }
 
         [Display(Name = "Был Online")]
