@@ -430,3 +430,28 @@ Request finished in 119726.0537ms 200 text/html; charset=utf-8
 Request finished in 119726.0537ms 200 text/html; charset=utf-8
 Request finished in 97617.6605ms 200 text/html; charset=utf-8
 Request finished in 97617.6605ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:29000:22899493 heartbeat successfully sent
+Server laptop-94eikf8p:29000:22899493 heartbeat successfully sent
+Server laptop-94eikf8p:29000:22899493 heartbeat successfully sent
+Server laptop-94eikf8p:29000:22899493 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2159.67ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 6315.2283ms
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+The file /css/site.css was not modified
+The file /lib/bootstrap/dist/css/bootstrap.min.css was not modified
+Request finished in 6950.9588ms 200 text/html; charset=utf-8
+Request finished in 190.7036ms 304 text/css
+Request finished in 233.202ms 304 text/css
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+The file /lib/jquery/dist/jquery.min.js was not modified
+The file /lib/bootstrap/dist/js/bootstrap.bundle.min.js was not modified
+The file /js/site.js was not modified
+Request finished in 419.3667ms 304 application/javascript
+Request finished in 461.0701ms 304 application/javascript
+Request finished in 493.9132ms 304 application/javascript
+Server laptop-94eikf8p:29328:d6b5fe3a heartbeat successfully sent
