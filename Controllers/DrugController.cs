@@ -96,7 +96,7 @@ namespace JnvlsList.Controllers
                 byte[] buffer = new byte[4096];
 
                 var ImageList = new List<string>();
-                foreach (string file in Directory.EnumerateFiles(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Reports","*.xlsx"))
+                foreach (string file in Directory.EnumerateFiles(@"d:\Domains\smartsoft83.com\wwwroot\Reports","*.xlsx"))
                   ImageList.Add(Path.GetFullPath(file));
 
                 for (int i = 0; i < ImageList.Count; i++)
@@ -144,7 +144,7 @@ namespace JnvlsList.Controllers
                 if (formFile.Length > 0)
                 {
                     // full path to file in temp location
-                    var filePath = Path.Combine(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files2\",formFile.FileName); //we are using Temp file name just for the example. Add your own file path.
+                    var filePath = Path.Combine(@"d:\Domains\smartsoft83.com\wwwroot\Files2\",formFile.FileName); //we are using Temp file name just for the example. Add your own file path.
                     filePaths.Add(filePath);
 
                     
@@ -165,7 +165,7 @@ namespace JnvlsList.Controllers
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 
-            DirectoryInfo di = new DirectoryInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files2");
+            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\Files2\");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i ++)
             {
@@ -285,7 +285,7 @@ namespace JnvlsList.Controllers
             //create a list to hold all the values
             List<string> excelData = new List<string>();
 
-            DirectoryInfo di = new DirectoryInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files2");
+            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\Files2\");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i++)
             {
@@ -537,7 +537,7 @@ namespace JnvlsList.Controllers
                 worksheet1.Column(18).Width = 8.43;
                 worksheet1.Column(6).Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                FileInfo excelFile = new FileInfo($@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Reports\{fileName}.xlsx");
+                FileInfo excelFile = new FileInfo($@"d:\Domains\smartsoft83.com\wwwroot\Reports\{fileName}.xlsx");
                 excel.SaveAs(excelFile);
 
             }

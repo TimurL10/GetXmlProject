@@ -58,7 +58,7 @@ namespace GetXml.Controllers
                 if (size > 0)
                 {
                     // full path to file in temp location
-                    var filePath = Path.Combine(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
+                    var filePath = Path.Combine(@"d:\Domains\smartsoft83.com\wwwroot\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -259,7 +259,7 @@ namespace GetXml.Controllers
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
+                FileInfo excelFile = new FileInfo(@"d:\Domains\smartsoft83.com\wwwroot\report.xlsx");
                 excel.SaveAs(excelFile);
             }
         }
@@ -272,7 +272,7 @@ namespace GetXml.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\Files\Отчет по устройствам.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\Files\Отчет по устройствам.xlsx");
 
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
@@ -323,7 +323,7 @@ namespace GetXml.Controllers
         public FileResult Export()
         {
             CreateExcelReport();
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"D:\inetpub\vhosts\smartsoft83.com\httpdocs\report.xlsx");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
