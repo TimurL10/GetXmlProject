@@ -307,14 +307,15 @@ namespace GetXml.Controllers
             for (int i = 0; i < excelData.Count - 1; i++)
             {
                 var device = new Device(excelData[i], excelData[i + 1]);
-                if (deviceRepository.GetAddress(device.Name).Address != device.Address)
-                {
-                    deviceRepository.UpdateAddress(device);
-                }
-                else if (deviceRepository.GetAddress(device.Name) == null)
+                if (deviceRepository.GetAddress(device.Name) == null)
                 {
                     deviceRepository.AddAddress(device);
                 }
+                else if (deviceRepository.GetAddress(device.Name).Address != device.Address)
+                {
+                    deviceRepository.UpdateAddress(device);
+                }
+                
                 i++;
             }
             return View("Privacy");
