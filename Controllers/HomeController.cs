@@ -152,15 +152,17 @@ namespace GetXml.Controllers
                 {
                     AddNewDevice(d);
                     var deviceFromDb = deviceRepository.Get(d.Id);
-                    deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
-                    if (deviceFromDb.Hours_Offline == 48)
+                    if (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id)))
+                        deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
+
+                    if (deviceFromDb.Hours_Offline == 48 && deviceFromDb.SumHours < 2)
                     {
                         deviceFromDb.SumHours += Math.Round(deviceFromDb.Hours_Offline / 24, 0);
                         deviceRepository.Update(deviceFromDb);
                         ChangeTerminalData(deviceFromDb.Id);
                     }
 
-                    if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 2)
+                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
                         if ((deviceFromDb.Hours_Offline - deviceFromDb.SumHours * 24) == 24)
                         {

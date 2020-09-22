@@ -20348,3 +20348,363 @@ Server laptop-94eikf8p:28324:fd889dc5 heartbeat successfully sent
 Server laptop-94eikf8p:28324:fd889dc5 heartbeat successfully sent
 Server laptop-94eikf8p:28324:fd889dc5 heartbeat successfully sent
 Server laptop-94eikf8p:28324:fd889dc5 heartbeat successfully sent
+The path threw an exception 20.09.2020 18:11:49 -- System.AggregateException: One or more errors occurred. (Этот хост неизвестен.)
+ ---> System.Net.Http.HttpRequestException: Этот хост неизвестен.
+ ---> System.Net.Sockets.SocketException (11001): Этот хост неизвестен.
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean allowHttp2, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttpConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncUnbuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 110
+The path threw a warning 20.09.2020 18:11:49 --System.AggregateException: One or more errors occurred. (Этот хост неизвестен.)
+ ---> System.Net.Http.HttpRequestException: Этот хост неизвестен.
+ ---> System.Net.Sockets.SocketException (11001): Этот хост неизвестен.
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean allowHttp2, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttpConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncUnbuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at System.Net.Http.HttpClient.GetStringAsyncCore(Task`1 getTask)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at GetXml.Controllers.HomeController.GetXmlData() in C:\Users\Timur\source\repos\GetXml\Controllers\HomeController.cs:line 110
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2265.4469ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 9818.5289ms
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request finished in 10130.1875ms 200 text/html; charset=utf-8
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 197.9304ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 297.059ms 200 text/css
+Request finished in 395.7158ms 200 text/css
+Request finished in 453.7462ms 200 application/javascript
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 584.8169ms 200 application/javascript
+Server laptop-94eikf8p:26660:6138e19c heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Server laptop-94eikf8p:26660:6138e19c heartbeat successfully sent
+Server laptop-94eikf8p:26660:6138e19c heartbeat successfully sent
+Executed ViewResult - view Index executed in 1887.7998ms.
+Executed ViewResult - view Index executed in 1887.7998ms.
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 15117.5775ms
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 15117.5775ms
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request finished in 15626.4187ms 200 text/html; charset=utf-8
+Request finished in 15626.4187ms 200 text/html; charset=utf-8
+Request finished in 539.7909ms 200 text/css
+Request finished in 318.6245ms 200 text/css
+Request finished in 318.6245ms 200 text/css
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 1245.7166ms 200 application/javascript
+Request finished in 539.7909ms 200 text/css
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 1358.9344ms 200 application/javascript
+Request finished in 1358.9344ms 200 application/javascript
+Request finished in 1575.306ms 200 application/javascript
+Request finished in 1575.306ms 200 application/javascript
+Request finished in 1245.7166ms 200 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Request finished in 216.7358ms 200 image/x-icon
+Request finished in 216.7358ms 200 image/x-icon
+Server laptop-94eikf8p:26660:6138e19c heartbeat successfully sent
+Server laptop-94eikf8p:26660:6138e19c heartbeat successfully sent
+Executing ViewResult, running view Index.
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Executed ViewResult - view Index executed in 3422.7328ms.
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request finished in 263.5317ms 200 text/css
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 7745.675ms
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 215.41ms 200 application/javascript
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 352.9517ms 200 application/javascript
+Request finished in 8108.8849ms 200 text/html; charset=utf-8
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 448.7732ms 200 text/css
+Request finished in 489.5557ms 200 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1285.6106ms.
+Executed ViewResult - view Index executed in 1285.6106ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2861.5231ms
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2861.5231ms
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 3163.5706ms 200 text/html; charset=utf-8
+Request finished in 3163.5706ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 411.8272ms 200 text/css
+Request finished in 411.8272ms 200 text/css
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 445.9836ms 200 application/javascript
+Request finished in 445.9836ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 619.6552ms 200 text/css
+Request finished in 619.6552ms 200 text/css
+Request finished in 634.6333ms 200 application/javascript
+Request finished in 634.6333ms 200 application/javascript
+Request finished in 519.4298ms 200 application/javascript
+Request finished in 519.4298ms 200 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Request finished in 90.8512ms 200 image/x-icon
+Request finished in 90.8512ms 200 image/x-icon
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1514.1317ms.
+Executed ViewResult - view Index executed in 1514.1317ms.
+Executed ViewResult - view Index executed in 1514.1317ms.
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3790.9278ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3790.9278ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 3790.9278ms
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 591.1753ms 200 text/css
+Request finished in 591.1753ms 200 text/css
+Request finished in 591.1753ms 200 text/css
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 624.0457ms 200 application/javascript
+Request finished in 624.0457ms 200 application/javascript
+Request finished in 718.5796ms 200 application/javascript
+Request finished in 718.5796ms 200 application/javascript
+Request finished in 718.5796ms 200 application/javascript
+Request finished in 624.0457ms 200 application/javascript
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Server laptop-94eikf8p:3724:054bfcd2 heartbeat successfully sent
+Server laptop-94eikf8p:3724:054bfcd2 heartbeat successfully sent
+Server laptop-94eikf8p:3724:054bfcd2 heartbeat successfully sent
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request finished in 4978.2403ms 200 text/html; charset=utf-8
+Request finished in 4978.2403ms 200 text/html; charset=utf-8
+Request finished in 4978.2403ms 200 text/html; charset=utf-8
+Request finished in 902.9674ms 200 application/javascript
+Request finished in 902.9674ms 200 application/javascript
+Request finished in 1256.6043ms 200 text/css
+Request finished in 1256.6043ms 200 text/css
+Request finished in 1256.6043ms 200 text/css
+Request finished in 902.9674ms 200 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Request finished in 204.9575ms 200 image/x-icon
+Request finished in 204.9575ms 200 image/x-icon
+Request finished in 204.9575ms 200 image/x-icon
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Request starting HTTP/2 GET https://localhost:5001/  
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1324.203ms.
+Executed ViewResult - view Index executed in 1324.203ms.
+Executed ViewResult - view Index executed in 1324.203ms.
+Executed ViewResult - view Index executed in 1324.203ms.
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2691.3359ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2691.3359ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2691.3359ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 2691.3359ms
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 740.4713ms 200 text/css
+Request finished in 740.4713ms 200 text/css
+Request finished in 740.4713ms 200 text/css
+Request finished in 740.4713ms 200 text/css
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 3845.1846ms 200 text/html; charset=utf-8
+Request finished in 3845.1846ms 200 text/html; charset=utf-8
+Request finished in 3845.1846ms 200 text/html; charset=utf-8
+Request finished in 3845.1846ms 200 text/html; charset=utf-8
+Request finished in 1112.2717ms 200 application/javascript
+Request finished in 1112.2717ms 200 application/javascript
+Request finished in 1112.2717ms 200 application/javascript
+Request finished in 1112.2717ms 200 application/javascript
+Request finished in 979.9538ms 200 application/javascript
+Request finished in 979.9538ms 200 application/javascript
+Request finished in 979.9538ms 200 application/javascript
+Request finished in 979.9538ms 200 application/javascript
+Request finished in 959.6494ms 200 text/css
+Request finished in 959.6494ms 200 text/css
+Request finished in 959.6494ms 200 text/css
+Request finished in 959.6494ms 200 text/css
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request starting HTTP/2 GET https://localhost:5001/favicon.ico  
+Request finished in 849.9543ms 200 application/javascript
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Sending file. Request path: '/favicon.ico'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\favicon.ico'
+Request finished in 849.9543ms 200 application/javascript
+Request finished in 262.7125ms 200 image/x-icon
+Request finished in 262.7125ms 200 image/x-icon
+Request finished in 262.7125ms 200 image/x-icon
+Request finished in 262.7125ms 200 image/x-icon
+Request finished in 849.9543ms 200 application/javascript
+Request finished in 849.9543ms 200 application/javascript
