@@ -155,7 +155,7 @@ namespace GetXml.Controllers
                     if (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id)))
                         deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
 
-                    if (deviceFromDb.Hours_Offline == 48 && deviceFromDb.SumHours < 2)
+                    if (deviceFromDb.Hours_Offline == 48 && deviceFromDb.SumHours < 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
                         deviceFromDb.SumHours += Math.Round(deviceFromDb.Hours_Offline / 24, 0);
                         deviceRepository.Update(deviceFromDb);
@@ -164,7 +164,7 @@ namespace GetXml.Controllers
 
                     else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
-                        if ((deviceFromDb.Hours_Offline - deviceFromDb.SumHours * 24) == 24)
+                        if ((deviceFromDb.Hours_Offline - (deviceFromDb.SumHours * 24)) == 24)
                         {
                             deviceFromDb.SumHours += 1;
                             deviceRepository.Update(deviceFromDb);
