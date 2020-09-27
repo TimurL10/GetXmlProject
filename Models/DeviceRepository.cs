@@ -89,6 +89,7 @@ namespace GetXml.Models
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
+                dbConnection.Execute("Update terminal Set address = @Address Where name = @Name", device);
             }
         }
 
@@ -98,6 +99,16 @@ namespace GetXml.Models
             {
                 dbConnection.Open();
                 return dbConnection.Query<Device>("Select * from address where name = @Name", new {Name = name }).FirstOrDefault();
+            }
+        }
+
+        public void UpdateDevice (Device device)
+        {
+            using (var dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                dbConnection.Execute("Update terminal Set teamviewer = @TeamViewer, address = @Address, note = @Note Where name = @Name", device);
+                dbConnection.Close();
             }
         }
     }

@@ -11,7 +11,7 @@
     <a asp-action="Export" asp-controller="Home"  asp-antiforgery="true">Export to Excel</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-light">        
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -35,13 +35,19 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.TeamViewer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Hours_Offline)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SumHours)
             </th>
             <th></th>
-        </tr>
+        </tr>        
     </thead>
     <tbody>
 @foreach (var item in Model) {
@@ -68,15 +74,19 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.TeamViewer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Hours_Offline)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SumHours)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
             </td>
         </tr>
 }
