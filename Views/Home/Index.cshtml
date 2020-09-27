@@ -8,10 +8,10 @@
 <h2>Terminals</h2>
 
 <p>
-    <a asp-action="Export" asp-controller="Home"  asp-antiforgery="true">Export to Excel</a>
+    <a asp-action="Export" asp-controller="Home" asp-antiforgery="true">Export to Excel</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-light">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -35,6 +35,12 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.TeamViewer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Hours_Offline)
             </th>
             <th>
@@ -44,41 +50,46 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Campaign_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Last_Online)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hours_Offline)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SumHours)
-            </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Campaign_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_Online)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamViewer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hours_Offline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SumHours)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

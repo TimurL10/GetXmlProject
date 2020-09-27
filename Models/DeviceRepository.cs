@@ -27,7 +27,7 @@ namespace GetXml.Models
             }
         }
         public List<Device> GetDevices()
-        {          
+        {
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
@@ -80,7 +80,7 @@ namespace GetXml.Models
                 dbConnection.Open();
                 dbConnection.Execute("Update address Set name = @Name, address = @Address Where name = @Name", device);
                 dbConnection.Close();
-            }               
+            }
         }
 
         public void AddAddress(Device device)
@@ -89,6 +89,7 @@ namespace GetXml.Models
             {
                 dbConnection.Open();
                 dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
+                dbConnection.Execute("Update terminal Set address = @Address Where name = @Name", device);
             }
         }
 
@@ -97,7 +98,17 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                return dbConnection.Query<Device>("Select * from address where name = @Name", new {Name = name }).FirstOrDefault();
+                return dbConnection.Query<Device>("Select * from address where name = @Name", new { Name = name }).FirstOrDefault();
+            }
+        }
+
+        public void UpdateDevice(Device device)
+        {
+            using (var dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                dbConnection.Execute("Update terminal Set teamviewer = @TeamViewer, address = @Address, note = @Note Where name = @Name", device);
+                dbConnection.Close();
             }
         }
     }

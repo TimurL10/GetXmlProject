@@ -49,6 +49,36 @@ namespace GetXml.Controllers
             return View(terminals);
         }
 
+        public async Task<IActionResult> Edit(double id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var device = deviceRepository.Get(id);
+
+            if (device == null)
+            {
+                return NotFound();
+            }
+
+            return View(device);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public async Task<IActionResult> EditPost(Device device)
+        {
+            if (device == null)
+            {
+                return NotFound();
+            }
+
+            deviceRepository.UpdateDevice(device);
+
+            return View(device);
+        }
+
         [DisableRequestSizeLimit]
         [HttpPost("Home")]
         public async Task<ViewResult> Index(IFormFile file)
@@ -317,7 +347,7 @@ namespace GetXml.Controllers
                 {
                     deviceRepository.UpdateAddress(device);
                 }
-                
+
                 i++;
             }
             return View("Privacy");
