@@ -372,6 +372,68 @@ namespace GetXml.Controllers
             }
             return listDevises;
         }
+
+        public List<double> ImportTeamViewerCodesFromExcel() 
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            //create a list to hold all the values
+            List<double> excelData = new List<double>();
+
+            //read the Excel file as byte array
+            byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\Files\ICL (доступы TeamViewer).xlsx");
+
+            //create a new Excel package in a memorystream
+            using (MemoryStream stream = new MemoryStream(bin))
+            using (ExcelPackage excelPackage = new ExcelPackage(stream))
+            {
+                //loop all worksheets
+                foreach (ExcelWorksheet worksheet in excelPackage.Workbook.Worksheets)
+                {
+                    //loop all rows
+                    for (int i = worksheet.Dimension.Start.Row; i <= worksheet.Dimension.End.Row; i++)
+                    {
+                        //loop all columns in a row
+                        for (int j = worksheet.Dimension.Start.Column; j < 2; j++)
+                        {                           
+                            //    excelData.Add(worksheet.Cells[i, j].Value);
+                            //worksheet.Cells.DataValidation.AddCustomDataValidation();
+                            
+                        }
+                    }
+                }
+            }
+            return excelData;
+        }
+
+        //public IActionResult PostTeamViewerCodesToDb()
+        //{
+        //    var excelData = ImportTeamViewerCodesFromExcel();
+        //    excelData.RemoveRange(0, 2);
+        //    for (int i = 0; i < excelData.Count - 1; i++)
+        //    {
+        //        var terminalsList = deviceRepository.GetDevices();
+        //        foreach (var t in terminalsList)
+        //        {
+        //            if (t.Id == excelData[i])
+        //        }
+
+
+
+
+        //        var device = new Device(excelData[i], excelData[i + 1]);
+        //        if (deviceRepository.GetAddress(device.Name) == null)
+        //        {
+        //            deviceRepository.AddAddress(device);
+        //        }
+        //        else if (deviceRepository.GetAddress(device.Name).Address != device.Address)
+        //        {
+        //            deviceRepository.UpdateAddress(device);
+        //        }
+
+        //        i++;
+        //    }
+        //    return View("Privacy");
+        //}
     }
 }
 

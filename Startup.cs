@@ -42,6 +42,7 @@ namespace GetXml
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddControllersWithViews();
             services.AddScoped<IMyJob, MyJob>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
