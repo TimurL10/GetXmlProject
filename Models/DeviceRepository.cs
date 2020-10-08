@@ -31,7 +31,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                return dbConnection.Query<Device>("Select terminal.*,address.address From terminal Left Join address On address.name = terminal.name order by SumHours DESC").ToList();
+                return dbConnection.Query<Device>("Select * From terminal order by SumHours DESC").ToList();
             }
         }
 
@@ -78,7 +78,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                dbConnection.Execute("Update address Set name = @Name, address = @Address Where name = @Name", device);
+                dbConnection.Execute("Update terminal Set name = @Name, address = @Address Where name = @Name", device);
                 dbConnection.Close();
             }               
         }
@@ -88,7 +88,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
+                //dbConnection.Execute("Insert Into address (name, address) Values (@Name, @Address)", device);
                 dbConnection.Execute("Update terminal Set address = @Address Where name = @Name", device);
             }
         }
@@ -98,7 +98,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                return dbConnection.Query<Device>("Select * from address where name = @Name", new {Name = name }).FirstOrDefault();
+                return dbConnection.Query<Device>("Select * from terminal where name = @Name", new {Name = name }).FirstOrDefault();
             }
         }
 

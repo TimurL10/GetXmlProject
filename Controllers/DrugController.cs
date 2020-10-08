@@ -19,6 +19,7 @@ namespace JnvlsList.Controllers
         //List<String> Regions = new List<string>(new string[] { "Владимирская область","Республика Башкортостан","Ивановская область","Иркутская область","Калининградская область","Краснодарский край","Красноярский край",
         //"г.Москва","Московская область","Нижегородская область","Новгородская область","Омская область","Орловская область","Приморский край","Ростовская область","Республика Саха (Якутия)","Свердловская область","Тверская область","Республика Хакасия"});
         List<String> Regions = new List<string>(new string[] {"Владимирская область"});
+        ExcelPackage excel = new ExcelPackage();
 
         List<Allowance> ListAllowance = new List<Allowance>();
 
@@ -365,13 +366,20 @@ namespace JnvlsList.Controllers
             }
         }
 
+        //public void CreateWorkSheets()
+        //{
+        //    List<char> alfabet = new List<char> { 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Щ', 'Э', 'Ю', 'Я', '1', '9', '5','L' };
+            
+        //    ExcelWorksheet worksheet = excel.Workbook.Worksheets.Add();
+
+        //}
         public void CreateExcelReport(List<Drug> listDrugs, string fileName)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             List<Drug> listByFirstW = new List<Drug>();
             //listDrugs.AddRange(exceptionsDrugList);
-            using (ExcelPackage excel = new ExcelPackage())
-            {
+            //using (ExcelPackage excel = new ExcelPackage())
+            //{
                 for (int i = 0; i < listDrugs.Count - 1; i++)
                 {
                     listByFirstW.Add(listDrugs[i]);
@@ -540,7 +548,7 @@ namespace JnvlsList.Controllers
                 FileInfo excelFile = new FileInfo($@"C:\Users\Timur\source\repos\GetXml\Reports\{fileName}.xlsx");
                 excel.SaveAs(excelFile);
 
-            }
+            //}
         }
 
 

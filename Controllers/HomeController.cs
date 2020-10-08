@@ -33,8 +33,12 @@ namespace GetXml.Controllers
             deviceRepository = new DeviceRepository(configuration);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
             Task task1 = new Task(() => GetXmlData());
             task1.Start();
             task1.Wait();
@@ -225,7 +229,7 @@ namespace GetXml.Controllers
                         deviceFromDb.Last_Online = d.Last_Online;
                         deviceFromDb.Status = d.Status;
                         deviceFromDb.Campaign_Name = d.Campaign_Name;
-                        deviceFromDb.Address = d.Address;
+                        //deviceFromDb.Address = d.Address;
                         deviceRepository.Update(deviceFromDb); 
                     }
                 }
@@ -338,16 +342,15 @@ namespace GetXml.Controllers
             excelData.RemoveRange(0, 2);
             for (int i = 0; i < excelData.Count - 1; i++)
             {
+                var deviceList = deviceRepository.GetDevices();
                 var device = new Device(excelData[i], excelData[i + 1]);
-                
-                if (deviceRepository.GetAddress(device.Name) == null)
+                foreach (var d in deviceList)
                 {
-                    deviceRepository.AddAddress(device);
-                }
-                else if (deviceRepository.GetAddress(device.Name).Address != device.Address)
-                {
-                    deviceRepository.UpdateAddress(device);
-                }
+                    if (d.Name == device.Name && d.Address == null)
+                        deviceRepository.AddAddress(device);
+                    else if (d.Name == device.Name && d.Address != device.Address)
+                        deviceRepository.UpdateAddress(device);
+                }               
                 i++;
             }
             return View("Privacy");

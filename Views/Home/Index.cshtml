@@ -29,10 +29,11 @@
                 @Html.DisplayNameFor(model => model.Ip)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Last_Online)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last_Online</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Address</a>
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TeamViewer)
