@@ -1,0 +1,49 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Mrc";
+}
+
+<h3>Добавление мин. цены производителей</h3>
+<hr>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Mrc" asp-action="IndexPost">
+    <div class="form-group">
+        <input type="file" class="form-control-file" name="file" />
+    </div>
+    <div class="form-group">
+       <button type="submit" class="btn btn-primary">Upload</button>
+    </div>
+</form>
+
+@if (Model != null)
+{
+<p>Data from file</p>
+<a asp-action="UploadToDb" asp-controller="Mrc" asp-antiforgery="true">Write to Db</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Nnt
+            </th>
+            <th>
+                Price
+            </th>            
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Count-1; i ++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model[i])
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model[i + 1])
+                </td>                
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+}

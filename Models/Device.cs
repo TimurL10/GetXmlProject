@@ -49,7 +49,9 @@ namespace GetXml.Models
         public double Hours_Offline { get; set; }
         
         [Display(Name = "Дни Offline")]
-        public double SumHours { get; set; }       
+        public double SumHours { get; set; }
+        
+
 
         public Device()
         {
