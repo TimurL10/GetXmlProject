@@ -36,7 +36,7 @@ namespace FarmacyControl.Controllers
             if (size > 0)
             {
                 // full path to file in temp location
-                var filePath = Path.Combine(@"C:\Users\t.lumelsky\source\repos\FarmacyControl\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
+                var filePath = Path.Combine(@"d:\Domains\smartsoft83.com\wwwroot\MrcFiles\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
@@ -55,7 +55,7 @@ namespace FarmacyControl.Controllers
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            DirectoryInfo di = new DirectoryInfo(@"C:\Users\t.lumelsky\source\repos\FarmacyControl\Files\");
+            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\MrcFile\");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i++)
             {
@@ -63,13 +63,9 @@ namespace FarmacyControl.Controllers
                 if (length > 4000000)
                     files.SetValue(files[i], 0);
             }
-
-            //read the Excel file as byte array
-            //byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\JnvlsList\Files\lp2020-06-09-1.xlsx");
+            
             byte[] bin = System.IO.File.ReadAllBytes(files.First().FullName);
-            //read the Excel file as byte array
-            //byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\Files\Отчет по устройствам.xlsx");
-
+            
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
             using (ExcelPackage excelPackage = new ExcelPackage(stream))
@@ -99,7 +95,7 @@ namespace FarmacyControl.Controllers
 
         public ActionResult UploadToDb()
         {
-            DirectoryInfo di = new DirectoryInfo(@"C:\Users\t.lumelsky\source\repos\FarmacyControl\Files\");
+            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\MrcFile\");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i++)
             {
