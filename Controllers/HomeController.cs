@@ -164,7 +164,8 @@ namespace GetXml.Controllers
             try
             {
                 foreach (var d in Devices.Devices.ToList())
-                {                   
+                {
+                    var test = getHoursOffline(d.Id);
                     if ( (getHoursOffline(d.Id) > 730) || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue))
                     {
                         Devices.Devices.Remove(d);
@@ -174,8 +175,7 @@ namespace GetXml.Controllers
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-            }
-            
+            }            
         }
 
         public void OfflineHoursCount()
@@ -189,21 +189,20 @@ namespace GetXml.Controllers
                     if (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id)))
                         deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
 
-                    if (deviceFromDb.Hours_Offline == 48 && deviceFromDb.SumHours < 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
+                    if (deviceFromDb.Hours_Offline == 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
-                        deviceFromDb.SumHours += Math.Round(deviceFromDb.Hours_Offline / 24, 0);
+                        deviceFromDb.SumHours += 48;
                         deviceRepository.Update(deviceFromDb);
                         ChangeTerminalData(deviceFromDb.Id);
                     }
 
-                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
+                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
-                        if ((deviceFromDb.Hours_Offline - (deviceFromDb.SumHours * 24)) == 24)
-                        {
+                        
                             deviceFromDb.SumHours += 1;
                             deviceRepository.Update(deviceFromDb);
                             ChangeTerminalData(deviceFromDb.Id);
-                        }
+                        
                     }
                     else
                         ChangeTerminalData(deviceFromDb.Id); // we can change to send device instead id

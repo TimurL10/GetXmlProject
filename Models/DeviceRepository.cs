@@ -31,7 +31,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                return dbConnection.Query<Device>("Select * From terminal order by SumHours DESC").ToList();
+                return dbConnection.Query<Device>("Select * From terminal order by hours_offline DESC").ToList();
             }
         }
 
