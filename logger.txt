@@ -31,3 +31,72 @@ Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css.map'. Phy
 Request finished in 136.9574ms 200 text/plain
 Server laptop-94eikf8p:16556:59224ff7 heartbeat successfully sent
 Server laptop-94eikf8p:16556:59224ff7 heartbeat successfully sent
+Server laptop-94eikf8p:9044:13828599 heartbeat successfully sent
+Server laptop-94eikf8p:9044:13828599 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Executed ViewResult - view Index executed in 1873.234ms.
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 67651.0394ms
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 183.1671ms 200 text/css
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 178.6608ms 200 application/javascript
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 213.8354ms 200 application/javascript
+Request finished in 67969.7664ms 200 text/html; charset=utf-8
+Request finished in 292.4282ms 200 text/css
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 377.0669ms 200 application/javascript
+Server laptop-94eikf8p:9044:13828599 heartbeat successfully sent
+Server laptop-94eikf8p:9044:13828599 heartbeat successfully sent
+Server laptop-94eikf8p:9044:13828599 heartbeat successfully sent
+Server laptop-94eikf8p:9044:13828599 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/Home/Privacy  
+Executing endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Route matched with {action = "Privacy", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Privacy() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Privacy.
+Executing ViewResult, running view Privacy.
+Executed ViewResult - view Privacy executed in 58.2127ms.
+Executed ViewResult - view Privacy executed in 58.2127ms.
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 89.7751ms
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 89.7751ms
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request finished in 241.4792ms 200 text/html; charset=utf-8
+Request finished in 241.4792ms 200 text/html; charset=utf-8
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request finished in 230.525ms 200 text/css
+Request finished in 230.525ms 200 text/css
+Request finished in 185.6827ms 200 application/javascript
+Request finished in 185.6827ms 200 application/javascript
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request finished in 273.5341ms 200 application/javascript
+Request finished in 273.5341ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 350.8139ms 200 application/javascript
+Request finished in 350.8139ms 200 application/javascript
+Request finished in 431.1519ms 200 text/css
+Request finished in 431.1519ms 200 text/css
