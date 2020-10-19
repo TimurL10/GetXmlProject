@@ -95,9 +95,8 @@ namespace GetXml.Controllers
                         await file.CopyToAsync(stream);
                     }
                 }
-            
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
+
+            PostAddressToDb();            
             return View("Privacy");
         }
 
@@ -185,31 +184,30 @@ namespace GetXml.Controllers
                     if (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id)))
                         deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
 
-                    if (deviceFromDb.Hours_Offline == 48 && deviceFromDb.SumHours < 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
+                    if (deviceFromDb.Hours_Offline == 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
-                        deviceFromDb.SumHours += Math.Round(deviceFromDb.Hours_Offline / 24, 0);
+                        deviceFromDb.SumHours += 48;
                         deviceRepository.Update(deviceFromDb);
                         ChangeTerminalData(deviceFromDb.Id);
                     }
 
-                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
+                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
-                        if ((deviceFromDb.Hours_Offline - (deviceFromDb.SumHours * 24)) == 24)
-                        {
-                            deviceFromDb.SumHours += 1;
-                            deviceRepository.Update(deviceFromDb);
-                            ChangeTerminalData(deviceFromDb.Id);
-                        }
+
+                        deviceFromDb.SumHours += 1;
+                        deviceRepository.Update(deviceFromDb);
+                        ChangeTerminalData(deviceFromDb.Id);
+
                     }
                     else
                         ChangeTerminalData(deviceFromDb.Id); // we can change to send device instead id
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
-            
+
         }
 
         public void ChangeTerminalData(double deviceId)
@@ -339,15 +337,11 @@ namespace GetXml.Controllers
             for (int i = 0; i < excelData.Count - 1; i++)
             {
                 var device = new Device(excelData[i], excelData[i + 1]);
-                if (deviceRepository.GetAddress(device.Name) == null)
-                {
-                    deviceRepository.AddAddress(device);
-                }
-                else if (deviceRepository.GetAddress(device.Name).Address != device.Address)
-                {
+                var dbDevice = deviceRepository.GetAddress(device.Name);
+                if (dbDevice != null && dbDevice.Address != device.Address)
                     deviceRepository.UpdateAddress(device);
-                }
-
+                else if (dbDevice != null && dbDevice.Address == "")
+                    deviceRepository.UpdateAddress(device);
                 i++;
             }
             return View("Privacy");
