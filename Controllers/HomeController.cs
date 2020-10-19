@@ -88,16 +88,15 @@ namespace GetXml.Controllers
                 if (size > 0)
                 {
                     // full path to file in temp location
-                    var filePath = Path.Combine(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
+                    var filePath = Path.Combine(@"C:\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
                     }
                 }
-            
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
+
+            PostAddressToDb();            
             return View("Privacy");
         }
 
@@ -185,31 +184,30 @@ namespace GetXml.Controllers
                     if (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id)))
                         deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
 
-                    if (deviceFromDb.Hours_Offline == 48 && deviceFromDb.SumHours < 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
+                    if (deviceFromDb.Hours_Offline == 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
-                        deviceFromDb.SumHours += Math.Round(deviceFromDb.Hours_Offline / 24, 0);
+                        deviceFromDb.SumHours += 48;
                         deviceRepository.Update(deviceFromDb);
                         ChangeTerminalData(deviceFromDb.Id);
                     }
 
-                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 2 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
+                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
-                        if ((deviceFromDb.Hours_Offline - (deviceFromDb.SumHours * 24)) == 24)
-                        {
-                            deviceFromDb.SumHours += 1;
-                            deviceRepository.Update(deviceFromDb);
-                            ChangeTerminalData(deviceFromDb.Id);
-                        }
+
+                        deviceFromDb.SumHours += 1;
+                        deviceRepository.Update(deviceFromDb);
+                        ChangeTerminalData(deviceFromDb.Id);
+
                     }
                     else
                         ChangeTerminalData(deviceFromDb.Id); // we can change to send device instead id
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
-            
+
         }
 
         public void ChangeTerminalData(double deviceId)
@@ -291,7 +289,7 @@ namespace GetXml.Controllers
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);
                 worksheet.Cells.Style.WrapText = true;
                 worksheet.Column(6).Style.Numberformat.Format = "dd-MM-yyyy HH:mm";
-                FileInfo excelFile = new FileInfo(@"d:\Domains\smartsoft83.com\wwwroot\terminal\report.xlsx");
+                FileInfo excelFile = new FileInfo(@"C:\Files\report.xlsx");
                 excel.SaveAs(excelFile);
             }
         }
@@ -304,7 +302,7 @@ namespace GetXml.Controllers
             List<string> excelData = new List<string>();
 
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\Отчет по устройствам.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Files\Отчет по устройствам.xlsx");
 
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
@@ -339,15 +337,11 @@ namespace GetXml.Controllers
             for (int i = 0; i < excelData.Count - 1; i++)
             {
                 var device = new Device(excelData[i], excelData[i + 1]);
-                if (deviceRepository.GetAddress(device.Name) == null)
-                {
-                    deviceRepository.AddAddress(device);
-                }
-                else if (deviceRepository.GetAddress(device.Name).Address != device.Address)
-                {
+                var dbDevice = deviceRepository.GetAddress(device.Name);
+                if (dbDevice != null && dbDevice.Address != device.Address)
                     deviceRepository.UpdateAddress(device);
-                }
-
+                else if (dbDevice != null && dbDevice.Address == "")
+                    deviceRepository.UpdateAddress(device);
                 i++;
             }
             return View("Privacy");
@@ -356,7 +350,7 @@ namespace GetXml.Controllers
         public FileResult Export()
         {
             CreateExcelReport();
-            byte[] fileBytes = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\terminal\report.xlsx");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\Files\report.xlsx");
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
