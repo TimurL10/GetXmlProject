@@ -23,7 +23,7 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Campaign_Name)
+                <a asp-action="IndexSort" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Campaign_Name)</a>                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Ip)

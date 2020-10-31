@@ -35,7 +35,7 @@ namespace GetXml.Controllers
         }
 
         public IActionResult Index()
-        {
+        {            
             Task task1 = new Task(() => GetXmlData());
             task1.Start();
             task1.Wait();
@@ -48,6 +48,20 @@ namespace GetXml.Controllers
             var terminals = deviceRepository.GetDevices();
             terminals = ConverDateToMoscowTime(terminals);
             return View(terminals);
+        }
+
+        public IActionResult IndexSort(string sortOrder)
+        {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var compain = deviceRepository.GetDevices();
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    compain = compain.OrderByDescending(s => s.Campaign_Name).ToList();
+                    break;                
+                
+            }
+            return View("Index",compain);
         }
 
         public async Task<IActionResult> Edit(double id)
@@ -349,7 +363,7 @@ namespace GetXml.Controllers
 
         public IActionResult PostAddressToDb()
         {
-            var excelData = ReadAddressesFromExcel();
+            var excelData = ReadAddressesFromExcel();            
             excelData.RemoveRange(0, 2);
             for (int i = 0; i < excelData.Count - 1; i++)
             {
