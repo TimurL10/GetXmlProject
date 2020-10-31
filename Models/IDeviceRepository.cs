@@ -16,5 +16,7 @@ namespace GetXml.Models
         void UpdateAddress(Device device);
         Device GetAddress(string id);
         void UpdateDevice(Device device);
+        void UpdateSumHourse(Device device);
+
     }
 }

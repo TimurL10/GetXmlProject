@@ -25,6 +25,7 @@ namespace GetXml.Controllers
         public static string standardName = "Russia Time Zone 2";
         public static TimeSpan offset = new TimeSpan(03, 00, 00);
         public TimeZoneInfo moscow = TimeZoneInfo.CreateCustomTimeZone(standardName, offset, displayName, standardName);
+
         public HomeController(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _loggerFactory = loggerFactory;
@@ -114,17 +115,24 @@ namespace GetXml.Controllers
         public double getHoursOffline(double deviceId)
         {
             double h_new = 0;
-            foreach (var d in Devices.Devices)
-            {
-                if (d.Id == deviceId)
+            try
+            {                
+                foreach (var d in Devices.Devices)
                 {
-                    var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
-                    var ts_new = TimeSpan.FromHours(Hours_Offline);
-                    h_new = System.Math.Floor(ts_new.TotalHours);
+                    if (d.Id == deviceId)
+                    {
+                        var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
+                        var ts_new = TimeSpan.FromHours(Hours_Offline);
+                        h_new = System.Math.Floor(ts_new.TotalHours);
+                    }
                 }
+                if (h_new < 0)
+                    h_new = 0;
             }
-            if (h_new < 0)            
-                h_new = 0;
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
             
             return h_new;
         }
@@ -132,6 +140,7 @@ namespace GetXml.Controllers
         public async void GetXmlData()
         {
             var loggerF = _loggerFactory.CreateLogger("FileLogger");
+            loggerF.LogInformation($"Executed GetXmlData |======================================|  {DateTime.Now}");
             try
             {
                 var client = new HttpClient();
@@ -163,6 +172,7 @@ namespace GetXml.Controllers
                     if ( (getHoursOffline(d.Id) > 730) || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue))
                     {
                         Devices.Devices.Remove(d);
+                        deviceRepository.Delete(d.Id);
                     }
                 }
             }
@@ -175,6 +185,7 @@ namespace GetXml.Controllers
 
         public void OfflineHoursCount()
         {
+            var loggerF = _loggerFactory.CreateLogger("FileLogger");
             try
             {
                 foreach (var d in Devices.Devices.ToList())
@@ -182,21 +193,25 @@ namespace GetXml.Controllers
                     AddNewDevice(d);
                     var deviceFromDb = deviceRepository.Get(d.Id);
                     if (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id)))
-                        deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
+                        deviceFromDb.Hours_Offline = getHoursOffline(d.Id);  // updating  Hours_Offline
 
                     if (deviceFromDb.Hours_Offline == 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
                         deviceFromDb.SumHours += 48;
-                        deviceRepository.Update(deviceFromDb);
+                        deviceRepository.UpdateSumHourse(deviceFromDb);
                         ChangeTerminalData(deviceFromDb.Id);
+                        loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline == 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|======================================|  {DateTime.Now}");
+
                     }
 
                     else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
                     {
 
                         deviceFromDb.SumHours += 1;
-                        deviceRepository.Update(deviceFromDb);
+                        deviceRepository.UpdateSumHourse(deviceFromDb);
                         ChangeTerminalData(deviceFromDb.Id);
+                        loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline > 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|=====================================|  {DateTime.Now}");
+
 
                     }
                     else
@@ -212,24 +227,26 @@ namespace GetXml.Controllers
 
         public void ChangeTerminalData(double deviceId)
         {
+            var loggerF = _loggerFactory.CreateLogger("FileLogger");
             try
             {
+                
                 var deviceFromDb = deviceRepository.Get(deviceId);
-                foreach (var d in Devices.Devices.ToList())
+                foreach (var d in Devices.Devices.ToList()) // updating device data in db
                 {
                     if (d.Id == deviceId)
                     {
-                        deviceFromDb.Hours_Offline = getHoursOffline(d.Id);
-                        deviceFromDb.Last_Online = d.Last_Online;
+                        deviceFromDb.Last_Online = d.Last_Online; 
                         deviceFromDb.Status = d.Status;
                         deviceFromDb.Campaign_Name = d.Campaign_Name;
                         deviceFromDb.Address = d.Address;
-                        deviceRepository.Update(deviceFromDb); 
+                        deviceRepository.Update(deviceFromDb);
+
                     }
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }          

@@ -53,6 +53,17 @@ namespace GetXml.Models
                 dbConnection.Close();
             }
         }
+
+        public void UpdateSumHourse(Device device)
+        {
+            using (var dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                dbConnection.Execute("Update terminal Set SumHours = @SumHours Where id = @Id", device);
+                dbConnection.Close();
+            }
+        }
+
         public void Delete(double id)
         {
             using (var dbConnection = new SqlConnection(connectionString))
@@ -68,7 +79,7 @@ namespace GetXml.Models
             using (var dbConnection = new SqlConnection(connectionString))
             {
                 dbConnection.Open();
-                dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name, SumHours) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name, @SumHours)", device);
+                dbConnection.Execute("Insert Into terminal(id, name, status, ip, last_online, campaign_name) Values (@Id, @Name, @Status, @Ip, @Last_Online, @Campaign_Name)", device);
                 dbConnection.Close();
             }
         }
