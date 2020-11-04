@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Hangfire.SqlServer;
 using Hangfire;
-
+using Microsoft.AspNetCore.Http;
 
 namespace GetXml
 {
@@ -83,6 +83,7 @@ namespace GetXml
 
             GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 0 });
             HangfireJobScheduler.ScheduleRecurringJobs();
+           
         }
     }
 }

@@ -77,6 +77,12 @@ namespace GetXml.Models
             this.Name = name;
             this.Address = address;
         }
+
+        public Device(int id, string note)
+        {
+            this.Id = id;
+            this.Note = note;
+        }
     }
 
     [XmlRoot(ElementName = "xml")]

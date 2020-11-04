@@ -25,6 +25,8 @@ namespace GetXml.Controllers
         public static string standardName = "Russia Time Zone 2";
         public static TimeSpan offset = new TimeSpan(03, 00, 00);
         public TimeZoneInfo moscow = TimeZoneInfo.CreateCustomTimeZone(standardName, offset, displayName, standardName);
+        public List<string> excelDataAddress = new List<string>();
+        public List<Tuple<double, string>> excelDataNotes = new List<Tuple<double, string>>();
 
         public HomeController(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
@@ -35,16 +37,19 @@ namespace GetXml.Controllers
         }
 
         public IActionResult Index()
-        {            
+        {
             Task task1 = new Task(() => GetXmlData());
             task1.Start();
             task1.Wait();
+
             Task task2 = new Task(() => FilterDevices());
             task2.Start();
-            task2.Wait();
-            Task task3 = new Task(() => OfflineHoursCount());
+            task2.Wait(); 
+
+            Task task3 = new Task(() => getHoursOffline());
             task3.Start();
             task3.Wait();
+
             var terminals = deviceRepository.GetDevices();
             terminals = ConverDateToMoscowTime(terminals);
             return View(terminals);
@@ -104,6 +109,7 @@ namespace GetXml.Controllers
                 {
                 // full path to file in temp location
                 var filePath = Path.Combine(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
+                //var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -130,7 +136,7 @@ namespace GetXml.Controllers
         {
             double h_new = 0;
             try
-            {                
+            {
                 foreach (var d in Devices.Devices)
                 {
                     if (d.Id == deviceId)
@@ -138,6 +144,8 @@ namespace GetXml.Controllers
                         var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
                         var ts_new = TimeSpan.FromHours(Hours_Offline);
                         h_new = System.Math.Floor(ts_new.TotalHours);
+                        d.Hours_Offline = h_new;
+                        break;
                     }
                 }
                 if (h_new < 0)
@@ -147,8 +155,34 @@ namespace GetXml.Controllers
             {
                 Debug.WriteLine(e.Message);
             }
-            
+
             return h_new;
+        }
+
+        public void getHoursOffline()
+        {
+            double h_new = 0;
+            try
+            {
+                foreach (var d in Devices.Devices.ToList())
+                {
+                    AddNewDevice(d);
+                    var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
+                    var ts_new = TimeSpan.FromHours(Hours_Offline);
+                    h_new = System.Math.Floor(ts_new.TotalHours);
+                    d.Hours_Offline = h_new;
+                    
+                    var deviceFromDb = deviceRepository.Get(d.Id);
+                    if (h_new == deviceFromDb.Hours_Offline)
+                        ChangeTerminalData(d.Id);
+                    else
+                        OfflineHoursCount(d);
+                }               
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }            
         }
 
         public async void GetXmlData()
@@ -169,6 +203,12 @@ namespace GetXml.Controllers
                     Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
                     Devices = devices;
                 }
+                //XmlSerializer formatter = new XmlSerializer(typeof(Device));
+                //using (FileStream fs = new FileStream(@"C:\Users\Timur\source\repos\GetXml\TestTerminalsData.xml", FileMode.OpenOrCreate))
+                //{
+                //    Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(fs);
+                //    Devices = devices;
+                //}
             }
             catch (Exception e)
             {
@@ -180,10 +220,11 @@ namespace GetXml.Controllers
         public void FilterDevices()
         {
             try
-            {
+            {                
                 foreach (var d in Devices.Devices.ToList())
-                {                   
-                    if ( (getHoursOffline(d.Id) > 730) || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue))
+                {
+                    var tempHoursOffline = getHoursOffline(d.Id);
+                    if (tempHoursOffline > 730 || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue) || (d.Last_Online.Year < 2020))
                     {
                         Devices.Devices.Remove(d);
                         deviceRepository.Delete(d.Id);
@@ -195,70 +236,71 @@ namespace GetXml.Controllers
                 Debug.WriteLine(ex.Message);
             }
             
-        }
+        }        
 
-        public void OfflineHoursCount()
+        public void OfflineHoursCount(Device device)
         {
             var loggerF = _loggerFactory.CreateLogger("FileLogger");
             try
-            {
-                foreach (var d in Devices.Devices.ToList())
+            {       
+                var deviceFromDb = deviceRepository.Get(device.Id);                    
+
+                if (device.Hours_Offline == 48)
                 {
-                    AddNewDevice(d);
-                    var deviceFromDb = deviceRepository.Get(d.Id);
-                    if (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id)))
-                        deviceFromDb.Hours_Offline = getHoursOffline(d.Id);  // updating  Hours_Offline
-
-                    if (deviceFromDb.Hours_Offline == 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
-                    {
-                        deviceFromDb.SumHours += 48;
-                        deviceRepository.UpdateSumHourse(deviceFromDb);
-                        ChangeTerminalData(deviceFromDb.Id);
-                        loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline == 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|======================================|  {DateTime.Now}");
-
-                    }
-
-                    else if (deviceFromDb.Hours_Offline > 48 && deviceFromDb.SumHours >= 48 && (!deviceFromDb.Hours_Offline.Equals(getHoursOffline(d.Id))))
-                    {
-
-                        deviceFromDb.SumHours += 1;
-                        deviceRepository.UpdateSumHourse(deviceFromDb);
-                        ChangeTerminalData(deviceFromDb.Id);
-                        loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline > 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|=====================================|  {DateTime.Now}");
-
-
-                    }
-                    else
-                        ChangeTerminalData(deviceFromDb.Id); // we can change to send device instead id
+                    deviceFromDb.SumHours += 48;
+                    deviceFromDb.Hours_Offline = device.Hours_Offline;
+                    deviceRepository.UpdateSumHourse(deviceFromDb);
+                    deviceRepository.UpdateHoursOffline(deviceFromDb);
+                    ChangeTerminalData(deviceFromDb.Id);
+                    loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline == 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|======================================|  {DateTime.Now}");
                 }
+                else if (device.Hours_Offline > 48 && deviceFromDb.SumHours >= 48)
+                {
+                    deviceFromDb.SumHours += 1;
+                    deviceFromDb.Hours_Offline = device.Hours_Offline;
+                    deviceRepository.UpdateSumHourse(deviceFromDb);
+                    deviceRepository.UpdateHoursOffline(deviceFromDb);
+                    ChangeTerminalData(deviceFromDb.Id);
+                    loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline > 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|=====================================|  {DateTime.Now}");
+                }
+                //else if (device.Hours_Offline > 48 && deviceFromDb.SumHours == 0)
+                //{
+                //    deviceFromDb.SumHours = Math.Floor(device.Hours_Offline / 24);
+                //    deviceFromDb.Hours_Offline = device.Hours_Offline;
+                //    deviceRepository.UpdateSumHourse(deviceFromDb);
+                //    deviceRepository.UpdateHoursOffline(deviceFromDb);
+                //    ChangeTerminalData(deviceFromDb.Id);
+                //}
+                else
+                {                    
+                    deviceRepository.UpdateHoursOffline(device);
+                    ChangeTerminalData(deviceFromDb.Id);
+                }                     
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
-
-        }
+        }       
 
         public void ChangeTerminalData(double deviceId)
         {
             var loggerF = _loggerFactory.CreateLogger("FileLogger");
             try
-            {
-                
+            {                
                 var deviceFromDb = deviceRepository.Get(deviceId);
                 foreach (var d in Devices.Devices.ToList()) // updating device data in db
                 {
                     if (d.Id == deviceId)
-                    {
+                    {                        
                         deviceFromDb.Last_Online = d.Last_Online; 
                         deviceFromDb.Status = d.Status;
                         deviceFromDb.Campaign_Name = d.Campaign_Name;
                         deviceFromDb.Address = d.Address;
                         deviceRepository.Update(deviceFromDb);
-
+                        break;
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -278,13 +320,11 @@ namespace GetXml.Controllers
                 }
                 else
                     return flag = false;
-
             }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
-
             return flag;            
         }
 
@@ -296,13 +336,10 @@ namespace GetXml.Controllers
                 excel.Workbook.Worksheets.Add("Worksheet1");
                 excel.Workbook.Worksheets.Add("Worksheet2");
                 excel.Workbook.Worksheets.Add("Worksheet3");
-
                
                 var TerminalList = deviceRepository.GetDevices();
-
                 // Determine the header range (e.g. A1:D1)
                 string headerRange = "A2:" + Char.ConvertFromUtf32(8 + 64) + "1";
-
                 // Target a worksheet
                 var worksheet = excel.Workbook.Worksheets["Worksheet1"];
 
@@ -315,7 +352,6 @@ namespace GetXml.Controllers
                 worksheet.Cells[1, 7].Value = "Address";
                 worksheet.Cells[1, 8].Value = "Hours Offline";
                 worksheet.Cells[1, 9].Value = "Sum Offline";
-
                 // Popular header row data
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);
                 worksheet.Cells.Style.WrapText = true;
@@ -325,15 +361,15 @@ namespace GetXml.Controllers
             }
         }
 
-
-        public List<string> ReadAddressesFromExcel() // make when a new device added for updating addresses//
+        public void ReadAddressesFromExcel() // make when a new device added for updating addresses//
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            //create a list to hold all the values
-            List<string> excelData = new List<string>();
-
+            string DeviceNote = "";
+            double DeviceId = 0;
             //read the Excel file as byte array
             byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\Отчет по устройствам.xlsx");
+            //byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\Отчет по устройствам.xlsx");
+
 
             //create a new Excel package in a memorystream
             using (MemoryStream stream = new MemoryStream(bin))
@@ -352,22 +388,33 @@ namespace GetXml.Controllers
                             if ((worksheet.Cells[i, j].Value != null && j == 2 && worksheet.Cells[i, j + 7].Value != null) || (worksheet.Cells[i, j].Value != null && j == 9))
                             {
                                 //if (worksheet.Cells["A"])
-                                excelData.Add(worksheet.Cells[i, j].Value.ToString());
+                                excelDataAddress.Add(worksheet.Cells[i, j].Value.ToString());
                             }
+                            //if ((worksheet.Cells[i, j].Value != null && j == 1 && worksheet.Cells[i, j + 9].Value != null))
+                            //{
+                            //    DeviceId = Double.Parse(worksheet.Cells[i, j].Value.ToString());                                
+                            //}
+                            //if (worksheet.Cells[i, j].Value != null && j == 10)
+                            //{
+                            //    DeviceNote = worksheet.Cells[i, j].Value.ToString();
+
+                            //}
+                            //excelDataNotes.Add(new Tuple<double, string>(DeviceId,DeviceNote));
                         }
                     }
                 }
-            }
-            return excelData;
+            }            
         }
 
         public IActionResult PostAddressToDb()
         {
-            var excelData = ReadAddressesFromExcel();            
-            excelData.RemoveRange(0, 2);
-            for (int i = 0; i < excelData.Count - 1; i++)
+            ReadAddressesFromExcel();
+            excelDataAddress.RemoveRange(0, 2);
+            //excelDataNotes.RemoveRange(0, 2);
+
+            for (int i = 0; i < excelDataAddress.Count - 1; i++)
             {
-                var device = new Device(excelData[i], excelData[i + 1]);
+                var device = new Device(excelDataAddress[i], excelDataAddress[i + 1]);
                 var dbDevice = deviceRepository.GetAddress(device.Name);
                 if (dbDevice != null && dbDevice.Address != device.Address)
                     deviceRepository.UpdateAddress(device);
@@ -375,6 +422,11 @@ namespace GetXml.Controllers
                     deviceRepository.UpdateAddress(device);
                 i++;
             }
+
+            //for (int i = 0; i < excelDataNotes.Count - 1; i++)
+            //{
+
+            //}
             return View("Privacy");
         }
 
