@@ -132,22 +132,16 @@ namespace GetXml.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public double getHoursOffline(double deviceId)
+        public double getHoursOffline(Device device)
         {
             double h_new = 0;
             try
-            {
-                foreach (var d in Devices.Devices)
-                {
-                    if (d.Id == deviceId)
-                    {
-                        var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
-                        var ts_new = TimeSpan.FromHours(Hours_Offline);
-                        h_new = System.Math.Floor(ts_new.TotalHours);
-                        d.Hours_Offline = h_new;
-                        break;
-                    }
-                }
+            {                
+                var Hours_Offline = (DateTime.UtcNow - device.Last_Online).TotalHours;
+                var ts_new = TimeSpan.FromHours(Hours_Offline);
+                h_new = System.Math.Floor(ts_new.TotalHours);
+                device.Hours_Offline = h_new;
+                   
                 if (h_new < 0)
                     h_new = 0;
             }
@@ -167,14 +161,12 @@ namespace GetXml.Controllers
                 foreach (var d in Devices.Devices.ToList())
                 {
                     AddNewDevice(d);
-                    var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
-                    var ts_new = TimeSpan.FromHours(Hours_Offline);
-                    h_new = System.Math.Floor(ts_new.TotalHours);
-                    d.Hours_Offline = h_new;
-                    
+                    //var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
+                    //var ts_new = TimeSpan.FromHours(Hours_Offline);
+                    //h_new = System.Math.Floor(ts_new.TotalHours);                    
                     var deviceFromDb = deviceRepository.Get(d.Id);
-                    if (h_new == deviceFromDb.Hours_Offline)
-                        ChangeTerminalData(d.Id);
+                    if (d.Hours_Offline == deviceFromDb.Hours_Offline)
+                        ChangeTerminalData(d);
                     else
                         OfflineHoursCount(d);
                 }               
@@ -222,9 +214,8 @@ namespace GetXml.Controllers
             try
             {                
                 foreach (var d in Devices.Devices.ToList())
-                {
-                    var tempHoursOffline = getHoursOffline(d.Id);
-                    if (tempHoursOffline > 730 || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue) || (d.Last_Online.Year < 2020))
+                {                  
+                    if (getHoursOffline(d) > 730 || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue) || (d.Last_Online.Year < 2020))
                     {
                         Devices.Devices.Remove(d);
                         deviceRepository.Delete(d.Id);
@@ -234,8 +225,7 @@ namespace GetXml.Controllers
             catch(Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-            }
-            
+            }            
         }        
 
         public void OfflineHoursCount(Device device)
@@ -251,7 +241,7 @@ namespace GetXml.Controllers
                     deviceFromDb.Hours_Offline = device.Hours_Offline;
                     deviceRepository.UpdateSumHourse(deviceFromDb);
                     deviceRepository.UpdateHoursOffline(deviceFromDb);
-                    ChangeTerminalData(deviceFromDb.Id);
+                    ChangeTerminalData(deviceFromDb);
                     loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline == 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|======================================|  {DateTime.Now}");
                 }
                 else if (device.Hours_Offline > 48 && deviceFromDb.SumHours >= 48)
@@ -260,7 +250,7 @@ namespace GetXml.Controllers
                     deviceFromDb.Hours_Offline = device.Hours_Offline;
                     deviceRepository.UpdateSumHourse(deviceFromDb);
                     deviceRepository.UpdateHoursOffline(deviceFromDb);
-                    ChangeTerminalData(deviceFromDb.Id);
+                    ChangeTerminalData(deviceFromDb);
                     loggerF.LogInformation($"Executed OfflineHoursCount Hours_Offline > 48 Device id = {deviceFromDb.Id}, Device Hours offline =  {deviceFromDb.Hours_Offline}|=====================================|  {DateTime.Now}");
                 }
                 //else if (device.Hours_Offline > 48 && deviceFromDb.SumHours == 0)
@@ -274,7 +264,7 @@ namespace GetXml.Controllers
                 else
                 {                    
                     deviceRepository.UpdateHoursOffline(device);
-                    ChangeTerminalData(deviceFromDb.Id);
+                    ChangeTerminalData(deviceFromDb);
                 }                     
             }
             catch (Exception ex)
@@ -283,24 +273,12 @@ namespace GetXml.Controllers
             }
         }       
 
-        public void ChangeTerminalData(double deviceId)
+        public void ChangeTerminalData(Device device)
         {
             var loggerF = _loggerFactory.CreateLogger("FileLogger");
             try
-            {                
-                var deviceFromDb = deviceRepository.Get(deviceId);
-                foreach (var d in Devices.Devices.ToList()) // updating device data in db
-                {
-                    if (d.Id == deviceId)
-                    {                        
-                        deviceFromDb.Last_Online = d.Last_Online; 
-                        deviceFromDb.Status = d.Status;
-                        deviceFromDb.Campaign_Name = d.Campaign_Name;
-                        deviceFromDb.Address = d.Address;
-                        deviceRepository.Update(deviceFromDb);
-                        break;
-                    }
-                }
+            {
+                deviceRepository.Update(device);                
             }
             catch (Exception ex)
             {
