@@ -25,13 +25,15 @@ namespace GetXml.Jobs
     {
         private ILoggerFactory _loggerFactory;
         public IConfiguration configuration;
+        private IHLogic _hLogic;
         private readonly DeviceRepository deviceRepository;
-        public MyJob(ILoggerFactory loggerFactory, IConfiguration configuration)
+        public MyJob(ILoggerFactory loggerFactory, IConfiguration configuration, IHLogic hLogic)
         {
             _loggerFactory = loggerFactory;
             deviceRepository = new DeviceRepository(configuration);
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
             deviceRepository = new DeviceRepository(configuration);
+            _hLogic = hLogic;
         }
         
         public async Task Run(IJobCancellationToken token)
@@ -42,65 +44,18 @@ namespace GetXml.Jobs
 
         public async Task RunAtTimeOf(DateTime now)
         {
-            GetTerminals();
-        }
+            Task task1 = new Task(() => _hLogic.GetXmlData());
+            task1.Start();
+            task1.Wait();
 
-        public async void GetTerminals()
-        {
-            var loggerF = _loggerFactory.CreateLogger("FileLogger");
-            try
-            {
-                var client = new HttpClient();
-                string GETXML_PATH = "https://api.ar.digital/v4/devices/xml/M9as6DMRRGJqSVxcE9X58TM2nLbmR99w";
-                var streamTaskA1 = await client.GetStringAsync(GETXML_PATH);
-                XmlRootAttribute xRoot = new XmlRootAttribute();
-                xRoot.ElementName = "xml";
-                xRoot.DataType = "string";
+            Task task2 = new Task(() => _hLogic.FilterDevices());
+            task2.Start();
+            task2.Wait();
 
-                using (var reader = new StringReader(streamTaskA1))
-                {
-                    Xml devices = (Xml)(new XmlSerializer(typeof(Xml), xRoot)).Deserialize(reader);
-                    foreach (Device d in devices.Devices)
-                    {
-                        if (deviceRepository.Get(d.Id) == null && d.Last_Online.Year == DateTime.Now.Year)
-                        {
-                            deviceRepository.Add(d);
-                        }
-                        if (d.Status == "offline" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year || d.Status == "playback" && (d.Last_Online > DateTime.MinValue) && d.Last_Online.Year == DateTime.Now.Year)
-                        {
-                            d.Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
-                            var ts_new = TimeSpan.FromHours(d.Hours_Offline);
-                            var h_new = System.Math.Floor(ts_new.TotalHours);
-                            if (h_new < 0)
-                            {
-                                h_new = 0;
-                            }
-                            d.Hours_Offline = h_new;
-                            if (h_new > 0)
-                            {
-                                var deviceFromDb = deviceRepository.Get(d.Id);
-                                deviceFromDb.Last_Online = d.Last_Online;
-                                deviceFromDb.Hours_Offline = d.Hours_Offline;
-                                deviceRepository.Update(deviceFromDb);
-                            }
-                            else
-                            {
-                                var deviceFromDb = deviceRepository.Get(d.Id);
-                                deviceFromDb.SumHours += deviceFromDb.Hours_Offline;
-                                deviceFromDb.Hours_Offline = d.Hours_Offline;
-                                deviceFromDb.Last_Online = d.Last_Online;
-                                deviceRepository.Update(deviceFromDb);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                loggerF.LogError($"The path threw an exception {DateTime.Now} -- {e}");
-                loggerF.LogWarning($"The path threw a warning {DateTime.Now} --{e}");
-            }
-        }
+            Task task3 = new Task(() => _hLogic.getHoursOffline());
+            task3.Start();
+            task3.Wait();
+        }       
     }
 
     public class HangfireJobScheduler
@@ -111,7 +66,7 @@ namespace GetXml.Jobs
             RecurringJob.RemoveIfExists(nameof(MyJob));
             RecurringJob.AddOrUpdate<MyJob>(nameof(MyJob),
                 job => job.Run(JobCancellationToken.Null),
-                Cron.HourInterval(1),TimeZoneInfo.Utc);
+                Cron.MinuteInterval(25),TimeZoneInfo.Utc);
         }
     }
 
