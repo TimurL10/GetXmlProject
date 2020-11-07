@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Hangfire.SqlServer;
 using Hangfire;
 using Microsoft.AspNetCore.Http;
+using JnvlsList.Model;
 
 namespace GetXml
 {
@@ -42,7 +43,7 @@ namespace GetXml
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddControllersWithViews();
             services.AddScoped<IMyJob, MyJob>();
-            
+            services.AddScoped<Drug>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

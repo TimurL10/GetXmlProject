@@ -34,7 +34,7 @@ namespace GetXml
                     DisableGlobalLocks = true
                 });
 
-            BackgroundJob.Enqueue(() => homeController.GetXmlData());
+            BackgroundJob.Enqueue(() => homeController.Index());
 
         }
 
