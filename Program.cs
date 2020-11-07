@@ -9,13 +9,14 @@ using Microsoft.Extensions.Logging;
 using Hangfire;
 using Hangfire.SqlServer;
 using GetXml.Controllers;
-
+using GetXml.Jobs;
 
 namespace GetXml
 {
     public class Program
     {
         private static HomeController homeController;
+        private static MyJob myJob;
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
@@ -34,7 +35,7 @@ namespace GetXml
                     DisableGlobalLocks = true
                 });
 
-            BackgroundJob.Enqueue(() => homeController.Index());
+            BackgroundJob.Enqueue(() => myJob.RunAtTimeOf(DateTime.Now));
 
         }
 

@@ -13,7 +13,6 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Threading;
-using GetXml.Controllers;
 
 namespace GetXml.Jobs
 {
@@ -26,13 +25,15 @@ namespace GetXml.Jobs
     {
         private ILoggerFactory _loggerFactory;
         public IConfiguration configuration;
+        private IHLogic _hLogic;
         private readonly DeviceRepository deviceRepository;
-        public MyJob(ILoggerFactory loggerFactory, IConfiguration configuration)
+        public MyJob(ILoggerFactory loggerFactory, IConfiguration configuration, IHLogic hLogic)
         {
             _loggerFactory = loggerFactory;
             deviceRepository = new DeviceRepository(configuration);
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
             deviceRepository = new DeviceRepository(configuration);
+            _hLogic = hLogic;
         }
         
         public async Task Run(IJobCancellationToken token)
@@ -43,8 +44,18 @@ namespace GetXml.Jobs
 
         public async Task RunAtTimeOf(DateTime now)
         {
-            //_homeController.Index();
-        }        
+            Task task1 = new Task(() => _hLogic.GetXmlData());
+            task1.Start();
+            task1.Wait();
+
+            Task task2 = new Task(() => _hLogic.FilterDevices());
+            task2.Start();
+            task2.Wait();
+
+            Task task3 = new Task(() => _hLogic.getHoursOffline());
+            task3.Start();
+            task3.Wait();
+        }       
     }
 
     public class HangfireJobScheduler
