@@ -25,7 +25,7 @@ namespace GetXml
         public static TimeSpan offset = new TimeSpan(03, 00, 00);
         public TimeZoneInfo moscow = TimeZoneInfo.CreateCustomTimeZone(standardName, offset, displayName, standardName);
         public List<string> excelDataAddress = new List<string>();
-        public List<Tuple<double, string>> excelDataNotes = new List<Tuple<double, string>>();
+        public List<string> excelDataNotes = new List<string>();
 
         public HLogic(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
@@ -229,8 +229,9 @@ namespace GetXml
                 worksheet.Cells[1, 5].Value = "IP Address";
                 worksheet.Cells[1, 6].Value = "Last Online";
                 worksheet.Cells[1, 7].Value = "Address";
-                worksheet.Cells[1, 8].Value = "Hours Offline";
-                worksheet.Cells[1, 9].Value = "Sum Offline";
+                worksheet.Cells[1, 8].Value = "Note";
+                worksheet.Cells[1, 9].Value = "Hours Offline";
+                worksheet.Cells[1, 10].Value = "Sum Offline";
                 // Popular header row data
                 worksheet.Cells["A2"].LoadFromCollection(TerminalList);
                 worksheet.Cells.Style.WrapText = true;
@@ -246,8 +247,8 @@ namespace GetXml
             string DeviceNote = "";
             double DeviceId = 0;
             //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\Отчет по устройствам.xlsx");
-            //byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\Отчет по устройствам.xlsx");
+            //byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\Отчет по устройствам.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\Отчет по устройствам.xlsx");
 
 
             //create a new Excel package in a memorystream
@@ -269,16 +270,11 @@ namespace GetXml
                                 //if (worksheet.Cells["A"])
                                 excelDataAddress.Add(worksheet.Cells[i, j].Value.ToString());
                             }
-                            //if ((worksheet.Cells[i, j].Value != null && j == 1 && worksheet.Cells[i, j + 9].Value != null))
-                            //{
-                            //    DeviceId = Double.Parse(worksheet.Cells[i, j].Value.ToString());                                
-                            //}
-                            //if (worksheet.Cells[i, j].Value != null && j == 10)
-                            //{
-                            //    DeviceNote = worksheet.Cells[i, j].Value.ToString();
 
-                            //}
-                            //excelDataNotes.Add(new Tuple<double, string>(DeviceId,DeviceNote));
+                            //if ((worksheet.Cells[i, j].Value != null && j == 2 && worksheet.Cells[i, j + 8].Value != null) || (worksheet.Cells[i, j].Value != null && j == 10))
+                            //{
+                            //    excelDataNotes.Add(worksheet.Cells[i, j].Value.ToString());
+                            //}  
                         }
                     }
                 }
@@ -289,7 +285,7 @@ namespace GetXml
         {
             ReadAddressesFromExcel();
             excelDataAddress.RemoveRange(0, 2);
-            //excelDataNotes.RemoveRange(0, 2);
+            excelDataNotes.RemoveRange(0, 2);
 
             for (int i = 0; i < excelDataAddress.Count - 1; i++)
             {
@@ -301,6 +297,11 @@ namespace GetXml
                     _deviceRepository.UpdateAddress(device);
                 i++;
             }
+            //for (int i = 0; i < excelDataNotes.Count - 1; i++)
+            //{
+            //    _deviceRepository.UpdateNotes(excelDataNotes[i], excelDataNotes[i + 1]);
+            //    i++;
+            //}
         }
 
         public List<Device> ConverDateToMoscowTime(List<Device> listDevises)
@@ -309,6 +310,7 @@ namespace GetXml
             {
                 TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
                 d.Last_Online = TimeZoneInfo.ConvertTimeFromUtc(d.Last_Online, moscowZone);
+                d.SumHours = Math.Floor(d.SumHours / 24);
 
                 //string date_from = d.Last_Online.ToString("yyyy/MM/dd HH:mm");
             }

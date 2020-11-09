@@ -102,8 +102,8 @@ namespace GetXml.Controllers
                 if (size > 0)
                 {
                     // full path to file in temp location
-                    var filePath = Path.Combine(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
-                    //var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
+                    //var filePath = Path.Combine(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
+                    var filePath = Path.Combine(@"C:\Users\Timur\source\repos\GetXml\Files\", file.FileName); //we are using Temp file name just for the example. Add your own file path.
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {

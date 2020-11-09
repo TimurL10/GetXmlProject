@@ -15,7 +15,6 @@ namespace GetXml
 {
     public class Program
     {
-        private static HomeController homeController;
         private static MyJob myJob;
         public static void Main(string[] args)
         {

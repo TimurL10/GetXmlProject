@@ -36,10 +36,7 @@ namespace GetXml.Models
         public DateTime Last_Online { get; set; }
 
         [Display(Name = "Адрес")]
-        public string Address { get; set; }
-
-        [Display(Name = "TeamViewer")]
-        public string TeamViewer { get; set; }
+        public string Address { get; set; }       
 
         [Display(Name = "Заметка")]
         public string Note { get; set; }
@@ -57,7 +54,7 @@ namespace GetXml.Models
         {
 
         }
-        public Device(double Id, string Name, string Status, string campaign_name, string Ip, DateTime last_online, string address, string TeamViewer, string note, double hours_offline, double sum_hours)
+        public Device(double Id, string Name, string Status, string campaign_name, string Ip, DateTime last_online, string address,  string note, double hours_offline, double sum_hours)
         {
             this.Id = Id;
             this.Name = Name;
@@ -66,7 +63,6 @@ namespace GetXml.Models
             this.Ip = Ip;
             this.Last_Online = last_online;
             this.Address = address;
-            this.TeamViewer = TeamViewer;
             this.Note = note;
             this.Hours_Offline= hours_offline;
             this.SumHours = sum_hours;

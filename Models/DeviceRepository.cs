@@ -132,5 +132,15 @@ namespace GetXml.Models
                 dbConnection.Close();
             }
         }
+
+        public void UpdateNotes(string name, string note)
+        {
+            using (var dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                dbConnection.Execute($"Update terminal Set note = {note} Where name = {name}");
+                dbConnection.Close();
+            }
+        }
     }
 }

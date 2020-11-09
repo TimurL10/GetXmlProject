@@ -8167,3 +8167,702 @@ Server laptop-94eikf8p:15124:72d9da80 heartbeat successfully sent
 Server laptop-94eikf8p:15124:72d9da80 heartbeat successfully sent
 Server laptop-94eikf8p:15124:72d9da80 heartbeat successfully sent
 Server laptop-94eikf8p:15124:72d9da80 heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 3829.2887ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 58008.7042ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 58584.2487ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request finished in 291.8846ms 200 text/css
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 525.6131ms 200 text/css
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 439.3488ms 200 application/javascript
+Request finished in 525.734ms 200 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 103.2623ms 200 application/javascript
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:25284:a700440e heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5096, Device Hours offline =  227|=====================================|  07.11.2020 22:21:21
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 6272.8688ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 67219.3951ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 67928.9611ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 390.2455ms 200 text/css
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request finished in 123.2879ms 200 text/css
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 348.0575ms 200 application/javascript
+Request finished in 363.0936ms 200 application/javascript
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 789.1607ms 200 application/javascript
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/images/1  
+Request finished in 51.147ms 404 
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/images/1.jpg  
+Sending file. Request path: '/images/1.jpg'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\images\1.jpg'
+Request finished in 132.2465ms 200 image/jpeg
+Request starting HTTP/2 GET https://localhost:5001/images/2.jpg  
+Sending file. Request path: '/images/2.jpg'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\images\2.jpg'
+Request finished in 79.7706ms 200 image/jpeg
+Request starting HTTP/2 GET https://localhost:5001/images/3.jpg  
+Sending file. Request path: '/images/3.jpg'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\images\3.jpg'
+Request finished in 106.1727ms 200 image/jpeg
+Server laptop-94eikf8p:14828:45a70de7 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/images/7-11.xlsx  
+Sending file. Request path: '/images/7-11.xlsx'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\images\7-11.xlsx'
+Request finished in 67.0788ms 200 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+Server laptop-94eikf8p:21476:c40e5d28 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5079, Device Hours offline =  274|=====================================|  08.11.2020 18:56:34
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5030, Device Hours offline =  221|=====================================|  08.11.2020 18:56:41
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 1752, Device Hours offline =  581|=====================================|  08.11.2020 18:56:47
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 4939, Device Hours offline =  699|=====================================|  08.11.2020 18:56:53
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 661, Device Hours offline =  357|=====================================|  08.11.2020 18:56:58
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5106, Device Hours offline =  267|=====================================|  08.11.2020 18:57:03
+Server laptop-94eikf8p:21476:c40e5d28 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 604, Device Hours offline =  52|=====================================|  08.11.2020 18:57:04
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 1914.4959ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 57697.57ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request finished in 57970.4312ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request finished in 157.6373ms 200 text/css
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 182.0377ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 457.9609ms 200 text/css
+Request finished in 394.508ms 200 application/javascript
+Request finished in 453.1531ms 200 application/javascript
+Server laptop-94eikf8p:21476:c40e5d28 heartbeat successfully sent
+Server laptop-94eikf8p:21476:c40e5d28 heartbeat successfully sent
+Server laptop-94eikf8p:21476:c40e5d28 heartbeat successfully sent
+Server laptop-94eikf8p:21476:c40e5d28 heartbeat successfully sent
+Server laptop-94eikf8p:21476:c40e5d28 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 4987, Device Hours offline =  441|=====================================|  08.11.2020 19:42:28
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 4967, Device Hours offline =  412|=====================================|  08.11.2020 19:42:48
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5007, Device Hours offline =  185|=====================================|  08.11.2020 19:42:49
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2124.1928ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 61710.1885ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 61967.3068ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 148.4299ms 200 text/css
+Request finished in 250.3207ms 200 text/css
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request finished in 191.5613ms 200 application/javascript
+Request finished in 287.3095ms 200 application/javascript
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 325.0343ms 200 application/javascript
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Removing outdated records from the 'AggregatedCounter' table...
+Removing outdated records from the 'Job' table...
+Removing outdated records from the 'List' table...
+Removing outdated records from the 'Set' table...
+Removing outdated records from the 'Hash' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Aggregating records in 'Counter' table...
+Removing outdated records from the 'AggregatedCounter' table...
+Removing outdated records from the 'Job' table...
+Removing outdated records from the 'List' table...
+Removing outdated records from the 'Set' table...
+Removing outdated records from the 'Hash' table...
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:29424:b2b9c997 heartbeat successfully sent
+Server laptop-94eikf8p:4884:b4bdfa58 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5079, Device Hours offline =  276|=====================================|  08.11.2020 20:58:07
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5030, Device Hours offline =  223|=====================================|  08.11.2020 20:58:22
+Server laptop-94eikf8p:4884:b4bdfa58 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 1752, Device Hours offline =  583|=====================================|  08.11.2020 20:58:33
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 4939, Device Hours offline =  701|=====================================|  08.11.2020 20:58:44
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 661, Device Hours offline =  359|=====================================|  08.11.2020 20:58:51
+Server laptop-94eikf8p:4884:b4bdfa58 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5106, Device Hours offline =  269|=====================================|  08.11.2020 20:58:57
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 604, Device Hours offline =  54|=====================================|  08.11.2020 20:58:59
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2063.0887ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 88524.3842ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request finished in 88891.1867ms 200 text/html; charset=utf-8
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request finished in 121.856ms 200 application/javascript
+Request finished in 168.7722ms 200 application/javascript
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 301.7954ms 200 text/css
+Request finished in 337.9098ms 200 text/css
+Request finished in 320.4691ms 200 application/javascript
+Request starting HTTP/2 GET https://localhost:5001/Home/Privacy  
+Executing endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Route matched with {action = "Privacy", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Privacy() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Privacy.
+Executing ViewResult, running view Privacy.
+Executed ViewResult - view Privacy executed in 93.4082ms.
+Executed ViewResult - view Privacy executed in 93.4082ms.
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 137.1934ms
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 137.1934ms
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request finished in 209.9556ms 200 text/css
+Request finished in 209.9556ms 200 text/css
+Request finished in 265.2727ms 200 application/javascript
+Request finished in 265.2727ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request finished in 421.6398ms 200 text/css
+Request finished in 421.6398ms 200 text/css
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 697.6094ms 200 text/html; charset=utf-8
+Request finished in 697.6094ms 200 text/html; charset=utf-8
+Request finished in 522.8693ms 200 application/javascript
+Request finished in 522.8693ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 668.2331ms 200 application/javascript
+Request finished in 668.2331ms 200 application/javascript
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundarynSiZBVdHkADCcSiI 84707
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundarynSiZBVdHkADCcSiI 84707
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 344.5908ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 344.5908ms
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 344.5908ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+An unhandled exception has occurred while executing the request.
+An unhandled exception has occurred while executing the request.
+An unhandled exception has occurred while executing the request.
+Request finished in 1350.8055ms 500 text/html; charset=utf-8
+Request finished in 1350.8055ms 500 text/html; charset=utf-8
+Request finished in 1350.8055ms 500 text/html; charset=utf-8
+Server laptop-94eikf8p:4884:b4bdfa58 heartbeat successfully sent
+Server laptop-94eikf8p:4884:b4bdfa58 heartbeat successfully sent
+Server laptop-94eikf8p:4884:b4bdfa58 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2203.1684ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 169519.3369ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 169738.6289ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 177.2792ms 200 application/javascript
+Request finished in 240.419ms 200 text/css
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 205.2762ms 200 application/javascript
+Request finished in 331.9789ms 200 text/css
+Request finished in 310.8528ms 200 application/javascript
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/Home/Privacy  
+Executing endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Route matched with {action = "Privacy", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Privacy() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Privacy.
+Executing ViewResult, running view Privacy.
+Executed ViewResult - view Privacy executed in 92.6072ms.
+Executed ViewResult - view Privacy executed in 92.6072ms.
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 146.4633ms
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 146.4633ms
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request finished in 450.5425ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request finished in 450.5425ms 200 text/html; charset=utf-8
+Request finished in 221.9525ms 200 application/javascript
+Request finished in 221.9525ms 200 application/javascript
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 635.4163ms 200 application/javascript
+Request finished in 635.4163ms 200 application/javascript
+Request finished in 694.5391ms 200 text/css
+Request finished in 694.5391ms 200 text/css
+Request finished in 785.4058ms 200 application/javascript
+Request finished in 785.4058ms 200 application/javascript
+Request finished in 714.7258ms 200 text/css
+Request finished in 714.7258ms 200 text/css
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundarylFyP91TucUhr3AKs 84707
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundarylFyP91TucUhr3AKs 84707
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+1 servers were removed due to timeout
+1 servers were removed due to timeout
+1 servers were removed due to timeout
+Aggregating records in 'Counter' table...
+Aggregating records in 'Counter' table...
+Aggregating records in 'Counter' table...
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:28912:72f795f0 heartbeat successfully sent
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 4987, Device Hours offline =  443|=====================================|  08.11.2020 21:44:00
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 4967, Device Hours offline =  414|=====================================|  08.11.2020 21:44:22
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 5007, Device Hours offline =  187|=====================================|  08.11.2020 21:44:23
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2363.9737ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 69583.4295ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 70152.1718ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 146.4189ms 200 text/css
+Request finished in 174.0079ms 200 text/css
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 203.5591ms 200 application/javascript
+Request finished in 422.844ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 300.2081ms 200 application/javascript
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/Home/Privacy  
+Executing endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Route matched with {action = "Privacy", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Privacy() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Privacy.
+Executing ViewResult, running view Privacy.
+Executed ViewResult - view Privacy executed in 101.1611ms.
+Executed ViewResult - view Privacy executed in 101.1611ms.
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 167.0334ms
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 167.0334ms
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request finished in 462.8975ms 200 text/html; charset=utf-8
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request finished in 462.8975ms 200 text/html; charset=utf-8
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request finished in 374.4452ms 200 text/css
+Request finished in 374.4452ms 200 text/css
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 440.1392ms 200 application/javascript
+Request finished in 440.1392ms 200 application/javascript
+Request finished in 448.5659ms 200 text/css
+Request finished in 448.5659ms 200 text/css
+Request finished in 559.7838ms 200 application/javascript
+Request finished in 559.7838ms 200 application/javascript
+Request finished in 513.4909ms 200 application/javascript
+Request finished in 513.4909ms 200 application/javascript
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundarykRYsBD6XHwoU0Sun 84707
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundarykRYsBD6XHwoU0Sun 84707
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Server laptop-94eikf8p:3408:b0cca8c3 heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 4960, Device Hours offline =  224|=====================================|  08.11.2020 21:49:17
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Executed OfflineHoursCount Hours_Offline > 48 Device id = 19220, Device Hours offline =  50|=====================================|  08.11.2020 21:49:34
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 2744.5738ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 53651.9262ms
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request finished in 54002.7806ms 200 text/html; charset=utf-8
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 229.9414ms 200 text/css
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request finished in 91.9103ms 200 text/css
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request finished in 103.172ms 200 application/javascript
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 93.0109ms 200 application/javascript
+Request finished in 180.0002ms 200 application/javascript
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Request starting HTTP/2 GET https://localhost:5001/Home/Privacy  
+Executing endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Route matched with {action = "Privacy", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Privacy() on controller GetXml.Controllers.HomeController (GetXml).
+Executing ViewResult, running view Privacy.
+Executing ViewResult, running view Privacy.
+Executed ViewResult - view Privacy executed in 84.1248ms.
+Executed ViewResult - view Privacy executed in 84.1248ms.
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 127.7426ms
+Executed action GetXml.Controllers.HomeController.Privacy (GetXml) in 127.7426ms
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Executed endpoint 'GetXml.Controllers.HomeController.Privacy (GetXml)'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 158.5819ms 200 text/css
+Request finished in 158.5819ms 200 text/css
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Request finished in 196.0751ms 200 application/javascript
+Request finished in 196.0751ms 200 application/javascript
+Request finished in 266.3883ms 200 application/javascript
+Request finished in 266.3883ms 200 application/javascript
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Request finished in 511.4186ms 200 text/css
+Request finished in 511.4186ms 200 text/css
+Request finished in 488.0104ms 200 text/html; charset=utf-8
+Request finished in 488.0104ms 200 text/html; charset=utf-8
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Request finished in 633.8504ms 200 application/javascript
+Request finished in 633.8504ms 200 application/javascript
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundary8tzgtT3L38B58bTd 84707
+Request starting HTTP/2 POST https://localhost:5001/Home multipart/form-data; boundary=----WebKitFormBoundary8tzgtT3L38B58bTd 84707
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Executing endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ViewResult] Index(Microsoft.AspNetCore.Http.IFormFile) on controller GetXml.Controllers.HomeController (GetXml).
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:7176:c1e7dbcd heartbeat successfully sent
+Server laptop-94eikf8p:11920:6b6316b1 heartbeat successfully sent
+Executing ViewResult, running view Index.
+Server laptop-94eikf8p:11920:6b6316b1 heartbeat successfully sent
+Executed ViewResult - view Index executed in 2698.7721ms.
+Executed action GetXml.Controllers.HomeController.Index (GetXml) in 55847.0233ms
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/css/bootstrap.min.css  
+Request starting HTTP/2 GET https://localhost:5001/css/site.css  
+Executed endpoint 'GetXml.Controllers.HomeController.Index (GetXml)'
+Request starting HTTP/2 GET https://localhost:5001/lib/bootstrap/dist/js/bootstrap.bundle.min.js  
+Request starting HTTP/2 GET https://localhost:5001/lib/jquery/dist/jquery.min.js  
+Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\css\site.css'
+Request starting HTTP/2 GET https://localhost:5001/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0  
+Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\js\site.js'
+Request finished in 287.6294ms 200 text/css
+Request finished in 56756.3344ms 200 text/html; charset=utf-8
+Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\jquery\dist\jquery.min.js'
+Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+Request finished in 517.7638ms 200 application/javascript
+Request finished in 693.6209ms 200 application/javascript
+Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\Timur\source\repos\GetXml\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+Request finished in 728.6628ms 200 application/javascript
+Request finished in 808.9855ms 200 text/css

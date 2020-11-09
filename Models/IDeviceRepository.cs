@@ -18,6 +18,7 @@ namespace GetXml.Models
         void UpdateDevice(Device device);
         void UpdateSumHourse(Device device);
         void UpdateHoursOffline(Device device);
+        void UpdateNotes(string name, string note);
 
 
     }
