@@ -19,7 +19,7 @@ namespace GetXml.Models
         void UpdateSumHourse(Device device);
         void UpdateHoursOffline(Device device);
         void UpdateNotes(string name, string note);
-
+        void PostActivity(double id, DateTime currentDate, int active);
 
     }
 }

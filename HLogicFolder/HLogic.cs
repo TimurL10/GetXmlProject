@@ -19,7 +19,8 @@ namespace GetXml
         private ILoggerFactory _loggerFactory;
         public Xml Devices;
         private IConfiguration _configuration;
-        private DeviceRepository _deviceRepository;
+        //private DeviceRepository _deviceRepository;
+        public IDeviceRepository _deviceRepository;
         public static string displayName = "(GMT+03:00) Russia Time Zone 2";
         public static string standardName = "Russia Time Zone 2";
         public static TimeSpan offset = new TimeSpan(03, 00, 00);
@@ -27,11 +28,12 @@ namespace GetXml
         public List<string> excelDataAddress = new List<string>();
         public List<string> excelDataNotes = new List<string>();
 
-        public HLogic(ILoggerFactory loggerFactory, IConfiguration configuration)
+        public HLogic(ILoggerFactory loggerFactory, IConfiguration configuration, IDeviceRepository deviceRepository)
         {
             _loggerFactory = loggerFactory;
             _configuration = configuration;
-            _deviceRepository = new DeviceRepository(_configuration);
+            //_deviceRepository = new DeviceRepository(_configuration);
+            _deviceRepository = deviceRepository;
         }
 
         public double getHoursOffline(Device device)
@@ -62,10 +64,7 @@ namespace GetXml
             {
                 foreach (var d in Devices.Devices.ToList())
                 {
-                    AddNewDevice(d);
-                    //var Hours_Offline = (DateTime.UtcNow - d.Last_Online).TotalHours;
-                    //var ts_new = TimeSpan.FromHours(Hours_Offline);
-                    //h_new = System.Math.Floor(ts_new.TotalHours);                    
+                    AddNewDevice(d);                   
                     var deviceFromDb = _deviceRepository.Get(d.Id);
                     if (d.Hours_Offline == deviceFromDb.Hours_Offline)
                         ChangeTerminalData(d);
@@ -116,7 +115,7 @@ namespace GetXml
             {
                 foreach (var d in Devices.Devices.ToList())
                 {
-                    if (getHoursOffline(d) > 730 || (d.Status == "not attached") || (d.Last_Online < DateTime.MinValue) || (d.Last_Online.Year < 2020))
+                    if (getHoursOffline(d) > 8760 || (d.Status == "not attached") || (d.Last_Online <= DateTime.MinValue) /*|| (d.Last_Online.Year < 2020)*/)
                     {
                         Devices.Devices.Remove(d);
                         _deviceRepository.Delete(d.Id);
@@ -247,8 +246,8 @@ namespace GetXml
             string DeviceNote = "";
             double DeviceId = 0;
             //read the Excel file as byte array
-            //byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\Отчет по устройствам.xlsx");
-            byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\Отчет по устройствам.xlsx");
+            byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\terminal\Files\Отчет по устройствам.xlsx");
+            //byte[] bin = System.IO.File.ReadAllBytes(@"C:\Users\Timur\source\repos\GetXml\Files\Отчет по устройствам.xlsx");
 
 
             //create a new Excel package in a memorystream
@@ -317,36 +316,32 @@ namespace GetXml
             return listDevises;
         }
 
-        public List<double> ImportTeamViewerCodesFromExcel()
+        public DateTime ConverDateToMoscowTime(DateTime dateTime)
         {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            //create a list to hold all the values
-            List<double> excelData = new List<double>();
+            TimeZoneInfo moscowZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
+            dateTime = TimeZoneInfo.ConvertTimeFromUtc(dateTime, moscowZone);
+            //string date_from = d.Last_Online.ToString("yyyy/MM/dd HH:mm");
+            
+            return dateTime;
+        }
 
-            //read the Excel file as byte array
-            byte[] bin = System.IO.File.ReadAllBytes(@"d:\Domains\smartsoft83.com\wwwroot\Files\ICL (доступы TeamViewer).xlsx");
-
-            //create a new Excel package in a memorystream
-            using (MemoryStream stream = new MemoryStream(bin))
-            using (ExcelPackage excelPackage = new ExcelPackage(stream))
+        public void SaveActivity()
+        {
+            
+            var loggerF = _loggerFactory.CreateLogger("FileLogger");
+            try
             {
-                //loop all worksheets
-                foreach (ExcelWorksheet worksheet in excelPackage.Workbook.Worksheets)
+                foreach (var d in Devices.Devices)
                 {
-                    //loop all rows
-                    for (int i = worksheet.Dimension.Start.Row; i <= worksheet.Dimension.End.Row; i++)
-                    {
-                        //loop all columns in a row
-                        for (int j = worksheet.Dimension.Start.Column; j < 2; j++)
-                        {
-                            //    excelData.Add(worksheet.Cells[i, j].Value);
-                            //worksheet.Cells.DataValidation.AddCustomDataValidation();
-
-                        }
-                    }
+                    if (d.Status == "offline")
+                        _deviceRepository.PostActivity(d.Id, DateTime.UtcNow, 0);
                 }
             }
-            return excelData;
+            catch(Exception ex)
+            {
+                loggerF.LogError($"The path threw an exception SaveActivity {DateTime.Now} =========== {ex.Message}");
+            }
         }
+
     }
 }

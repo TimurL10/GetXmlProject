@@ -38,7 +38,7 @@ namespace GetXml.Controllers
 
             Task task2 = new Task(() => _hLogic.FilterDevices());
             task2.Start();
-            task2.Wait(); 
+            task2.Wait();
 
             Task task3 = new Task(() => _hLogic.getHoursOffline());
             task3.Start();
@@ -57,8 +57,7 @@ namespace GetXml.Controllers
             {
                 case "name_desc":
                     compain = compain.OrderByDescending(s => s.Campaign_Name).ToList();
-                    break;                
-                
+                    break;          
             }
             return View("Index",compain);
         }
@@ -142,11 +141,7 @@ namespace GetXml.Controllers
             string fileName = "terminals_report.xlsx";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
-
-        public void GetAddressFromExcel()
-        {
-
-        }
+              
     }
 }
 

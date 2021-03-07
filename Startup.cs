@@ -28,26 +28,39 @@ namespace GetXml
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connString = Configuration.GetValue<string>("DbInfo:ConnectionString");
-            GlobalConfiguration.Configuration.UseSqlServerStorage(connString);
-            services.AddHangfire(config =>
+            //var connString = Configuration.GetValue<string>("DbInfo:ConnectionString");
+            //GlobalConfiguration.Configuration.UseSqlServerStorage(connString);
+            services.AddHangfire(configuration => configuration
+            .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(Configuration.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
             {
-                var option = new SqlServerStorageOptions
-                {
-                    PrepareSchemaIfNecessary = false,
-                    QueuePollInterval = TimeSpan.FromMinutes(5)
-                };
-                config.UseSqlServerStorage(connString, option);
-            });
+                CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                QueuePollInterval = TimeSpan.Zero,
+                UseRecommendedIsolationLevel = true,
+                DisableGlobalLocks = true
+            }));
+            services.AddHangfireServer();
+            services.AddTransient<IMyJob, MyJob>();
+            services.AddTransient<IHLogic, HLogic>();
+            services.AddTransient<IDeviceRepository, DeviceRepository>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddControllersWithViews();
-            services.AddScoped<IMyJob, MyJob>();
-            services.AddScoped<IDeviceRepository, DeviceRepository>();
-            services.AddScoped<IHLogic, HLogic>();
+            services.AddScoped<IHangfireJobScheduler, HangfireJobScheduler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        [Obsolete]
+        public void Configure(
+        IApplicationBuilder app,
+        IWebHostEnvironment env,
+        IServiceProvider serviceProvider,
+        IMyJob myJob,
+        IRecurringJobManager recurringJobManager,
+        IHangfireJobScheduler hangfireJobScheduler
+        )
         {
             if (env.IsDevelopment())
             {
@@ -77,14 +90,14 @@ namespace GetXml
             {
                 Authorization = new[] { new HangfireDashboardAuthorizationFilter() }
             });
+            
             app.UseHangfireServer(new BackgroundJobServerOptions
             {
-                WorkerCount = 1,
+                WorkerCount = 2,
+                SchedulePollingInterval = TimeSpan.FromMinutes(2)
             });
 
-            GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 0 });
-            HangfireJobScheduler.ScheduleRecurringJobs();
-           
+            BackgroundJob.Enqueue(() => serviceProvider.GetService<IHangfireJobScheduler>().ScheduleRecurringJobs());
         }
     }
 }

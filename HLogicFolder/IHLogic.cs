@@ -30,5 +30,6 @@ namespace GetXml
 
         List<Device> ConverDateToMoscowTime(List<Device> listDevises);
 
+        void SaveActivity();
     }
 }

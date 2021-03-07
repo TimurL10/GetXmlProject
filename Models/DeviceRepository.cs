@@ -142,5 +142,15 @@ namespace GetXml.Models
                 dbConnection.Close();
             }
         }
+
+        public void PostActivity(double id, DateTime currentDate, int active)
+        {
+            using (var dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                dbConnection.Execute($"Insert Into terminal_activity(t_id, active_date, active) Values ({id},convert(varchar, DATEADD(HOUR, +3, GETUTCDATE())),{active})");
+                dbConnection.Close();
+            }
+        }
     }
 }

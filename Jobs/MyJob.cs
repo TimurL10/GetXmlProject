@@ -13,36 +13,37 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Threading;
+using System.Diagnostics;
 
 namespace GetXml.Jobs
 {
     public interface IMyJob
     {
-        Task RunAtTimeOf(DateTime now);
+        void RunAtTimeOf(DateTime now);
+        void RunAtTimeOfActivity(DateTime now);
+        void RunTwo(IJobCancellationToken token);
     }
 
     public class MyJob : IMyJob
-    {
-        private ILoggerFactory _loggerFactory;
-        public IConfiguration configuration;
+    {        
         private IHLogic _hLogic;
-        private readonly DeviceRepository deviceRepository;
-        public MyJob(ILoggerFactory loggerFactory, IConfiguration configuration, IHLogic hLogic)
-        {
-            _loggerFactory = loggerFactory;
-            deviceRepository = new DeviceRepository(configuration);
-            loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
-            deviceRepository = new DeviceRepository(configuration);
+        public MyJob(IHLogic hLogic)
+        {           
             _hLogic = hLogic;
         }
         
-        public async Task Run(IJobCancellationToken token)
+        public void Run(IJobCancellationToken token)
         {
             token.ThrowIfCancellationRequested();
-            await RunAtTimeOf(DateTime.Now);
+            RunAtTimeOf(DateTime.Now);
+        }
+        public void RunTwo(IJobCancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+            RunAtTimeOfActivity(DateTime.Now);
         }
 
-        public async Task RunAtTimeOf(DateTime now)
+        public void RunAtTimeOf(DateTime now)
         {
             Task task1 = new Task(() => _hLogic.GetXmlData());
             task1.Start();
@@ -55,19 +56,39 @@ namespace GetXml.Jobs
             Task task3 = new Task(() => _hLogic.getHoursOffline());
             task3.Start();
             task3.Wait();
-        }       
+        }
+        
+        public void RunAtTimeOfActivity(DateTime now)
+        {           
+            Task task1 = new Task(() => _hLogic.GetXmlData());
+            task1.Start();
+            task1.Wait();            
+
+            Task task3 = new Task(() => _hLogic.SaveActivity());
+            task3.Start();
+            task3.Wait();
+        }
+    }
+    public interface IHangfireJobScheduler
+    {
+        void ScheduleRecurringJobs();
     }
 
-    public class HangfireJobScheduler
+    public class HangfireJobScheduler : IHangfireJobScheduler
     {
         [Obsolete]
-        public static void ScheduleRecurringJobs()
+        public void ScheduleRecurringJobs()
         {
-            RecurringJob.RemoveIfExists(nameof(MyJob));
-            RecurringJob.AddOrUpdate<MyJob>(nameof(MyJob),
+            RecurringJob.RemoveIfExists("25 min updating");
+            RecurringJob.AddOrUpdate<MyJob>("25 min updating",
                 job => job.Run(JobCancellationToken.Null),
                 Cron.MinuteInterval(25),TimeZoneInfo.Utc);
-        }
+
+            RecurringJob.RemoveIfExists("hour updating");
+            RecurringJob.AddOrUpdate<MyJob>("hour updating",
+                job => job.RunTwo(JobCancellationToken.Null),
+                "0 0 ? * * *", TimeZoneInfo.Utc);
+        }       
     }
 
     public class HangfireDashboardAuthorizationFilter : IDashboardAuthorizationFilter

@@ -55,7 +55,7 @@ namespace FarmacyControl.Controllers
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\MrcFile\");
+            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\terminal\mrcfile");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i++)
             {
@@ -95,7 +95,7 @@ namespace FarmacyControl.Controllers
 
         public ActionResult UploadToDb()
         {
-            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\MrcFile\");
+            DirectoryInfo di = new DirectoryInfo(@"d:\Domains\smartsoft83.com\wwwroot\terminal\mrcfile");
             FileInfo[] files = di.GetFiles("*.xlsx");
             for (int i = 0; i < files.Length; i++)
             {
