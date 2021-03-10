@@ -105,12 +105,11 @@ namespace FarmacyControl
             }
             return markets;
         }
-
         public void InsertMarkets(Market market)
         {
             using (IDbConnection connection = dbConnectionCloud)
             {
-                connection.Execute("Insert into MarketsActivity (StoreId, StoreName, NetName, SoftwareName, StockDate, ActiveFl, reserveFl, StocksFl, TimeStamp, Reason) Values (@StoreId, @StoreName, @NetName, @SoftwareName, @StockDate, @ActiveFl, @reserveFl, @StocksFl, @TimeStamp, @Reason) ", market);
+                connection.Execute("Insert into MarketsActivity (StoreId, StoreName, NetName, SoftwareName, StockDate, ActiveFl, reserveFl, StocksFl, TimeStamp, Reason, Status) Values (@StoreId, @StoreName, @NetName, @SoftwareName, @StockDate, @ActiveFl, @reserveFl, @StocksFl, @TimeStamp, @Reason, @Status) ", market);
             }
         }
         public List<Market> GetSavedMarkets()
@@ -124,7 +123,14 @@ namespace FarmacyControl
         {
             using (IDbConnection connection = dbConnectionCloud)
             {
-                connection.Execute($"Update MarketsActivity set StockDate = {market.StockDate}, ")
+                connection.Execute($"Update MarketsActivity set Status = {market.Status}, Reason={market.Reason}, TimeStamp = {market.TimeStamp}", market);
+            }
+        }
+        public void DeleteActiveMarket(Market market)
+        {
+            using (IDbConnection connection = dbConnectionCloud)
+            {
+                connection.Execute($"Delete from MarketsActivity Where StoreId = {market.StoreId}", market);
             }
         }
     }        

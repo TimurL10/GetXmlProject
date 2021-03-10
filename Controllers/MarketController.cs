@@ -112,9 +112,49 @@ namespace GetXml.Controllers
                         DateTime.Today.Month != savedMarkets[j].TimeStamp.Month)
                         _repository.InsertMarkets(noStockMarkets[i]);
                 }
+        }
+        public void InsertNewMarkets()
+        {
+            var noStockMarkets = _repository.GetMarkets();
+            var savedMarkets = _repository.GetSavedMarkets();
+            var newMarkets = noStockMarkets.Concat(savedMarkets).GroupBy(n => n.StoreId).
+                Where(n => n.Count() >= 1).Select(n => n.FirstOrDefault()).ToList();
+            if (newMarkets.Count > 0)
+            {
+                foreach (var m in newMarkets)
+                {
+                    if (m.ReserveFl == false && m.ActiveFl == false && m.StocksFl == true)
+                    m.Status = "in work";
+                    m.Reason = "tech prbl";
+                    _repository.InsertMarkets(m);
 
-
-
+                }                   
+            }
+        }
+        public void UpdateCurrentListOfMarkets()
+        {
+            var noStockMarkets = _repository.GetMarkets();
+            var savedMarkets = _repository.GetSavedMarkets();
+            foreach (var m in savedMarkets)
+                //Market already on-line
+                if (!noStockMarkets.Contains(m))
+                {
+                    if ((DateTime.Now - m.StockDate).Hours < 48 && m.Status != "on-line")
+                    {
+                        m.Status = "on-line";
+                        m.Reason = "> 24h";
+                        _repository.UpdateMarkets(m);
+                    }
+                    else if ((DateTime.Now - m.StockDate).Hours >= 48 && m.Status != "on-line")
+                    {
+                        m.Status = "on-line";
+                        m.Reason = "tech prbl";
+                    }
+                }
+                else                
+                    _repository.InsertMarkets(m);
+                
+            
         }
     }
 }

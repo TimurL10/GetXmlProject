@@ -16,5 +16,6 @@ namespace FarmacyControl
         public void InsertMarkets(Market market);
         public List<Market> GetSavedMarkets();
         public void UpdateMarkets(Market market);
+        public void DeleteActiveMarket(Market market);
     }
 }

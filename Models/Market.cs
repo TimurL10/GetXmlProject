@@ -13,15 +13,7 @@ namespace GetXml.Models
         public string StoreName { get; set; }
         public string NetName { get; set; }
         public string SoftwareName { get; set; }
-        public DateTime StockDate {
-            get {
-                return stockDate;
-            } 
-            set {
-                if (value <= DateTime.MinValue)
-                    stockDate = value;
-            } 
-        }
+        public DateTime StockDate { get; set; }
         public bool ActiveFl { get; set; }
         public bool ReserveFl { get; set; }
         public bool StocksFl { get; set; }
@@ -33,5 +25,6 @@ namespace GetXml.Models
         
         }
         public string Reason { get; set; }
+        public string Status { get; set; }
     }
 }
