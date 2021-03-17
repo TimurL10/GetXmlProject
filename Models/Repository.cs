@@ -66,7 +66,7 @@ namespace FarmacyControl
             }
         }
 
-        public List<Market> GetMarkets()
+        public List<Market> GetNewMarkets()
         {
             ArrayList arrayList = new ArrayList();
             //List<Market> markets = new List<Market>();
@@ -119,9 +119,9 @@ namespace FarmacyControl
                                 markets.Add(market);
                             
                             arrayList.Clear();
+
+                            
                         }
-
-
                     }
                     else
                     {
@@ -151,7 +151,9 @@ namespace FarmacyControl
         {
             using (IDbConnection connection = dbConnectionCloud)
             {
-                connection.Execute($"Update MarketsActivity set Status = {market.Status}, Reason={market.Reason}, TimeStamp = {market.TimeStamp}", market);
+                string a = market.StoreId.ToString();
+                a = "'" + a + "'";
+                connection.Execute("Update MarketsActivity set Status = @Status, Reason = @Reason Where StoreId = @StoreId", market);
             }
         }
         public void DeleteActiveMarket(Market market)

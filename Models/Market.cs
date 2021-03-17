@@ -18,11 +18,7 @@ namespace GetXml.Models
             StoreName = storeName;
             NetName = netName;
             SoftwareName = softwareName;
-            if (stockDate != null)
-                StockDate = stockDate;
-            else
-                StockDate = DateTimeOffset.Now;                
-
+            StockDate = stockDate;      
             ActiveFl = activeFl;
             ReserveFl = reserveFl;
             StocksFl = stocksFl;           
@@ -32,21 +28,7 @@ namespace GetXml.Models
         public string StoreName { get; set; }
         public string NetName { get; set; }
         public string SoftwareName { get; set; }
-        public DateTimeOffset  StockDate
-        {
-            get
-            {
-                return stockDate;
-            }
-            set
-            {
-                if (value != null)
-                    stockDate = value;
-                else
-                    stockDate = DateTimeOffset.MinValue;
-                        
-            }
-        }
+        public DateTimeOffset  StockDate { get; set; }
         public bool ActiveFl { get; set; }
         public bool ReserveFl { get; set; }
         public bool StocksFl { get; set; }
@@ -54,7 +36,8 @@ namespace GetXml.Models
 
             get {
                 return timeStamp = DateTime.Now; 
-            }          
+            }
+            set => timeStamp = value; 
         
         }
         public string Reason { get; set; }
