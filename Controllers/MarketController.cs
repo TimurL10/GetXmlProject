@@ -96,26 +96,7 @@ namespace GetXml.Controllers
             {
                 return View();
             }
-        }
-        //public void SortMarkets()
-        //{
-        //    var noStockMarkets = _repository.GetNewMarkets();
-        //    var savedMarkets = _repository.GetSavedMarkets();
-        //    var newMarkets = noStockMarkets.Concat(savedMarkets).GroupBy(n => n.StoreId).
-        //        Where(n => n.Count() == 1).Select(n => n.FirstOrDefault()).ToList();
-        //    if (newMarkets.Count > 0)
-        //    {
-        //        foreach (var m in newMarkets)
-        //            _repository.InsertMarkets(m);
-        //    }
-        //    for (int i = 0; i < noStockMarkets.Count(); i ++)
-        //        for (int j = 0; j < savedMarkets.Count(); j++)
-        //        {
-        //            if (noStockMarkets[i].StoreId == savedMarkets[j].StoreId && DateTime.Now.Day != savedMarkets[j].TimeStamp.Day &&
-        //                DateTime.Today.Month != savedMarkets[j].TimeStamp.Month)
-        //                _repository.InsertMarkets(noStockMarkets[i]);
-        //        }
-        //}
+        }       
         public void InsertNewMarkets()
         {
             var noStockMarkets = _repository.GetNewMarkets();
