@@ -12,9 +12,10 @@ namespace FarmacyControl
         public List<Mrc> GetMrc();
         public void UpdateDb(Mrc mrcs);
         public void InsertDb(Mrc mrcs);
-        public List<Market> GetMarkets();
+        public List<Market> GetNewMarkets();
         public void InsertMarkets(Market market);
         public List<Market> GetSavedMarkets();
         public void UpdateMarkets(Market market);
+        public void DeleteActiveMarket(Market market);
     }
 }
