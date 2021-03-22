@@ -28,7 +28,7 @@ namespace GetXml
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //var connString = Configuration.GetValue<string>("DbInfo:ConnectionString");
+            //var connString = Configuration.GetValue<string>("DbInfo:ConnectionString"); 
             //GlobalConfiguration.Configuration.UseSqlServerStorage(connString);
             services.AddHangfire(configuration => configuration
             .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
