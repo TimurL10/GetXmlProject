@@ -19,12 +19,7 @@ namespace GetXml.Jobs
 {
     public interface IMyJob
     {
-        void RunAtTimeOf(DateTime now);
-        void RunAtTimeOfActivity(DateTime now);
         void RunTwo(IJobCancellationToken token);
-        void RunThree(IJobCancellationToken token);
-        void RunMarketsReport(DateTime now);
-
     }
 
     public class MyJob : IMyJob
@@ -33,44 +28,12 @@ namespace GetXml.Jobs
         public MyJob(IHLogic hLogic)
         {           
             _hLogic = hLogic;
-        }
-        
-        public void Run(IJobCancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-            RunAtTimeOf(DateTime.Now);
-        }
+        }        
+       
         public void RunTwo(IJobCancellationToken token)
         {
             token.ThrowIfCancellationRequested();
             RunAtTimeOfActivity(DateTime.Now);
-        }
-
-        public void RunThree(IJobCancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-            RunMarketsReport(DateTime.Now);
-        }
-
-        public void RunMarketsReport(DateTime now)
-        {
-            Debug.WriteLine("Here will be call");
-        }
-
-
-        public void RunAtTimeOf(DateTime now)
-        {
-            Task task1 = new Task(() => _hLogic.GetXmlData());
-            task1.Start();
-            task1.Wait();
-
-            Task task2 = new Task(() => _hLogic.FilterDevices());
-            task2.Start();
-            task2.Wait();
-
-            Task task3 = new Task(() => _hLogic.getHoursOffline());
-            task3.Start();
-            task3.Wait();
         }
         
         public void RunAtTimeOfActivity(DateTime now)
@@ -94,20 +57,16 @@ namespace GetXml.Jobs
         [Obsolete]
         public void ScheduleRecurringJobs()
         {
-            //RecurringJob.RemoveIfExists("25 min updating");
-            //RecurringJob.AddOrUpdate<MyJob>("25 min updating",
-            //    job => job.Run(JobCancellationToken.Null),
-            //    Cron.MinuteInterval(25),TimeZoneInfo.Utc);
 
+            //RecurringJob.RemoveIfExists("hour terminal activity updating");
+            //RecurringJob.AddOrUpdate<MyJob>("hour terminal activity updating",
+            //    job => job.RunTwo(JobCancellationToken.Null),
+            //    "0 0 ? * * *", TimeZoneInfo.Utc); 
+            
             RecurringJob.RemoveIfExists("hour terminal activity updating");
             RecurringJob.AddOrUpdate<MyJob>("hour terminal activity updating",
-                job => job.RunTwo(JobCancellationToken.Null),
-                "0 0 ? * * *", TimeZoneInfo.Utc);
-
-            //RecurringJob.RemoveIfExists("REPORT");
-            //RecurringJob.AddOrUpdate<MyJob>("REPORT",
-            //    job => job.RunThree(JobCancellationToken.Null),
-            //    Cron.MinuteInterval(1), TimeZoneInfo.Utc);
+                job => job.RunTwo(JobCancellationToken.Null), Cron.MinuteInterval(3),              
+                TimeZoneInfo.Utc);
         }
     }
 

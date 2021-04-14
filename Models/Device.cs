@@ -12,12 +12,13 @@ namespace GetXml.Models
     [XmlRoot(ElementName = "device")]
     public class Device
     {
+
         [XmlAttribute(AttributeName = "id")]
         public double Id { get; set; }
 
         [Display(Name = "Имя")]
         [XmlAttribute(AttributeName = "name")]
-        public string Name { get; set; }
+        public string Name { get; set; }            
 
         [Display(Name = "Статус")]
         [XmlAttribute(AttributeName = "status")]

@@ -18,20 +18,7 @@ namespace GetXml
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            //GlobalConfiguration.Configuration
-            //    .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
-            //    .UseColouredConsoleLogProvider()
-            //    .UseSimpleAssemblyNameTypeSerializer()
-            //    .UseRecommendedSerializerSettings()
-            //    .UseSqlServerStorage("Database=Hangfire.Sample; Integrated Security=True;", new SqlServerStorageOptions
-            //    {
-            //        CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-            //        SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-            //        QueuePollInterval = TimeSpan.Zero,
-            //        UseRecommendedIsolationLevel = true,
-            //        UsePageLocksOnDequeue = true,
-            //        DisableGlobalLocks = true
-            //    }); 
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
