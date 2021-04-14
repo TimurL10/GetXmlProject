@@ -28,20 +28,20 @@ namespace GetXml
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //var connString = Configuration.GetValue<string>("DbInfo:ConnectionString");
-            //GlobalConfiguration.Configuration.UseSqlServerStorage(connString);
-            services.AddHangfire(configuration => configuration
-            .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
-            .UseSimpleAssemblyNameTypeSerializer()
-            .UseRecommendedSerializerSettings()
-            .UseSqlServerStorage(Configuration.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
+            var connString = Configuration.GetValue<string>("DbInfo:ConnectionString");
+            GlobalConfiguration.Configuration.UseSqlServerStorage(connString);
+            services.AddHangfire(config =>
             {
-                CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-                QueuePollInterval = TimeSpan.Zero,
-                UseRecommendedIsolationLevel = true,
-                DisableGlobalLocks = true
-            }));
+                var option = new SqlServerStorageOptions
+                {
+                    PrepareSchemaIfNecessary = false,
+                    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                    QueuePollInterval = TimeSpan.Zero,
+                    UseRecommendedIsolationLevel = true,
+                    DisableGlobalLocks = true
+                };
+            }); 
             services.AddHangfireServer();
             services.AddTransient<IMyJob, MyJob>();
             services.AddTransient<IHLogic, HLogic>();

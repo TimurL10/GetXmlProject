@@ -22,6 +22,9 @@ namespace GetXml.Jobs
         void RunAtTimeOf(DateTime now);
         void RunAtTimeOfActivity(DateTime now);
         void RunTwo(IJobCancellationToken token);
+        void RunThree(IJobCancellationToken token);
+        void RunMarketsReport(DateTime now);
+
     }
 
     public class MyJob : IMyJob
@@ -42,6 +45,18 @@ namespace GetXml.Jobs
             token.ThrowIfCancellationRequested();
             RunAtTimeOfActivity(DateTime.Now);
         }
+
+        public void RunThree(IJobCancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+            RunMarketsReport(DateTime.Now);
+        }
+
+        public void RunMarketsReport(DateTime now)
+        {
+            Debug.WriteLine("Here will be call");
+        }
+
 
         public void RunAtTimeOf(DateTime now)
         {
@@ -79,16 +94,21 @@ namespace GetXml.Jobs
         [Obsolete]
         public void ScheduleRecurringJobs()
         {
-            RecurringJob.RemoveIfExists("25 min updating");
-            RecurringJob.AddOrUpdate<MyJob>("25 min updating",
-                job => job.Run(JobCancellationToken.Null),
-                Cron.MinuteInterval(25),TimeZoneInfo.Utc);
+            //RecurringJob.RemoveIfExists("25 min updating");
+            //RecurringJob.AddOrUpdate<MyJob>("25 min updating",
+            //    job => job.Run(JobCancellationToken.Null),
+            //    Cron.MinuteInterval(25),TimeZoneInfo.Utc);
 
-            RecurringJob.RemoveIfExists("hour updating");
-            RecurringJob.AddOrUpdate<MyJob>("hour updating",
+            RecurringJob.RemoveIfExists("hour terminal activity updating");
+            RecurringJob.AddOrUpdate<MyJob>("hour terminal activity updating",
                 job => job.RunTwo(JobCancellationToken.Null),
                 "0 0 ? * * *", TimeZoneInfo.Utc);
-        }       
+
+            //RecurringJob.RemoveIfExists("REPORT");
+            //RecurringJob.AddOrUpdate<MyJob>("REPORT",
+            //    job => job.RunThree(JobCancellationToken.Null),
+            //    Cron.MinuteInterval(1), TimeZoneInfo.Utc);
+        }
     }
 
     public class HangfireDashboardAuthorizationFilter : IDashboardAuthorizationFilter
